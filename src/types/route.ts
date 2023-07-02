@@ -7,5 +7,7 @@ export type RootStackParamList = {
     Verify: undefined;
     Dashboard: undefined;
     ResetOtp: undefined;
+    ViewTodayTasks: undefined;
+    ViewTaskDetail: undefined;
     // Add other screen names and their params here
 };
