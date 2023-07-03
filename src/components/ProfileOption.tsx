@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Pressable, StyleSheet, Image, View, ImageURISource } from 'react-native';
+import { Pressable, StyleSheet, Image, View, ImageURISource, Text } from 'react-native';
 
 interface IOptionProps {
     title: string;
@@ -11,7 +11,9 @@ const ProfileOption: FC<IOptionProps> = ({ title, onPress, icon }) => {
     return (
         <View style={styles.container}>
             {icon && <Image source={icon} />}
-            <Pressable style={styles.option}>{title}</Pressable>
+            <Pressable onPress={onPress} style={styles.option}>
+                <Text>{title}</Text>
+            </Pressable>
         </View>
     );
 };

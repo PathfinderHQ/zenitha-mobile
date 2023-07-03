@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { DashboardScreen } from '../screens';
+import { DashboardScreen, ProfileScreen } from '../screens';
+import { Routes } from '../constants';
 
-const { Navigator, Screen } = createStackNavigator();
-
-const AppStack: FC = () => {
-    return (
-        <Navigator screenOptions={{ headerShown: false }}>
-            <Screen name='dashboard' component={DashboardScreen} />
-        </Navigator>
-    );
-};
-
-export default AppStack;
+export const appScreens = [
+    {
+        id: 1,
+        name: Routes.Dashboard,
+        component: DashboardScreen,
+    },
+    {
+        id: 2,
+        name: Routes.Profile,
+        component: ProfileScreen,
+    },
+];

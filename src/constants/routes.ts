@@ -6,13 +6,13 @@ export enum AuthRoutes {
     Reset = 'Reset',
     Verify = 'Verify',
     ResetOtp = 'ResetOtp',
-    ChangePassword='ChangePassword'
+    ChangePassword = 'ChangePassword',
 }
 
 export enum Routes {
     Dashboard = 'Dashboard',
     Homepage = 'Homepage',
     Profile = 'Profile',
-    EditProfile='EditProfile',
+    EditProfile = 'EditProfile',
     CreateTask = 'CreateTask',
 }

@@ -1,4 +1,4 @@
-import { View,StyleSheet} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import React, { FC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
@@ -13,7 +13,7 @@ export type HomeScreenProps = {
 const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <View style={styles.menu} >
+            <View style={styles.menu}>
                 <IconButtonComponent
                     icon='menu'
                     size={20}
@@ -27,15 +27,15 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    flex: 1,
-    height: 844,
-    overflow: "hidden",
-    width: "100%",
-  },
-  menu:{
-    paddingTop:30,
-  }
+    container: {
+        backgroundColor: '#fff',
+        flex: 1,
+        height: 844,
+        overflow: 'hidden',
+        width: '100%',
+    },
+    menu: {
+        paddingTop: 30,
+    },
 });
 export default Homepage;
