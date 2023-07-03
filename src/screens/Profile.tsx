@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useFonts } from 'expo-font';
 import { RootStackParamList } from '../types';
-import { AuthRoutes, Fonts, Icons, Routes } from '../constants';
+import { AuthRoutes, Icons, Routes } from '../constants';
 import Avatars from '../components/Avatars';
 import ProfileOption from '../components/ProfileOption';
-import { Spinner } from '../components';
 
 export type ProfileScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, Routes.Profile>;

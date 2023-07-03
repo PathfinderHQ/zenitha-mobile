@@ -1,4 +1,4 @@
-import { DashboardScreen, ProfileScreen } from '../screens';
+import { ProfileScreen } from '../screens';
 import { Routes } from '../constants';
 import Homepage from '../screens/Homepage';
 

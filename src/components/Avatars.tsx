@@ -1,10 +1,7 @@
 import React, { FC } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { Avatar } from '@rneui/themed';
 
-type AvatarData = {
-    image_url: string;
-};
 type AvatarComponentProps = {
     onPress?: () => void;
 };

@@ -12,7 +12,7 @@ export type HomeScreenProps = {
 };
 
 const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
-    const { auth, logout } = useAuth();
+    const { auth } = useAuth();
 
     const { user } = auth;
     return (

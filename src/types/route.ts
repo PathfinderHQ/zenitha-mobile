@@ -5,7 +5,6 @@ export type RootStackParamList = {
     Reset: undefined;
     Forgot: undefined;
     Verify: undefined;
-    Dashboard: undefined;
     ResetOtp: undefined;
     Fab: undefined;
     Homepage: undefined;

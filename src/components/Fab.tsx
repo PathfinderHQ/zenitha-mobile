@@ -1,15 +1,8 @@
 import React, { FC } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { FAB } from '@rneui/themed';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
-import { Routes } from '../constants';
-// https://reactnativeelements.com/docs/components/fab
 
 type FabProps = {
-    // placement:string;
-    // name:string;
-    // color:string;
     onPress?: () => void;
 };
 

@@ -14,8 +14,8 @@ const IconButtonComponent: FC<IconButtonProps> = ({ icon, onPress, size, color }
         <View style={styles.container}>
             <IconButton
                 icon={icon}
-                iconColor='#252525'
-                size={20}
+                iconColor={color}
+                size={size}
                 // ------------------------------------------------add navigation here
                 onPress={onPress}
             />
