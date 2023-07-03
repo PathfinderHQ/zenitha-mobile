@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 
-export default function DotMenu() {
+export default function DotMenuVertical() {
     const [visible, setVisible] = useState(false);
 
     const hideMenu = () => setVisible(false);
@@ -12,12 +12,12 @@ export default function DotMenu() {
     const showMenu = () => setVisible(true);
 
     return (
-        <View style={{ alignItems: 'center', justifyContent: 'center', marginLeft: '10%' }}>
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <Menu
                 visible={visible}
                 anchor={
                     <Text onPress={showMenu}>
-                        <MaterialCommunityIcons name='dots-horizontal' size={24} color='white' />
+                        <MaterialCommunityIcons name='dots-vertical' size={24} color='#D8DEF3' />
                     </Text>
                 }
                 onRequestClose={hideMenu}

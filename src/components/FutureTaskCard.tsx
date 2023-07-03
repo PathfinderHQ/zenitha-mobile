@@ -10,13 +10,14 @@ import {
     StyleProp,
     ViewStyle,
     Button,
-    View
+    View,
 } from 'react-native';
 import Colors from '../constants/colors';
 import FontFamily from '../constants/font-family';
 import FontSize from '../constants/fontsize';
 import { alarm, menuHorizontal } from '../constants';
 import DotMenu from './DotMenu';
+import DotMenuVertical from './DotMenuVertical';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -30,69 +31,78 @@ interface FutureTaskCardProps {
     customStyles?: StyleProp<ViewStyle>;
 }
 
-const CurrentTaskCard: FC<FutureTaskCardProps> = ({ startTime, dueTime, title, onPress, loading, alarmIcon, customStyles }) => {
-    const containerStyle = [
-        styles.container,
-        customStyles,
-    ];
+const FutureTaskCard: FC<FutureTaskCardProps> = ({
+    startTime,
+    dueTime,
+    title,
+    onPress,
+    loading,
+    alarmIcon,
+    customStyles,
+}) => {
+    const containerStyle = [styles.container, customStyles];
 
     return (
         <TouchableOpacity onPress={onPress} style={containerStyle}>
-            <View style={styles.headerContainer}>
-                <Text style={styles.headerText}>{startTime}</Text>
-                <Text style={styles.headerText}>{dueTime}</Text>
-                <DotMenu />
-                {/* {<Image source={menuHorizontal.link} style={styles.image} />} */}
-
+            <View style={styles.rightContainer}>
+                <Text style={styles.bullet}>{'\u2B24'}</Text>
             </View>
-            <View>
+            <View style={styles.middleContainer}>
                 <Text style={styles.titleText}>{title}</Text>
+                <Text style={styles.detailText}>
+                    {startTime} -- {dueTime}
+                </Text>
+            </View>
+            <View style={styles.leftContainer}>
+                <DotMenuVertical />
             </View>
             {alarmIcon && <Image source={alarm.link} style={styles.image} />}
         </TouchableOpacity>
     );
 };
 
-export default CurrentTaskCard;
+export default FutureTaskCard;
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: "column",
+        flexDirection: 'row',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        width: width / 1.3,
-        height: height / 3,
+        width: width / 1.1,
+        height: height / 10,
         alignSelf: 'center',
         padding: 10,
         borderRadius: 8,
-        backgroundColor: 'green',
+        backgroundColor: '#E9ECEF',
+        marginBottom: 10,
+        marginTop: 10,
     },
-    headerContainer: {
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        justifyContent: 'space-around',
+    rightContainer: {},
+    leftContainer: {
         alignItems: 'center',
-        width: "100%",
+    },
+    middleContainer: {},
+    bullet: {
+        color: '#52b788',
     },
     titleText: {
-        fontSize: FontSize.heading2Size,
-        color: Colors.white100,
+        fontSize: FontSize.heading4Size,
+        color: Colors.main_text,
         fontFamily: FontFamily.Semibold,
-        fontWeight: "600",
-        top: "100%",
-        right: "10%",
-
+        fontWeight: '600',
     },
-    headerText: {
+    detailText: {
         fontSize: FontSize.body2BoldSmall,
-        color: Colors.white100,
+        color: Colors.main_text,
         fontFamily: FontFamily.Semibold,
-        fontWeight: "600",
-        textAlign: "center",
+        fontWeight: '600',
+        textAlign: 'center',
     },
     actButton: {
         height: 25,
         width: 25,
     },
+
     icon: {
         color: Colors.main_text,
         fontSize: 16,
@@ -100,6 +110,6 @@ const styles = StyleSheet.create({
     image: {
         height: 25,
         width: 25,
-        marginLeft: "20%",
-    }
+        marginLeft: '20%',
+    },
 });

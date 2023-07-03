@@ -10,7 +10,7 @@ import {
     StyleProp,
     ViewStyle,
     Button,
-    View
+    View,
 } from 'react-native';
 import Colors from '../constants/colors';
 import FontFamily from '../constants/font-family';
@@ -30,11 +30,16 @@ interface CurrentTaskCardProps {
     customStyles?: StyleProp<ViewStyle>;
 }
 
-const CurrentTaskCard: FC<CurrentTaskCardProps> = ({ startTime, duration, title, onPress, loading, alarmIcon, customStyles }) => {
-    const containerStyle = [
-        styles.container,
-        customStyles,
-    ];
+const CurrentTaskCard: FC<CurrentTaskCardProps> = ({
+    startTime,
+    duration,
+    title,
+    onPress,
+    loading,
+    alarmIcon,
+    customStyles,
+}) => {
+    const containerStyle = [styles.container, customStyles];
 
     return (
         <TouchableOpacity onPress={onPress} style={containerStyle}>
@@ -42,8 +47,6 @@ const CurrentTaskCard: FC<CurrentTaskCardProps> = ({ startTime, duration, title,
                 <Text style={styles.headerText}>{startTime}</Text>
                 <Text style={styles.headerText}>{duration}</Text>
                 <DotMenu />
-                {/* {<Image source={menuHorizontal.link} style={styles.image} />} */}
-
             </View>
             <View>
                 <Text style={styles.titleText}>{title}</Text>
@@ -57,41 +60,36 @@ export default CurrentTaskCard;
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: "column",
+        flexDirection: 'column',
         alignItems: 'center',
         width: width / 1.3,
         height: height / 3,
         alignSelf: 'center',
         padding: 10,
         borderRadius: 8,
-        backgroundColor: 'green',
+        backgroundColor: '#52b788',
     },
     headerContainer: {
         flexDirection: 'row',
         flexWrap: 'nowrap',
         justifyContent: 'space-around',
         alignItems: 'center',
-        width: "100%",
+        width: '100%',
     },
     titleText: {
         fontSize: FontSize.heading2Size,
         color: Colors.white100,
         fontFamily: FontFamily.Semibold,
-        fontWeight: "600",
-        top: "100%",
-        right: "10%",
-
+        fontWeight: '600',
+        top: '100%',
+        right: '10%',
     },
     headerText: {
         fontSize: FontSize.body2BoldSmall,
         color: Colors.white100,
         fontFamily: FontFamily.Semibold,
-        fontWeight: "600",
-        textAlign: "center",
-    },
-    actButton: {
-        height: 25,
-        width: 25,
+        fontWeight: '600',
+        textAlign: 'center',
     },
     icon: {
         color: Colors.main_text,
@@ -100,6 +98,6 @@ const styles = StyleSheet.create({
     image: {
         height: 25,
         width: 25,
-        marginLeft: "20%",
-    }
+        marginLeft: '20%',
+    },
 });
