@@ -1,4 +1,4 @@
-import { View, Text,StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import React, { FC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
@@ -12,12 +12,11 @@ export type HomeScreenProps = {
 };
 
 const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
-    const { auth, logout } = useAuth();
+    const { auth } = useAuth();
 
     const { user } = auth;
     return (
         <View style={styles.container}>
-            
             <View style={styles.menu}>
                 <IconButtonComponent
                     icon='menu'

@@ -1,6 +1,5 @@
 import RegisterScreen from './Register';
 import LoginScreen from './Login';
-import DashboardScreen from './Dashboard';
 import ResetPasswordScreen from './ResetPassword';
 import SplashScreen from './Splash';
 import VerifyEmailScreen from './VerifyEmail';
@@ -11,7 +10,6 @@ import ProfileScreen from './Profile';
 export {
     LoginScreen,
     RegisterScreen,
-    DashboardScreen,
     SplashScreen,
     VerifyEmailScreen,
     ForgotPasswordScreen,
