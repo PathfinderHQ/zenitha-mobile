@@ -1,8 +1,9 @@
-import { View, StyleSheet } from 'react-native';
+import { View, Text,StyleSheet } from 'react-native';
 import React, { FC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import IconButtonComponent from '../components/IconButton';
+import { useAuth } from '../hooks';
 import { Routes } from '../constants';
 import Fab from '../components/Fab';
 
@@ -11,8 +12,12 @@ export type HomeScreenProps = {
 };
 
 const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
+    const { auth, logout } = useAuth();
+
+    const { user } = auth;
     return (
         <View style={styles.container}>
+            
             <View style={styles.menu}>
                 <IconButtonComponent
                     icon='menu'
@@ -21,6 +26,7 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
                     onPress={() => navigation.navigate(Routes.Profile)}
                 />
             </View>
+            <Text>Hello, {user?.email}</Text>
             <Fab />
         </View>
     );
