@@ -1,4 +1,4 @@
-import { ProfileScreen } from '../screens';
+import { EditProfileScreen, ProfileScreen } from '../screens';
 import { Routes } from '../constants';
 import Homepage from '../screens/Homepage';
 
@@ -12,5 +12,10 @@ export const appScreens = [
         id: 2,
         name: Routes.Profile,
         component: ProfileScreen,
+    },
+    {
+        id: 3,
+        name: Routes.EditProfile,
+        component: EditProfileScreen,
     },
 ];

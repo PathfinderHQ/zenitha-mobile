@@ -5,51 +5,40 @@ import { RootStackParamList } from '../types';
 import { AuthRoutes, Icons, Routes } from '../constants';
 import Avatars from '../components/Avatars';
 import ProfileOption from '../components/ProfileOption';
+import { Button, Input } from '../components';
 
-export type ProfileScreenProps = {
-    navigation: StackNavigationProp<RootStackParamList, Routes.Profile>;
+export type EditProfileScreenProps = {
+    navigation: StackNavigationProp<RootStackParamList, 'EditProfile'>;
 };
 
-const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
+const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.profileContainer}>
                 <Avatars />
             </View>
             <View style={styles.optionsContainer}>
-                <ProfileOption
-                    title='Edit Profile'
-                    icon={Icons.USER}
-                    onPress={() => navigation.navigate(Routes.EditProfile)}
-                />
-                <ProfileOption
-                    title='Change Password'
-                    icon={Icons.KEY}
-                    onPress={() => navigation.navigate(AuthRoutes.ChangePassword)}
-                />
-                <ProfileOption
-                    title='Log Out'
-                    icon={Icons.LOG_OUT}
-                    onPress={() => navigation.navigate(AuthRoutes.Login)}
-                />
+                <Text>FIRST NAME</Text>
+                <Input name='name' placeholder='First Name' />
+                <Text>LAST NAME</Text>
+                <Input name='name' placeholder='Last Name' />
+                <Button title='Save' />
             </View>
         </View>
     );
 };
 
-export default ProfileScreen;
+export default EditProfileScreen;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        // justifyContent: 'center',
-        // alignItems: 'center',
     },
     profileContainer: {
         width: 400,
-        paddingLeft: 20,
-        paddingTop: 100,
+        alignSelf: 'center',
+        padding: 10,
     },
     text: {
         alignSelf: 'stretch',
