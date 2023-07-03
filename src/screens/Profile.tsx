@@ -17,11 +17,10 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.profileContainer}>
                 <Avatars />
-                <Text style={styles.text}>Want to set your name?</Text>
             </View>
             <View style={styles.optionsContainer}>
                 <ProfileOption
-                    title='Profile'
+                    title='Edit Profile'
                     icon={Icons.USER}
                     onPress={() => navigation.navigate(Routes.EditProfile)}
                 />
@@ -45,12 +44,14 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: 'column',
+        // justifyContent: 'center',
+        // alignItems: 'center',
     },
     profileContainer: {
         width: 400,
-        position: 'absolute',
+        paddingLeft: 20,
+        paddingTop: 100,
     },
     text: {
         alignSelf: 'stretch',
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     },
     optionsContainer: {
         top: 323,
-        left: 66,
+        left: 20,
         width: 205,
         position: 'absolute',
     },
