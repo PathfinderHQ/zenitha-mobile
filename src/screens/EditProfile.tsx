@@ -6,6 +6,7 @@ import { AuthRoutes, Icons, Routes } from '../constants';
 import Avatars from '../components/Avatars';
 import CategoryButton from '../components/CategoryButton';
 import UpdateProfileForm from '../sections/profile/ProfileForm';
+import MyCarousel from '../components/Carousel';
 
 export type EditProfileScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, 'EditProfile'>;
@@ -25,15 +26,21 @@ const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => 
                 <Avatars />
             </View>
             <UpdateProfileForm />
+            <MyCarousel data={[]} sliderWidth={300} itemWidth={90} />
+
             <View style={styles.buttons}>
                 {[0, 1, 2].map((buttonIndex) => (
                     <CategoryButton
                         key={buttonIndex}
                         onPress={() => handleButtonPress(buttonIndex)}
                         name={`Button ${buttonIndex + 1}`}
-                        color={activeButton === buttonIndex ? 'red' : '#ddd'}
+                        color={activeButton === buttonIndex ? '#34ebc6' : '#ddd'}
                     />
                 ))}
+                
+            </View>
+            <View>
+                
             </View>
         </View>
     );
@@ -48,8 +55,11 @@ const styles = StyleSheet.create({
     },
     profileContainer: {
         width: 400,
-        alignSelf: 'center',
-        padding: 10,
+        alignContent:'center',
+        padding:20,
+    },
+    icon:{
+        alignSelf:'center',
     },
     text: {
         alignSelf: 'stretch',

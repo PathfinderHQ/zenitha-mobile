@@ -35,7 +35,6 @@ const UpdateProfileForm: FC = () => {
 
     return (
         <FormProvider methods={methods}>
-            <Text style={styles.title}>Login</Text>
             <Input name='first_name' placeholder='First Name' />
             <Input name='last_name' placeholder='Last Name' />
             <Button title='Save' onPress={handleSubmit(onSubmit)} />
