@@ -14,7 +14,7 @@ interface ICarouselProps {
 }
 
 const MyCarousel: FC<ICarouselProps> = ({ data, sliderWidth, itemWidth }) => {
-    const _renderItem = ({ item }: { item: IOptionProps }) => {
+    const renderItem = ({ item }: { item: IOptionProps }) => {
         return (
             <View style={styles.slide}>
                 <Text style={styles.title}>{item.title}</Text>
@@ -22,14 +22,7 @@ const MyCarousel: FC<ICarouselProps> = ({ data, sliderWidth, itemWidth }) => {
         );
     };
 
-    return (
-        <Carousel
-            data={data}
-            renderItem={_renderItem}
-            sliderWidth={sliderWidth}
-            itemWidth={itemWidth}
-        />
-    );
+    return <Carousel data={data} renderItem={renderItem} sliderWidth={sliderWidth} itemWidth={itemWidth} />;
 };
 
 export default MyCarousel;

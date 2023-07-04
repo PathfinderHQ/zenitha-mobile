@@ -14,7 +14,7 @@ export interface User {
     updated_at: Date;
 }
 
-export interface UpdateProfilePayload{
-    first_name:string;
-    last_name:string;
+export interface UpdateProfilePayload {
+    first_name: string;
+    last_name: string;
 }

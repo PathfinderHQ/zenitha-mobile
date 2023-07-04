@@ -1,4 +1,4 @@
-import React, { FC} from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 // form
@@ -8,10 +8,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, FormProvider, Input } from '../../components';
 import { UpdateProfilePayload } from '../../types';
 
-
 const UpdateProfileForm: FC = () => {
-    const navigator=useNavigation()
-
+    const navigator = useNavigation();
 
     const UpdateProfileSchema = Yup.object().shape({
         first_name: Yup.string().required(),
@@ -30,11 +28,10 @@ const UpdateProfileForm: FC = () => {
 
     const { handleSubmit } = methods;
 
-
     // handle error
 
     // push user to home screen when the user is authenticated
-    const onSubmit=()=>navigator.goBack();
+    const onSubmit = () => navigator.goBack();
 
     return (
         <FormProvider methods={methods}>
