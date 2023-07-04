@@ -12,6 +12,12 @@ import MyCarousel from './Carousel';
 import IconButtonComponent from './IconButton';
 import ImagePickerComponent from './ImagePicker';
 import CategoryButton from './CategoryButton';
+import CurrentTaskCard from './CurrentTaskCard';
+import FutureTaskCard from './FutureTaskCard';
+import DateToday from './DateToday';
+import TaskDetailCard from './TaskDetailCard';
+import HorizontalCalendar from './HorizontalCalendar';
+
 
 export {
     Input,
@@ -28,4 +34,9 @@ export {
     MyCarousel,
     IconButtonComponent,
     ImagePickerComponent,
+    CurrentTaskCard,
+    FutureTaskCard,
+    DateToday,
+    TaskDetailCard,
+    HorizontalCalendar,
 };
