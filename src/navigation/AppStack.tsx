@@ -18,4 +18,16 @@ export const appScreens = [
         name: Routes.EditProfile,
         component: EditProfileScreen,
     },
+    {
+
+        id: 4,
+        name: Routes.ViewTodayTasks,
+        component: ViewTodayTasksScreen,
+    },
+    {
+
+        id: 5,
+        name: Routes.ViewDetail,
+        component: TaskDetailScreen,
+    }
 ];

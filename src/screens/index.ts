@@ -18,4 +18,8 @@ export {
     ForgotPasswordScreen,
     ResetPasswordScreen,
     ResetOtpScreen,
+    ProfileScreen,
+    EditProfileScreen,
+    ViewTodayTasksScreen,
+    TaskDetailScreen,
 };
