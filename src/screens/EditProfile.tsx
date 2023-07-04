@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import { AuthRoutes, Icons, Routes } from '../constants';
-import Avatars from '../components/Avatars';
-import CategoryButton from '../components/CategoryButton';
+import { Avatars, CategoryButton, MyCarousel, IconButtonComponent } from '../components';
+
 import UpdateProfileForm from '../sections/profile/ProfileForm';
-import MyCarousel from '../components/Carousel';
 
 export type EditProfileScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, 'EditProfile'>;
@@ -26,18 +25,20 @@ const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => 
                 <Avatars />
             </View>
             <UpdateProfileForm />
-            <MyCarousel
-                data={[
-                    { id: 1, name: 'HOME', onPress: () => console.log('Pressed button 1'), color: 'red' },
-                    { id: 2, name: 'WORK', onPress: () => console.log('Pressed button 2'), color: 'blue' },
-                    { id: 3, name: 'FAMILY', onPress: () => console.log('Pressed button 3'), color: 'green' },
-                    { id: 4, name: 'PERSONAL', onPress: () => console.log('Pressed button 4'), color: 'yellow' },
-                    { id: 5, name: 'Button 5', onPress: () => console.log('Pressed button 5'), color: 'purple' },
-                ]}
-                sliderWidth={300}
-                itemWidth={90}
-            />
-
+            <View style={styles.carousel}>
+                <MyCarousel
+                    data={[
+                        { id: 1, name: 'HOME', onPress: () => console.log('Pressed button 1'), color: 'red' },
+                        { id: 2, name: 'WORK', onPress: () => console.log('Pressed button 2'), color: 'blue' },
+                        { id: 3, name: 'FAMILY', onPress: () => console.log('Pressed button 3'), color: 'green' },
+                        { id: 4, name: 'PERSONAL', onPress: () => console.log('Pressed button 4'), color: 'yellow' },
+                        { id: 5, name: 'Button 5', onPress: () => console.log('Pressed button 5'), color: 'purple' },
+                    ]}
+                    sliderWidth={240}
+                    itemWidth={90}
+                />
+                <IconButtonComponent size={40} icon='plus' color='#252525' />
+            </View>
             <View style={styles.buttons}>
                 {[0, 1, 2].map((buttonIndex) => (
                     <CategoryButton
@@ -87,5 +88,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         height: 20,
+    },
+    carousel: {
+        flexDirection: 'row',
     },
 });

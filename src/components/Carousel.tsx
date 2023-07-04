@@ -55,7 +55,7 @@ const MyCarousel: FC<ICarouselProps> = ({ data, sliderWidth, itemWidth }) => {
 
     return (
         <View>
-            <Carousel data={data} renderItem={renderItem} sliderWidth={240} itemWidth={100} />
+            <Carousel data={data} renderItem={renderItem} sliderWidth={sliderWidth} itemWidth={itemWidth} />
         </View>
     );
 };

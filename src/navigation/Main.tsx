@@ -39,7 +39,7 @@ const Main: FC = () => {
                                 <Stack.Screen key={id} name={name} component={component} />
                             ))}
                         </Stack.Group>
-                        <Stack.Group screenOptions={{ headerShown: true }}>
+                        <Stack.Group screenOptions={{ headerShown: false }}>
                             {appScreens.map(({ id, name, component }) => (
                                 <Stack.Screen key={id} name={name} component={component} />
                             ))}
