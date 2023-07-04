@@ -26,7 +26,17 @@ const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => 
                 <Avatars />
             </View>
             <UpdateProfileForm />
-            <MyCarousel data={[]} sliderWidth={300} itemWidth={90} />
+            <MyCarousel
+                data={[
+                    { id: 1, name: 'HOME', onPress: () => console.log('Pressed button 1'), color: 'red' },
+                    { id: 2, name: 'WORK', onPress: () => console.log('Pressed button 2'), color: 'blue' },
+                    { id: 3, name: 'FAMILY', onPress: () => console.log('Pressed button 3'), color: 'green' },
+                    { id: 4, name: 'PERSONAL', onPress: () => console.log('Pressed button 4'), color: 'yellow' },
+                    { id: 5, name: 'Button 5', onPress: () => console.log('Pressed button 5'), color: 'purple' },
+                ]}
+                sliderWidth={300}
+                itemWidth={90}
+            />
 
             <View style={styles.buttons}>
                 {[0, 1, 2].map((buttonIndex) => (
@@ -37,10 +47,6 @@ const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => 
                         color={activeButton === buttonIndex ? '#34ebc6' : '#ddd'}
                     />
                 ))}
-                
-            </View>
-            <View>
-                
             </View>
         </View>
     );
@@ -55,11 +61,11 @@ const styles = StyleSheet.create({
     },
     profileContainer: {
         width: 400,
-        alignContent:'center',
-        padding:20,
+        alignContent: 'center',
+        padding: 20,
     },
-    icon:{
-        alignSelf:'center',
+    icon: {
+        alignSelf: 'center',
     },
     text: {
         alignSelf: 'stretch',

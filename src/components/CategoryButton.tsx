@@ -17,7 +17,7 @@ const CategoryButton: React.FC<Props> = ({ onPress, name, color }) => {
 
     return (
         <TouchableOpacity
-            style={[styles.button,{ backgroundColor: isPressed ? color : '#ddd' }]}
+            style={[styles.button, { backgroundColor: isPressed ? color : '#ddd' }]}
             onPress={handlePress}
         >
             <Text>{name}</Text>
@@ -27,11 +27,11 @@ const CategoryButton: React.FC<Props> = ({ onPress, name, color }) => {
 
 const styles = StyleSheet.create({
     button: {
-        textAlign:'center',
+        textAlign: 'center',
         padding: 10,
         borderRadius: 5,
         width: 90,
-        height:40,
+        height: 40,
     },
 });
 
