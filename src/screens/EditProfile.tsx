@@ -17,8 +17,8 @@ const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => 
     const handleButtonPress = (buttonIndex: number) => {
         setActiveButton(buttonIndex);
         console.log(`Pressed button ${buttonIndex + 1}`);
-      };
-    
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.profileContainer}>
@@ -26,14 +26,15 @@ const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => 
             </View>
             <UpdateProfileForm />
             <View style={styles.buttons}>
-            {[0, 1, 2].map((buttonIndex) => (
-        <CategoryButton
-          key={buttonIndex}
-          onPress={() => handleButtonPress(buttonIndex)}
-          name={`Button ${buttonIndex + 1}`}
-          color={activeButton === buttonIndex ? 'red' : '#ddd'}
-        />
-      ))}</View>
+                {[0, 1, 2].map((buttonIndex) => (
+                    <CategoryButton
+                        key={buttonIndex}
+                        onPress={() => handleButtonPress(buttonIndex)}
+                        name={`Button ${buttonIndex + 1}`}
+                        color={activeButton === buttonIndex ? 'red' : '#ddd'}
+                    />
+                ))}
+            </View>
         </View>
     );
 };
@@ -66,9 +67,9 @@ const styles = StyleSheet.create({
         width: 205,
         position: 'absolute',
     },
-    buttons:{
-        flex:1,
-        flexDirection:'row',
-        height:20,
-    }
+    buttons: {
+        flex: 1,
+        flexDirection: 'row',
+        height: 20,
+    },
 });

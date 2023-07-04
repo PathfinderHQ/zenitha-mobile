@@ -78,9 +78,8 @@ const styles = StyleSheet.create({
     button: {
         padding: 10,
         borderRadius: 5,
-        width:90,
+        width: 90,
     },
 });
 
 export default CategoryButton;
-
