@@ -66,7 +66,7 @@ const CategoryButton: React.FC<Props> = ({ onPress, name, color }) => {
 
     return (
         <TouchableOpacity
-            style={[styles.button, { backgroundColor: isPressed ? color : '#52B788' }]}
+            style={[styles.button, { backgroundColor: isPressed ? color : '#ddd' }]}
             onPress={handlePress}
         >
             <Text>{name}</Text>
@@ -78,7 +78,9 @@ const styles = StyleSheet.create({
     button: {
         padding: 10,
         borderRadius: 5,
+        width:90,
     },
 });
 
 export default CategoryButton;
+
