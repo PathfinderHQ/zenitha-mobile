@@ -42,23 +42,38 @@ const CurrentTaskCard: FC<CurrentTaskCardProps> = ({
     const containerStyle = [styles.container, customStyles];
 
     return (
-        <TouchableOpacity onPress={onPress} style={containerStyle}>
-            <View style={styles.headerContainer}>
-                <Text style={styles.headerText}>{startTime}</Text>
-                <Text style={styles.headerText}>{duration}</Text>
+        <View style={styles.box}>
+            <View style={styles.dot}>
                 <DotMenu />
             </View>
-            <View>
-                <Text style={styles.titleText}>{title}</Text>
-            </View>
-            {alarmIcon && <Image source={alarm.link} style={styles.image} />}
-        </TouchableOpacity>
+
+            <TouchableOpacity onPress={onPress} style={containerStyle}>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.headerText}>{startTime}</Text>
+                    <Text style={styles.headerText}>{duration}</Text>
+                    <Text />
+                </View>
+                <View>
+                    <Text style={styles.titleText}>{title}</Text>
+                </View>
+                {alarmIcon && <Image source={alarm.link} style={styles.image} />}
+            </TouchableOpacity>
+        </View>
     );
 };
 
 export default CurrentTaskCard;
 
 const styles = StyleSheet.create({
+    box: {
+        position: 'relative',
+    },
+    dot: {
+        position: 'absolute',
+        zIndex: 200,
+        top: 8,
+        right: '10%',
+    },
     container: {
         flexDirection: 'column',
         alignItems: 'center',

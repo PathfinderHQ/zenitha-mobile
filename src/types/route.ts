@@ -8,6 +8,6 @@ export type RootStackParamList = {
     Dashboard: undefined;
     ResetOtp: undefined;
     ViewTodayTasks: undefined;
-    ViewTaskDetail: undefined;
+    ViewDetail: undefined;
     // Add other screen names and their params here
 };

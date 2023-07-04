@@ -11,5 +11,5 @@ export enum AuthRoutes {
 export enum Routes {
     Dashboard = 'Dashboard',
     ViewTodayTasks = 'ViewTodayTasks',
-    ViewTaskDetail = 'ViewTaskDetail',
+    ViewDetail = 'ViewDetail',
 }

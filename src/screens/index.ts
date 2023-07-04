@@ -7,6 +7,7 @@ import VerifyEmailScreen from './VerifyEmail';
 import ForgotPasswordScreen from './ForgotPassword';
 import ResetOtpScreen from './ResetOtp';
 import ViewTodayTasksScreen from './ViewTodayTasks';
+import TaskDetailScreen from './ViewDetail';
 
 export {
     LoginScreen,
@@ -18,4 +19,5 @@ export {
     ResetPasswordScreen,
     ResetOtpScreen,
     ViewTodayTasksScreen,
+    TaskDetailScreen,
 };

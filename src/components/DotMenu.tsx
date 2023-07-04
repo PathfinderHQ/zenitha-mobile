@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 
@@ -12,8 +12,9 @@ export default function DotMenu() {
     const showMenu = () => setVisible(true);
 
     return (
-        <View style={{ alignItems: 'center', justifyContent: 'center', marginLeft: '10%' }}>
+        <View style={styles.container}>
             <Menu
+                style={styles.menu}
                 visible={visible}
                 anchor={
                     <Text onPress={showMenu}>
@@ -22,7 +23,7 @@ export default function DotMenu() {
                 }
                 onRequestClose={hideMenu}
             >
-                <MenuItem onPress={hideMenu}>
+                <MenuItem style={{ backfaceVisibility: 'hidden' }} onPress={hideMenu}>
                     <Feather name='edit-2' size={16} color='black' /> Edit
                 </MenuItem>
                 <MenuDivider color='grey' />
@@ -37,3 +38,16 @@ export default function DotMenu() {
         </View>
     );
 }
+const styles = StyleSheet.create({
+    menu: {
+        borderRadius: 8,
+        backfaceVisibility: 'hidden',
+        zIndex: 100,
+    },
+
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: '10%',
+    },
+});

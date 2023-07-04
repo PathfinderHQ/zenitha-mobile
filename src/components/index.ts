@@ -6,5 +6,18 @@ import Otp from './otp/Otp';
 import CurrentTaskCard from './CurrentTaskCard';
 import FutureTaskCard from './FutureTaskCard';
 import DateToday from './DateToday';
+import TaskDetailCard from './TaskDetailCard';
+import HorizontalCalendar from './HorizontalCalendar';
 
-export { Input, Button, HorizontalDivider, Otp, FormProvider, CurrentTaskCard, FutureTaskCard, DateToday };
+export {
+    Input,
+    Button,
+    HorizontalDivider,
+    Otp,
+    FormProvider,
+    CurrentTaskCard,
+    FutureTaskCard,
+    DateToday,
+    TaskDetailCard,
+    HorizontalCalendar,
+};

@@ -12,6 +12,8 @@ import {
     SplashScreen,
     VerifyEmailScreen,
     ResetOtpScreen,
+    ViewTodayTasksScreen,
+    TaskDetailScreen,
 } from './src/screens';
 import { AuthProvider } from './src/contexts/AuthContext';
 import { AuthRoutes, navigationRef, Routes } from './src/constants';
@@ -62,6 +64,17 @@ const App: FC = () => {
                         <Stack.Screen
                             name={Routes.Dashboard}
                             component={DashboardScreen}
+                            options={{ headerShown: false }}
+                        />
+
+                        <Stack.Screen
+                            name={Routes.ViewTodayTasks}
+                            component={ViewTodayTasksScreen}
+                            options={{ headerShown: false }}
+                        />
+                        <Stack.Screen
+                            name={Routes.ViewDetail}
+                            component={TaskDetailScreen}
                             options={{ headerShown: false }}
                         />
 

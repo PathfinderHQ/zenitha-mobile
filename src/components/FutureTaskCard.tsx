@@ -43,27 +43,40 @@ const FutureTaskCard: FC<FutureTaskCardProps> = ({
     const containerStyle = [styles.container, customStyles];
 
     return (
-        <TouchableOpacity onPress={onPress} style={containerStyle}>
-            <View style={styles.rightContainer}>
-                <Text style={styles.bullet}>{'\u2B24'}</Text>
-            </View>
-            <View style={styles.middleContainer}>
-                <Text style={styles.titleText}>{title}</Text>
-                <Text style={styles.detailText}>
-                    {startTime} -- {dueTime}
-                </Text>
-            </View>
-            <View style={styles.leftContainer}>
+        <View style={styles.box}>
+            <View style={styles.dot}>
                 <DotMenuVertical />
             </View>
-            {alarmIcon && <Image source={alarm.link} style={styles.image} />}
-        </TouchableOpacity>
+
+            <TouchableOpacity onPress={onPress} style={containerStyle}>
+                <View style={styles.rightContainer}>
+                    <Text style={styles.bullet}>{'\u2B24'}</Text>
+                </View>
+                <View style={styles.middleContainer}>
+                    <Text style={styles.titleText}>{title}</Text>
+                    <Text style={styles.detailText}>
+                        {startTime} -- {dueTime}
+                    </Text>
+                </View>
+                <View style={styles.leftContainer} />
+                {alarmIcon && <Image source={alarm.link} style={styles.image} />}
+            </TouchableOpacity>
+        </View>
     );
 };
 
 export default FutureTaskCard;
 
 const styles = StyleSheet.create({
+    box: {
+        position: 'relative',
+    },
+    dot: {
+        position: 'absolute',
+        zIndex: 200,
+        top: '35%',
+        right: '10%',
+    },
     container: {
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -77,11 +90,18 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginTop: 10,
     },
-    rightContainer: {},
-    leftContainer: {
+    rightContainer: {
+        flex: 1,
         alignItems: 'center',
     },
-    middleContainer: {},
+    leftContainer: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    middleContainer: {
+        flex: 2,
+        alignItems: 'flex-start',
+    },
     bullet: {
         color: '#52b788',
     },
@@ -98,11 +118,6 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         textAlign: 'center',
     },
-    actButton: {
-        height: 25,
-        width: 25,
-    },
-
     icon: {
         color: Colors.main_text,
         fontSize: 16,

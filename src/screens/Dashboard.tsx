@@ -1,25 +1,22 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useAuth } from '../hooks';
 import { RootStackParamList } from '../types';
 import { Routes } from '../constants';
 import Colors from '../constants/colors';
-import { CurrentTaskCard, FutureTaskCard, DateToday } from '../components';
+import { CurrentTaskCard, FutureTaskCard, DateToday, HorizontalCalendar } from '../components';
 import MainHorizontalDivider from '../components/MainHorizontalDivider';
-
+import DeleteDialog from '../components/DeleteDialog';
 
 const { width } = Dimensions.get('screen');
 
-export type DashboardProps = {
-    navigation: StackNavigationProp<RootStackParamList, Routes.Dashboard>;
+export type ViewTodayTasksProps = {
+    navigation: StackNavigationProp<RootStackParamList, Routes.ViewTodayTasks>;
 };
-const Dashboard: FC<DashboardProps> = ({ navigation }) => {
-    const { auth, logout } = useAuth();
-
-    const { user } = auth;
+const ViewTodayTasksScreen: FC<ViewTodayTasksProps> = ({ navigation }) => {
+    const [selectedDate, setSelectedDate] = useState<string>('');
 
     return (
         <View style={styles.container}>
@@ -27,36 +24,19 @@ const Dashboard: FC<DashboardProps> = ({ navigation }) => {
                 <MaterialCommunityIcons name='calendar-month-outline' size={30} color='black' />
             </View>
             <View style={styles.date}>
-                <DateToday />
+                <HorizontalCalendar onSelectDate={setSelectedDate} selected={selectedDate} />
             </View>
-            <View style={styles.currentCardContainer}>
-                <MainHorizontalDivider />
-                <CurrentTaskCard
-                    startTime='8:20'
-                    duration='2 hours'
-                    title='Assignment'
-                    onPress={() => navigation.navigate(Routes.Dashboard)}
-                />
-                <MainHorizontalDivider />
+            <View style={styles.addTask}>
+                <TouchableOpacity onPress={() => navigation.navigate(Routes.ViewTodayTasks)}>
+                    <Text style={styles.link_text}>Add task</Text>
+                </TouchableOpacity>
             </View>
-            <View style={styles.futureCardContainer}>
-                <Text style={styles.reminder}>Today's Reminders</Text>
-
-                <FutureTaskCard
-                    startTime='5:30 pm'
-                    dueTime='8:30 pm'
-                    title='House Cleaning'
-                    onPress={() => navigation.navigate(Routes.Dashboard)}
-                />
-            </View>
-            <TouchableOpacity onPress={() => navigation.navigate(Routes.ViewTodayTasks)}>
-                <Text style={styles.link_text}>View Today's Tasks</Text>
-            </TouchableOpacity>
+            <DeleteDialog />
         </View>
     );
 };
 
-export default Dashboard;
+export default ViewTodayTasksScreen;
 
 const styles = StyleSheet.create({
     container: {
@@ -75,7 +55,7 @@ const styles = StyleSheet.create({
         flex: 8,
     },
     futureCardContainer: {
-        flex: 8,
+        flex: 7,
     },
     reminder: {
         fontSize: 20,
@@ -93,5 +73,9 @@ const styles = StyleSheet.create({
         flexShrink: 2,
         marginTop: '10%',
         marginRight: '5%',
+    },
+    addTask: {
+        flex: 1,
+        alignSelf: 'flex-end',
     },
 });

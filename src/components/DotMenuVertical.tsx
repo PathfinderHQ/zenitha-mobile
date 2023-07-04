@@ -17,7 +17,7 @@ export default function DotMenuVertical() {
                 visible={visible}
                 anchor={
                     <Text onPress={showMenu}>
-                        <MaterialCommunityIcons name='dots-vertical' size={24} color='#D8DEF3' />
+                        <MaterialCommunityIcons name='dots-vertical' size={30} color='#D8DEF3' />
                     </Text>
                 }
                 onRequestClose={hideMenu}
