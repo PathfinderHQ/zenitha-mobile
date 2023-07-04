@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Dialog, ThemeProvider } from '@rneui/themed';
 import { View, Text, StyleSheet } from 'react-native';
 
-
 const DeleteDialog: React.FunctionComponent = () => {
     const theme = {
         Dialog: {
