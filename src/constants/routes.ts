@@ -14,4 +14,6 @@ export enum Routes {
     Profile = 'Profile',
     EditProfile = 'EditProfile',
     CreateTask = 'CreateTask',
+    ViewTodayTasks = 'ViewTodayTasks',
+    ViewDetail = 'ViewDetail',
 }
