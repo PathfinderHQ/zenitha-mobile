@@ -28,9 +28,9 @@ const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => 
             />
             <CategoryButton
                 onPress={() => {
-                    console.log('pressed');
+                    console.log('presseddd');
                 }}
-                name='HOME'
+                name='HOMEdd'
                 color='red'
             />
             <CategoryButton
