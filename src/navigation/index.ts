@@ -1,5 +1,3 @@
-import AppStack from './AppStack';
-import AuthStack from './AuthStack';
-import MainNav from './MainNav';
+import Main from './Main';
 
-export { AppStack, AuthStack, MainNav };
+export { Main };

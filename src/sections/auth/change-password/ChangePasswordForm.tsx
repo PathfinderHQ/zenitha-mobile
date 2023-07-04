@@ -12,7 +12,7 @@ import { EMAIL_REGEX, Routes } from '../../../constants';
 import { useAuth, useError } from '../../../hooks';
 import { LoginScreenProps } from '../../../screens/Login';
 
-const LoginForm: FC<LoginScreenProps> = ({ navigation }) => {
+const ChangePasswordForm: FC<LoginScreenProps> = ({ navigation }) => {
     const { auth, registerOrLogin } = useAuth();
 
     const { loading, error, clearError, isAuthenticated } = auth;
@@ -62,14 +62,15 @@ const LoginForm: FC<LoginScreenProps> = ({ navigation }) => {
     return (
         <FormProvider methods={methods}>
             <Text style={styles.title}>Login</Text>
-            <Input name='email' placeholder='Email' />
-            <Input name='password' placeholder='Password' secureTextEntry />
+
+            <Input name='password' placeholder='Old Password' secureTextEntry />
+            <Input name='newPassword' placeholder='New Password' secureTextEntry />
             <Button loading={loading} title='Login' onPress={handleSubmit(onSubmit)} />
         </FormProvider>
     );
 };
 
-export default LoginForm;
+export default ChangePasswordForm;
 
 const styles = StyleSheet.create({
     title: {

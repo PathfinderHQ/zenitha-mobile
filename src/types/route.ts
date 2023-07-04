@@ -5,8 +5,13 @@ export type RootStackParamList = {
     Reset: undefined;
     Forgot: undefined;
     Verify: undefined;
-    Dashboard: undefined;
     ResetOtp: undefined;
+    Fab: undefined;
+    Homepage: undefined;
+    Profile: undefined;
+    EditProfile: undefined;
+    CreateTask: undefined;
+    ChangePassword: undefined;
     ViewTodayTasks: undefined;
     ViewDetail: undefined;
     // Add other screen names and their params here

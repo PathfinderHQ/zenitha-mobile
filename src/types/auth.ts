@@ -58,10 +58,20 @@ export interface IAuthSlice {
         clearError: () => void;
         clearMessage: () => void;
     };
+    change: {
+        loading: boolean;
+        success: boolean;
+        error: string | null;
+        message: string | null;
+        setLoading: (value: boolean) => void;
+        clearError: () => void;
+        clearMessage: () => void;
+    };
     registerOrLogin: (data: AuthPayload | GoogleAuthPayload, type: AuthType) => Promise<void>;
     getCurrentUser: () => Promise<void>;
     logout: () => Promise<void>;
     resetPassword: (otp: string, password: string) => Promise<void>;
     forgotPassword: (email: string) => Promise<void>;
     verifyEmail: (otp: string) => Promise<void>;
+    changePassword: (password: string) => Promise<void>;
 }
