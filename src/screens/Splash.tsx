@@ -6,7 +6,7 @@ import { AuthRoutes, logo, Routes } from '../constants';
 import useAuth from '../hooks/useAuth';
 
 type SplashScreenProps = {
-    navigation: StackNavigationProp<RootStackParamList, 'Splash'>;
+    navigation: StackNavigationProp<RootStackParamList, AuthRoutes.Splash>;
 };
 
 const SplashScreen: FC<SplashScreenProps> = ({ navigation }) => {

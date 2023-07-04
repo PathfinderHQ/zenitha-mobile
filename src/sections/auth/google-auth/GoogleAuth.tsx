@@ -29,7 +29,7 @@ const GoogleAuth: FC<GoogleAuthProps> = ({ navigation }) => {
     // push user to home screen when the user is authenticated
     useEffect(() => {
         if (isAuthenticated) {
-            navigation.navigate(Routes.Dashboard);
+            navigation.navigate(Routes.Homepage);
         }
 
         // eslint-disable-next-line

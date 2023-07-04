@@ -25,7 +25,7 @@ const VerifyForm: FC<VerifyEmailScreenProps> = ({ navigation }) => {
     // navigate to homepage
     useEffect(() => {
         if (success) {
-            navigation.navigate(Routes.Dashboard);
+            navigation.navigate(Routes.Homepage);
         }
 
         // eslint-disable-next-line
