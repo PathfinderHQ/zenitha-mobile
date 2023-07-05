@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView, SafeAreaView, Platform, StatusBar } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
@@ -19,64 +19,66 @@ const SearchTasksScreen: FC<SearchTasksProps> = ({ navigation }) => {
     const toggle = () => setShowCalendar((prevState) => !prevState);
 
     return (
-        <View style={styles.container}>
-            <View style={styles.searchContainer}>
-                <SearchBox />
-                <TouchableOpacity onPress={() => navigation.navigate(Routes.ViewTodayTasks)}>
-                    <Text style={styles.text}>Cancel</Text>
-                </TouchableOpacity>
-            </View>
+        <SafeAreaView style={styles.AndroidSafeArea}>
+            <View style={styles.container}>
+                <View style={styles.searchContainer}>
+                    <SearchBox />
+                    <TouchableOpacity onPress={() => navigation.navigate(Routes.ViewTodayTasks)}>
+                        <Text style={styles.text}>Cancel</Text>
+                    </TouchableOpacity>
+                </View>
 
-            <View style={styles.futureCardContainer}>
-                <ScrollView>
-                    <DateToday />
-                    <MainHorizontalDivider />
-                    <FutureTaskCard
-                        startTime='5:30 pm'
-                        dueTime='8:30 pm'
-                        title='House Cleaning'
-                        onPress={() => navigation.navigate(Routes.ViewDetail)}
-                    />
-                    <FutureTaskCard
-                        startTime='5:30 pm'
-                        dueTime='8:30 pm'
-                        title='Family Dinner'
-                        onPress={() => navigation.navigate(Routes.ViewDetail)}
-                    />
-                    <FutureTaskCard
-                        startTime='5:30 pm'
-                        dueTime='8:30 pm'
-                        title='Some Tasks'
-                        onPress={() => navigation.navigate(Routes.ViewDetail)}
-                    />
-                    <Text style={styles.dateText}>Date of the tasks shown below</Text>
-                    <MainHorizontalDivider />
-                    <FutureTaskCard
-                        startTime='5:30 pm'
-                        dueTime='8:30 pm'
-                        title='House Cleaning'
-                        onPress={() => navigation.navigate(Routes.ViewDetail)}
-                    />
-                    <Text style={styles.dateText}>Date of the tasks shown below</Text>
-                    <MainHorizontalDivider />
-                    <FutureTaskCard
-                        startTime='5:30 pm'
-                        dueTime='8:30 pm'
-                        title='House Cleaning'
-                        onPress={() => navigation.navigate(Routes.ViewDetail)}
-                    />
-                    <FutureTaskCard
-                        startTime='5:30 pm'
-                        dueTime='8:30 pm'
-                        title='House Cleaning'
-                        onPress={() => navigation.navigate(Routes.ViewDetail)}
-                    />
-                </ScrollView>
-                <View style={styles.addTask}>
-                    <FloatingButton />
+                <View style={styles.futureCardContainer}>
+                    <ScrollView>
+                        <DateToday />
+                        <MainHorizontalDivider />
+                        <FutureTaskCard
+                            startTime='5:30 pm'
+                            dueTime='8:30 pm'
+                            title='House Cleaning'
+                            onPress={() => navigation.navigate(Routes.ViewDetail)}
+                        />
+                        <FutureTaskCard
+                            startTime='5:30 pm'
+                            dueTime='8:30 pm'
+                            title='Family Dinner'
+                            onPress={() => navigation.navigate(Routes.ViewDetail)}
+                        />
+                        <FutureTaskCard
+                            startTime='5:30 pm'
+                            dueTime='8:30 pm'
+                            title='Some Tasks'
+                            onPress={() => navigation.navigate(Routes.ViewDetail)}
+                        />
+                        <Text style={styles.dateText}>Date of the tasks shown below</Text>
+                        <MainHorizontalDivider />
+                        <FutureTaskCard
+                            startTime='5:30 pm'
+                            dueTime='8:30 pm'
+                            title='House Cleaning'
+                            onPress={() => navigation.navigate(Routes.ViewDetail)}
+                        />
+                        <Text style={styles.dateText}>Date of the tasks shown below</Text>
+                        <MainHorizontalDivider />
+                        <FutureTaskCard
+                            startTime='5:30 pm'
+                            dueTime='8:30 pm'
+                            title='House Cleaning'
+                            onPress={() => navigation.navigate(Routes.ViewDetail)}
+                        />
+                        <FutureTaskCard
+                            startTime='5:30 pm'
+                            dueTime='8:30 pm'
+                            title='House Cleaning'
+                            onPress={() => navigation.navigate(Routes.ViewDetail)}
+                        />
+                    </ScrollView>
+                    <View style={styles.addTask}>
+                        <FloatingButton />
+                    </View>
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -101,11 +103,8 @@ const styles = StyleSheet.create({
         fontSize: 14,
         marginHorizontal: width / 10,
     },
-    currentCardContainer: {
-        flex: 8,
-    },
     futureCardContainer: {
-        flex: 6,
+        flex: 9,
     },
 
     addTask: {
@@ -120,5 +119,9 @@ const styles = StyleSheet.create({
     },
     dateText: {
         fontSize: 24,
+    },
+    AndroidSafeArea: {
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
 });

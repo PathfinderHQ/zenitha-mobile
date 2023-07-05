@@ -1,5 +1,15 @@
 import React, { FC, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    Dimensions,
+    ScrollView,
+    TouchableOpacity,
+    StatusBar,
+    SafeAreaView,
+    Platform,
+} from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { RootStackParamList } from '../types';
@@ -26,69 +36,76 @@ const ViewTodayTasksScreen: FC<ViewTodayTasksProps> = ({ navigation }) => {
     const toggle = () => setShowCalendar((prevState) => !prevState);
 
     return (
-        <View style={styles.container}>
-            <View style={styles.calendarIcon}>
-                <View style={styles.searchIconContainer}>
-                    <Feather
-                        name='search'
-                        size={24}
-                        color='black'
-                        onPress={() => navigation.navigate(Routes.SearchTasks)}
+        <SafeAreaView style={styles.AndroidSafeArea}>
+            <View style={styles.container}>
+                <View style={styles.calendarIcon}>
+                    <View style={styles.searchIconContainer}>
+                        <Feather
+                            name='search'
+                            size={24}
+                            color='black'
+                            onPress={() => navigation.navigate(Routes.SearchTasks)}
+                        />
+                    </View>
+                    <View style={styles.calenderIconContainer}>
+                        <MaterialCommunityIcons
+                            name='calendar-month-outline'
+                            size={30}
+                            color='black'
+                            onPress={toggle}
+                        />
+                    </View>
+                </View>
+                <View style={styles.date}>
+                    {showCalendar ? (
+                        <HorizontalCalendar selected={selectedDate} onSelectDate={setSelectedDate} />
+                    ) : (
+                        <DateToday />
+                    )}
+                </View>
+                <View style={styles.currentCardContainer}>
+                    <MainHorizontalDivider />
+                    <CurrentTaskCard
+                        startTime='8:20'
+                        duration='2 hours'
+                        title='Assignment'
+                        onPress={() => navigation.navigate(Routes.ViewDetail)}
                     />
                 </View>
-                <View style={styles.calenderIconContainer}>
-                    <MaterialCommunityIcons name='calendar-month-outline' size={30} color='black' onPress={toggle} />
+
+                <View style={styles.futureCardContainer}>
+                    <MainHorizontalDivider />
+                    <ScrollView>
+                        <Text style={styles.reminder}>Today's Reminders</Text>
+
+                        <FutureTaskCard
+                            startTime='5:30 pm'
+                            dueTime='8:30 pm'
+                            title='House Cleaning'
+                            onPress={() => navigation.navigate(Routes.ViewDetail)}
+                        />
+                        <FutureTaskCard
+                            startTime='5:30 pm'
+                            dueTime='8:30 pm'
+                            title='Family Dinner'
+                            onPress={() => navigation.navigate(Routes.ViewDetail)}
+                        />
+                        <FutureTaskCard
+                            startTime='5:30 pm'
+                            dueTime='8:30 pm'
+                            title='Some Tasks'
+                            onPress={() => navigation.navigate(Routes.ViewDetail)}
+                        />
+                    </ScrollView>
+                </View>
+                <View style={styles.addTask}>
+                    <TouchableOpacity onPress={() => navigation.navigate(Routes.Homepage)}>
+                        <Text style={styles.link_text}>Add task</Text>
+                    </TouchableOpacity>
+                    <FloatingButton />
                 </View>
             </View>
-            <View style={styles.date}>
-                {showCalendar ? (
-                    <HorizontalCalendar selected={selectedDate} onSelectDate={setSelectedDate} />
-                ) : (
-                    <DateToday />
-                )}
-            </View>
-            <View style={styles.currentCardContainer}>
-                <MainHorizontalDivider />
-                <CurrentTaskCard
-                    startTime='8:20'
-                    duration='2 hours'
-                    title='Assignment'
-                    onPress={() => navigation.navigate(Routes.ViewDetail)}
-                />
-            </View>
-
-            <View style={styles.futureCardContainer}>
-                <MainHorizontalDivider />
-                <ScrollView>
-                    <Text style={styles.reminder}>Today's Reminders</Text>
-
-                    <FutureTaskCard
-                        startTime='5:30 pm'
-                        dueTime='8:30 pm'
-                        title='House Cleaning'
-                        onPress={() => navigation.navigate(Routes.ViewDetail)}
-                    />
-                    <FutureTaskCard
-                        startTime='5:30 pm'
-                        dueTime='8:30 pm'
-                        title='Family Dinner'
-                        onPress={() => navigation.navigate(Routes.ViewDetail)}
-                    />
-                    <FutureTaskCard
-                        startTime='5:30 pm'
-                        dueTime='8:30 pm'
-                        title='Some Tasks'
-                        onPress={() => navigation.navigate(Routes.ViewDetail)}
-                    />
-                </ScrollView>
-            </View>
-            <View style={styles.addTask}>
-                <TouchableOpacity onPress={() => navigation.navigate(Routes.Homepage)}>
-                    <Text style={styles.link_text}>Add task</Text>
-                </TouchableOpacity>
-                <FloatingButton />
-            </View>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -129,7 +146,7 @@ const styles = StyleSheet.create({
     },
     searchIconContainer: {
         flex: 1,
-        marginLeft: '3%',
+        marginLeft: '7%',
         marginTop: 4,
     },
     calendarIcon: {
@@ -137,12 +154,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         flexShrink: 2,
-        marginTop: '10%',
+        marginTop: '1%',
         marginRight: '5%',
         position: 'relative',
     },
     addTask: {
         flex: 1,
         alignSelf: 'flex-end',
+    },
+    AndroidSafeArea: {
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
 });
