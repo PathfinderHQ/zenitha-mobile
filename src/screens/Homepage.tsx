@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import { IconButtonComponent, Fab } from '../components';
+import { IconButtonComponent, FloatingButton } from '../components';
 import { useAuth } from '../hooks';
 import { Routes } from '../constants';
 
@@ -37,7 +37,7 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
                 value={value}
                 style={{ padding: 20 }}
             />
-            <Fab />
+            <FloatingButton onPress={() => navigation.navigate(Routes.ViewTodayTasks)} />
         </View>
     );
 };

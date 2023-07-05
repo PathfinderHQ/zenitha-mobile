@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import Colors from '../constants/colors';
-import { AuthRoutes, Routes } from '../constants';
+import { AuthRoutes, Routes, Colors } from '../constants';
 import { VerifyForm } from '../sections/auth';
 
 const { width } = Dimensions.get('screen');
@@ -18,7 +17,7 @@ const VerifyEmailScreen: React.FC<VerifyEmailScreenProps> = ({ navigation }) => 
             <Text style={styles.title}>Let's verify your email</Text>
             <Text style={styles.small_text}>Please enter the six digit code sent to your email.</Text>
             <VerifyForm navigation={navigation} />
-            <Pressable onPress={() => navigation.navigate(Routes.Dashboard)}>
+            <Pressable onPress={() => navigation.navigate(Routes.Homepage)}>
                 <Text style={styles.link_text}>Skip</Text>
             </Pressable>
         </View>

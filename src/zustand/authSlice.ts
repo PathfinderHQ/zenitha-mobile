@@ -1,7 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from 'zustand';
 import { getSession, makeRequest, setSession } from '../utils';
-import { AuthPayload, AuthType, GoogleAuthPayload, IAuthSlice, RequestMethod, User } from '../types';
+import {
+    AuthPayload,
+    AuthType,
+    ChangePasswordPayload,
+    GoogleAuthPayload,
+    IAuthSlice,
+    RequestMethod,
+    User,
+} from '../types';
 
 export const authSlice = create<IAuthSlice>((set, get) => ({
     auth: {
@@ -71,6 +79,15 @@ export const authSlice = create<IAuthSlice>((set, get) => ({
         setLoading: (value: boolean) => set((state) => ({ ...state, verify: { ...state.verify, loading: value } })),
         clearError: () => set((state) => ({ ...state, verify: { ...state.verify, error: null } })),
         clearMessage: () => set((state) => ({ ...state, verify: { ...state.verify, message: null } })),
+    },
+    change: {
+        message: null,
+        loading: false,
+        success: false,
+        error: null,
+        setLoading: (value: boolean) => set((state) => ({ ...state, change: { ...state.change, loading: value } })),
+        clearError: () => set((state) => ({ ...state, change: { ...state.change, error: null } })),
+        clearMessage: () => set((state) => ({ ...state, change: { ...state.change, message: null } })),
     },
     registerOrLogin: async (data: AuthPayload | GoogleAuthPayload, type) => {
         get().auth.setLoading(true);
@@ -227,6 +244,34 @@ export const authSlice = create<IAuthSlice>((set, get) => ({
             verify: {
                 ...state.verify,
                 message: 'Email verified',
+                success: true,
+                loading: false,
+            },
+        }));
+    },
+    changePassword: async (data: ChangePasswordPayload) => {
+        get().change.setLoading(true);
+        const { error, result } = await makeRequest('user/change_password', RequestMethod.POST, data);
+
+        if (error) {
+            set((state) => ({
+                ...state,
+                change: {
+                    ...state.change,
+                    error: result?.message || 'Unexpected error, Please try again',
+                    success: false,
+                    loading: false,
+                },
+            }));
+
+            return;
+        }
+
+        set((state) => ({
+            ...state,
+            change: {
+                ...state.change,
+                message: 'Password changed',
                 success: true,
                 loading: false,
             },

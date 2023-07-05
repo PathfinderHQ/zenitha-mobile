@@ -4,11 +4,11 @@ import Button from './Button';
 import Spinner from './Spinner';
 import HorizontalDivider from './HorizontalDivider';
 import Otp from './otp/Otp';
-import Avatars from './Avatars';
-import GobackButton from './GobackButton';
+import Avatar from './Avatar';
+import BackButton from './BackButton';
 import ProfileOption from './ProfileOption';
-import Fab from './Fab';
-import MyCarousel from './Carousel';
+import FloatingButton from './FloatingButton';
+import Carousel from './Carousel';
 import IconButtonComponent from './IconButton';
 import ImagePickerComponent from './ImagePicker';
 import CategoryButton from './CategoryButton';
@@ -17,6 +17,9 @@ import FutureTaskCard from './FutureTaskCard';
 import DateToday from './DateToday';
 import TaskDetailCard from './TaskDetailCard';
 import HorizontalCalendar from './HorizontalCalendar';
+import Snackbar from './Snackbar';
+import DotMenu from './DotMenu';
+import MainHorizontalDivider from './MainHorizontalDivider';
 
 export {
     Input,
@@ -26,11 +29,11 @@ export {
     Otp,
     FormProvider,
     Spinner,
-    Avatars,
-    GobackButton,
+    Avatar,
+    BackButton,
     ProfileOption,
-    Fab,
-    MyCarousel,
+    FloatingButton,
+    Carousel,
     IconButtonComponent,
     ImagePickerComponent,
     CurrentTaskCard,
@@ -38,4 +41,7 @@ export {
     DateToday,
     TaskDetailCard,
     HorizontalCalendar,
+    Snackbar,
+    DotMenu,
+    MainHorizontalDivider,
 };

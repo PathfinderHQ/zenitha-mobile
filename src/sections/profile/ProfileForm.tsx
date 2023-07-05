@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { StyleSheet, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 // form
 import * as Yup from 'yup';
@@ -9,7 +8,7 @@ import { Button, FormProvider, Input } from '../../components';
 import { UpdateProfilePayload } from '../../types';
 
 const UpdateProfileForm: FC = () => {
-    const navigator = useNavigation();
+    const navigation = useNavigation();
 
     const UpdateProfileSchema = Yup.object().shape({
         first_name: Yup.string().required(),
@@ -31,7 +30,7 @@ const UpdateProfileForm: FC = () => {
     // handle error
 
     // push user to home screen when the user is authenticated
-    const onSubmit = () => navigator.goBack();
+    const onSubmit = () => navigation.goBack();
 
     return (
         <FormProvider methods={methods}>
@@ -43,10 +42,3 @@ const UpdateProfileForm: FC = () => {
 };
 
 export default UpdateProfileForm;
-
-const styles = StyleSheet.create({
-    title: {
-        fontSize: 32,
-        marginBottom: 10,
-    },
-});

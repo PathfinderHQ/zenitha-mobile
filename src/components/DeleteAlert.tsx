@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 import { View, StyleSheet, Button, Alert } from 'react-native';
 
@@ -6,10 +7,10 @@ const App = () => {
         Alert.alert('Alert Title', 'My Alert Msg', [
             {
                 text: 'Cancel',
-                onPress: () => console.log('Cancel Pressed'),
+                onPress: () => {},
                 style: 'cancel',
             },
-            { text: 'OK', onPress: () => console.log('OK Pressed') },
+            { text: 'OK', onPress: () => {} },
         ]);
 
     return (

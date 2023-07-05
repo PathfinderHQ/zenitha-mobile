@@ -27,11 +27,13 @@ const CategoryButton: React.FC<Props> = ({ onPress, name, color }) => {
 
 const styles = StyleSheet.create({
     button: {
-        textAlign: 'center',
-        padding: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         borderRadius: 5,
-        width: 90,
-        height: 40,
+        width: 100,
+        height: 45,
+        margin: 5,
     },
 });
 

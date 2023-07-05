@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { TextInput } from 'react-native-gesture-handler';
 import { Dimensions, StyleSheet, View, Text } from 'react-native';
 import { useFormContext, Controller } from 'react-hook-form';
-import Colors from '../../constants/colors';
+import { Colors } from '../../constants';
 
 const { width } = Dimensions.get('screen');
 

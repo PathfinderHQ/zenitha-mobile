@@ -10,8 +10,7 @@ import {
     StyleProp,
     ViewStyle,
 } from 'react-native';
-import Colors from '../constants/colors';
-import { google } from '../constants';
+import { Colors, google } from '../constants';
 
 const { height, width } = Dimensions.get('screen');
 

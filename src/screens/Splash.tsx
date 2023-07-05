@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types/route';
+import { RootStackParamList } from '../types';
 import { AuthRoutes, logo, Routes } from '../constants';
 import useAuth from '../hooks/useAuth';
 

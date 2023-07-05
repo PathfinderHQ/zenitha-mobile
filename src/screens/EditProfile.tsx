@@ -2,16 +2,24 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import { AuthRoutes, Icons, Routes } from '../constants';
-import { Avatars, CategoryButton, MyCarousel, IconButtonComponent } from '../components';
+import { Avatar, CategoryButton, Carousel, IconButtonComponent } from '../components';
 
 import UpdateProfileForm from '../sections/profile/ProfileForm';
+import { Routes } from '../constants';
 
 export type EditProfileScreenProps = {
-    navigation: StackNavigationProp<RootStackParamList, 'EditProfile'>;
+    navigation: StackNavigationProp<RootStackParamList, Routes.EditProfile>;
 };
 
-const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => {
+const buttons = [
+    { id: 1, name: 'HOME', onPress: () => console.log('Pressed button 1'), color: 'red' },
+    { id: 2, name: 'WORK', onPress: () => console.log('Pressed button 2'), color: 'blue' },
+    { id: 3, name: 'FAMILY', onPress: () => console.log('Pressed button 3'), color: 'green' },
+    { id: 4, name: 'PERSONAL', onPress: () => console.log('Pressed button 4'), color: 'yellow' },
+    { id: 5, name: 'Button 5', onPress: () => console.log('Pressed button 5'), color: 'purple' },
+];
+
+const EditProfileScreen: React.FC<EditProfileScreenProps> = () => {
     const [activeButton, setActiveButton] = useState<number | null>(null);
 
     const handleButtonPress = (buttonIndex: number) => {
@@ -22,21 +30,15 @@ const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => 
     return (
         <View style={styles.container}>
             <View style={styles.profileContainer}>
-                <Avatars />
+                <Avatar />
             </View>
             <UpdateProfileForm />
             <View style={styles.carousel}>
-                <MyCarousel
-                    data={[
-                        { id: 1, name: 'HOME', onPress: () => console.log('Pressed button 1'), color: 'red' },
-                        { id: 2, name: 'WORK', onPress: () => console.log('Pressed button 2'), color: 'blue' },
-                        { id: 3, name: 'FAMILY', onPress: () => console.log('Pressed button 3'), color: 'green' },
-                        { id: 4, name: 'PERSONAL', onPress: () => console.log('Pressed button 4'), color: 'yellow' },
-                        { id: 5, name: 'Button 5', onPress: () => console.log('Pressed button 5'), color: 'purple' },
-                    ]}
-                    sliderWidth={240}
-                    itemWidth={90}
-                />
+                <Carousel>
+                    {buttons.map(({ id, name, onPress, color }) => (
+                        <CategoryButton key={id} onPress={onPress} name={name} color={color} />
+                    ))}
+                </Carousel>
                 <IconButtonComponent size={40} icon='plus' color='#252525' />
             </View>
             <View style={styles.buttons}>
