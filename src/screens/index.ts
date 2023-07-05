@@ -1,15 +1,16 @@
-import RegisterScreen from './Register';
-import LoginScreen from './Login';
-import ResetPasswordScreen from './ResetPassword';
+import RegisterScreen from './auth/Register';
+import LoginScreen from './auth/Login';
+import ResetPasswordScreen from './auth/ResetPassword';
 import SplashScreen from './Splash';
-import VerifyEmailScreen from './VerifyEmail';
-import ForgotPasswordScreen from './ForgotPassword';
-import ResetOtpScreen from './ResetOtp';
-import ProfileScreen from './Profile';
-import EditProfileScreen from './EditProfile';
-import ViewTodayTasksScreen from './ViewTodayTasks';
-import TaskDetailScreen from './ViewDetail';
-import SearchTasksScreen from './SearchTasks';
+import VerifyEmailScreen from './auth/VerifyEmail';
+import ForgotPasswordScreen from './auth/ForgotPassword';
+import ResetOtpScreen from './auth/ResetOtp';
+import ProfileScreen from './profile/Profile';
+import EditProfileScreen from './profile/EditProfile';
+import ViewTodayTasksScreen from './tasks/ViewTodayTasks';
+import TaskDetailScreen from './tasks/ViewDetail';
+import SearchTasksScreen from './tasks/SearchTasks';
+import ChangePasswordScreen from './profile/ChangePassword';
 
 export {
     LoginScreen,
@@ -24,4 +25,5 @@ export {
     ViewTodayTasksScreen,
     TaskDetailScreen,
     SearchTasksScreen,
+    ChangePasswordScreen,
 };

@@ -24,9 +24,6 @@ export const makeRequest = async (
         const result = await response.json();
 
         if (!response.ok) {
-            await setSession();
-            // push to log in immediately when not auth path, token is not valid
-
             return { response, result, error: true };
         }
 

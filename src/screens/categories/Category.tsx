@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import CategoryButton from '../components/CategoryButton';
+import CategoryButton from '../../components/CategoryButton';
 
 const App = () => {
     const handleButtonPress = () => {

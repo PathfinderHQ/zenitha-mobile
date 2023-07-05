@@ -12,7 +12,7 @@ import { AuthProvider } from '../contexts/AuthContext';
 import { SnackbarProvider } from '../contexts/SnackbarContext';
 
 // constants
-import { Fonts, navigationRef } from '../constants';
+import { Fonts, navigationRef, theme } from '../constants';
 
 // screens
 import { appScreens } from './AppStack';
@@ -38,7 +38,7 @@ const Main: FC = () => {
         <NavigationContainer ref={navigationRef}>
             <SnackbarProvider>
                 <AuthProvider>
-                    <PaperProvider>
+                    <PaperProvider theme={theme}>
                         <Stack.Navigator>
                             <Stack.Group screenOptions={{ headerShown: false }}>
                                 {authScreens.map(({ id, name, component }) => (

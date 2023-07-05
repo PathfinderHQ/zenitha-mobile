@@ -1,4 +1,5 @@
 import {
+    ChangePasswordScreen,
     EditProfileScreen,
     ProfileScreen,
     SearchTasksScreen,
@@ -38,5 +39,10 @@ export const appScreens = [
         id: 6,
         name: Routes.SearchTasks,
         component: SearchTasksScreen,
+    },
+    {
+        id: 7,
+        name: Routes.ChangePassword,
+        component: ChangePasswordScreen,
     },
 ];

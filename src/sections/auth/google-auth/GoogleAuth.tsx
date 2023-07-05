@@ -3,8 +3,8 @@ import { google, Routes } from '../../../constants';
 import { Button } from '../../../components';
 import { useAuth, useError, useGoogleAuth } from '../../../hooks';
 import { AuthType } from '../../../types';
-import { RegisterScreenProps } from '../../../screens/Register';
-import { LoginScreenProps } from '../../../screens/Login';
+import { RegisterScreenProps } from '../../../screens/auth/Register';
+import { LoginScreenProps } from '../../../screens/auth/Login';
 
 type GoogleAuthProps = RegisterScreenProps | LoginScreenProps;
 
