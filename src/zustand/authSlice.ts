@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from 'zustand';
 import { getSession, makeRequest, setSession } from '../utils';
 import {
@@ -8,6 +7,7 @@ import {
     GoogleAuthPayload,
     IAuthSlice,
     RequestMethod,
+    UpdateProfilePayload,
     User,
 } from '../types';
 
@@ -89,6 +89,22 @@ export const authSlice = create<IAuthSlice>((set, get) => ({
         clearError: () => set((state) => ({ ...state, change: { ...state.change, error: null } })),
         clearMessage: () => set((state) => ({ ...state, change: { ...state.change, message: null } })),
     },
+    profile: {
+        loading: false,
+        success: false,
+        error: null,
+        setLoading: (value: boolean) => set((state) => ({ ...state, profile: { ...state.profile, loading: value } })),
+        clearError: () => set((state) => ({ ...state, profile: { ...state.profile, error: null } })),
+    },
+    resend: {
+        message: null,
+        loading: false,
+        success: false,
+        error: null,
+        setLoading: (value: boolean) => set((state) => ({ ...state, resend: { ...state.resend, loading: value } })),
+        clearError: () => set((state) => ({ ...state, resend: { ...state.resend, error: null } })),
+        clearMessage: () => set((state) => ({ ...state, resend: { ...state.resend, message: null } })),
+    },
     registerOrLogin: async (data: AuthPayload | GoogleAuthPayload, type) => {
         get().auth.setLoading(true);
         const url = type === AuthType.GOOGLE ? 'google/auth' : `${type}`;
@@ -111,7 +127,7 @@ export const authSlice = create<IAuthSlice>((set, get) => ({
         }
 
         // set token to localStorage
-        await setSession(result.token);
+        await setSession(result.data.token);
 
         set((state) => ({
             ...state,
@@ -149,7 +165,7 @@ export const authSlice = create<IAuthSlice>((set, get) => ({
             ...state,
             auth: {
                 ...state.auth,
-                user: result as User,
+                user: result.data as User,
                 loading: false,
             },
         }));
@@ -234,6 +250,10 @@ export const authSlice = create<IAuthSlice>((set, get) => ({
                     success: false,
                     loading: false,
                 },
+                auth: {
+                    ...state.auth,
+                    user: result.data,
+                },
             }));
 
             return;
@@ -249,9 +269,12 @@ export const authSlice = create<IAuthSlice>((set, get) => ({
             },
         }));
     },
-    changePassword: async (data: ChangePasswordPayload) => {
+    changePassword: async ({ password, new_password }: ChangePasswordPayload) => {
         get().change.setLoading(true);
-        const { error, result } = await makeRequest('user/change_password', RequestMethod.POST, data);
+        const { error, result } = await makeRequest('user/change_password', RequestMethod.POST, {
+            password,
+            new_password,
+        });
 
         if (error) {
             set((state) => ({
@@ -272,6 +295,66 @@ export const authSlice = create<IAuthSlice>((set, get) => ({
             change: {
                 ...state.change,
                 message: 'Password changed',
+                success: true,
+                loading: false,
+            },
+        }));
+    },
+    updateProfile: async (data: UpdateProfilePayload) => {
+        get().profile.setLoading(true);
+
+        const { error, result } = await makeRequest('user', RequestMethod.PUT, data);
+
+        if (error) {
+            set((state) => ({
+                ...state,
+                profile: {
+                    ...state.profile,
+                    error: result?.message || 'Unexpected error, Please try again',
+                    success: false,
+                    loading: false,
+                },
+            }));
+
+            return;
+        }
+
+        set((state) => ({
+            ...state,
+            profile: {
+                ...state.profile,
+                success: true,
+                loading: false,
+            },
+            auth: {
+                ...state.auth,
+                user: result.data,
+            },
+        }));
+    },
+    resendVerifyOtp: async () => {
+        get().resend.setLoading(true);
+        const { error, result } = await makeRequest('/user/resend_verify', RequestMethod.POST);
+
+        if (error) {
+            set((state) => ({
+                ...state,
+                resend: {
+                    ...state.resend,
+                    error: result?.message || 'Unexpected error, Please try again',
+                    success: false,
+                    loading: false,
+                },
+            }));
+
+            return;
+        }
+
+        set((state) => ({
+            ...state,
+            resend: {
+                ...state.resend,
+                message: result.message,
                 success: true,
                 loading: false,
             },

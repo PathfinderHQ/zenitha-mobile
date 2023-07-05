@@ -42,6 +42,7 @@ const CreateTaskForm: FC = () => {
         resolver: yupResolver(CreateTaskSchema),
         defaultValues,
     });
+
     const buttons = [
         { id: 1, name: 'HOME', onPress: () => console.log('Pressed button 1'), color: 'red' },
         { id: 2, name: 'WORK', onPress: () => console.log('Pressed button 2'), color: 'blue' },

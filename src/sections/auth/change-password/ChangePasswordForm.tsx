@@ -5,67 +5,73 @@ import { StyleSheet, Text } from 'react-native';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigation } from '@react-navigation/native';
 import { Button, FormProvider, Input } from '../../../components';
 
-import { AuthPayload, AuthType } from '../../../types';
-import { EMAIL_REGEX, Routes } from '../../../constants';
-import { useAuth, useError } from '../../../hooks';
-import { LoginScreenProps } from '../../../screens/Login';
+import { ChangePasswordPayload } from '../../../types';
+import { PASSWORD_REGEX } from '../../../constants';
+import { useAuth, useError, useMessage } from '../../../hooks';
 
-const ChangePasswordForm: FC<LoginScreenProps> = ({ navigation }) => {
-    const { auth, registerOrLogin } = useAuth();
+const ChangePasswordForm: FC = () => {
+    const { goBack } = useNavigation();
 
-    const { loading, error, clearError, isAuthenticated } = auth;
+    const { change, changePassword } = useAuth();
 
-    const LoginSchema = Yup.object().shape({
-        email: Yup.string().matches(EMAIL_REGEX, 'Please enter a valid email').required('Email is required'),
+    const { loading, error, clearError, message, clearMessage, success } = change;
+
+    const ChangePasswordSchema = Yup.object().shape({
         password: Yup.string().required('Password is required'),
+        new_password: Yup.string()
+            .matches(
+                PASSWORD_REGEX,
+                'Password should be minimum of 8 characters\n1 Uppercase letter\n1 lower case\n1 number\n1 special character',
+            )
+            .required('New password is required'),
+        confirm_password: Yup.string()
+            .oneOf([Yup.ref('new_password')], 'New password must match')
+            .required(),
     });
 
     const defaultValues = {
-        email: '',
         password: '',
+        new_password: '',
+        confirm_password: '',
     };
 
-    const methods = useForm<AuthPayload>({
-        resolver: yupResolver(LoginSchema),
+    const methods = useForm<ChangePasswordPayload>({
+        resolver: yupResolver(ChangePasswordSchema),
         defaultValues,
     });
 
-    const { reset, handleSubmit } = methods;
+    const { handleSubmit } = methods;
 
-    const onSubmit = async (data: AuthPayload) => {
-        registerOrLogin(data, AuthType.LOGIN);
+    const onSubmit = async (data: ChangePasswordPayload) => {
+        changePassword(data);
     };
 
     // handle error
     useError(error, clearError);
 
-    useEffect(() => {
-        // when error occurs, reset the input fields
-        if (error) {
-            reset();
-        }
-
-        // eslint-disable-next-line
-    }, [error]);
+    // handle message
+    useMessage(message, clearMessage);
 
     // push user to home screen when the user is authenticated
     useEffect(() => {
-        if (isAuthenticated) {
-            navigation.navigate(Routes.Homepage);
+        if (success) {
+            goBack();
         }
 
         // eslint-disable-next-line
-    }, [isAuthenticated]);
+    }, [success]);
 
     return (
         <FormProvider methods={methods}>
-            <Text style={styles.title}>Login</Text>
+            <Text style={styles.title}>Change Password</Text>
 
-            <Input name='password' placeholder='Old Password' secureTextEntry />
-            <Input name='newPassword' placeholder='New Password' secureTextEntry />
-            <Button loading={loading} title='Login' onPress={handleSubmit(onSubmit)} />
+            <Input name='password' placeholder='Current Password' secureTextEntry />
+            <Input name='new_password' placeholder='New Password' secureTextEntry />
+            <Input name='confirm_password' placeholder='Confirm Password' secureTextEntry />
+            <Button loading={loading} title='Change Password' onPress={handleSubmit(onSubmit)} />
         </FormProvider>
     );
 };

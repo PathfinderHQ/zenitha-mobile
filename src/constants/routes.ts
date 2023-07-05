@@ -6,12 +6,12 @@ export enum AuthRoutes {
     Reset = 'Reset',
     Verify = 'Verify',
     ResetOtp = 'ResetOtp',
-    ChangePassword = 'ChangePassword',
 }
 
 export enum Routes {
     Homepage = 'Homepage',
     Profile = 'Profile',
+    ChangePassword = 'ChangePassword',
     EditProfile = 'EditProfile',
     CreateTask = 'CreateTask',
     ViewTodayTasks = 'ViewTodayTasks',

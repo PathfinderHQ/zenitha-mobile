@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 
 import { Button, FormProvider, Input } from '../../../components';
 import { AuthRoutes, EMAIL_REGEX } from '../../../constants';
-import { ForgotPasswordScreenProps } from '../../../screens/ForgotPassword';
+import { ForgotPasswordScreenProps } from '../../../screens/auth/ForgotPassword';
 import { useAuth, useError, useMessage } from '../../../hooks';
 
 interface IForgotPassword {

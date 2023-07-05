@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { TextInput } from 'react-native-gesture-handler';
+import React, { FC, useState } from 'react';
+import { TextInput } from 'react-native-paper';
 import { Dimensions, StyleSheet, View, Text } from 'react-native';
 import { useFormContext, Controller } from 'react-hook-form';
 import { Colors } from '../../constants';
@@ -14,6 +14,11 @@ interface Props {
 
 const Input: FC<Props> = ({ placeholder, secureTextEntry, name }) => {
     const { control } = useFormContext();
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+
+    const toggleShowPassword = () => setShowPassword((prevState) => !prevState);
+
+    const icon = showPassword ? 'eye-off' : 'eye';
 
     return (
         <Controller
@@ -26,9 +31,10 @@ const Input: FC<Props> = ({ placeholder, secureTextEntry, name }) => {
                             onBlur={onBlur}
                             style={styles.input}
                             placeholder={placeholder}
-                            secureTextEntry={secureTextEntry}
+                            secureTextEntry={!showPassword && secureTextEntry}
                             onChangeText={(text) => onChange(text)}
                             value={value}
+                            right={secureTextEntry && <TextInput.Icon onPress={toggleShowPassword} icon={icon} />}
                         />
                     </View>
                     {!!error && (
@@ -55,8 +61,9 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     input: {
-        padding: 15,
+        padding: 3,
         color: Colors.main_text,
+        backgroundColor: 'transparent',
     },
     errorContainer: {
         width: width / 1.1,
