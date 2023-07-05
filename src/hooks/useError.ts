@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
-import Toast from 'react-native-toast-message';
+import useSnackbar from './useSnackbar';
 
 const useError = (error: string | null, errorHandler: () => void) => {
+    const { show, setMessage } = useSnackbar();
+
     useEffect(() => {
         if (error) {
-            Toast.show({ type: 'error', text1: error });
+            setMessage(error);
+            show();
             errorHandler();
         }
 

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Image, View, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { Button, Image, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 export default function ImagePickerComponent() {
@@ -13,8 +13,6 @@ export default function ImagePickerComponent() {
             aspect: [4, 3],
             quality: 1,
         });
-
-        console.log(result);
 
         if (!result.canceled) {
             setImage(result.assets[0].uri);

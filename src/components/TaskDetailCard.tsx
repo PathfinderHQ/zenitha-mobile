@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Dimensions, StyleSheet, Text, ImageURISource, Image, StyleProp, ViewStyle, View } from 'react-native';
-import Colors from '../constants/colors';
-import FontSize from '../constants/fontsize';
-import { alarm } from '../constants';
+import { alarm, Colors, FontSize } from '../constants';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -15,7 +13,6 @@ interface TaskDetailCardProps {
     description: string;
     category: string;
     onPress: () => void;
-    loading?: boolean;
     alarmIcon?: ImageURISource;
     customStyles?: StyleProp<ViewStyle>;
 }
@@ -28,7 +25,6 @@ const TaskDetailCard: FC<TaskDetailCardProps> = ({
     description,
     category,
     onPress,
-    loading,
     alarmIcon,
     customStyles,
 }) => {
@@ -41,19 +37,19 @@ const TaskDetailCard: FC<TaskDetailCardProps> = ({
                 <Text style={styles.titleText}>{date}</Text>
             </View>
             <View style={styles.timeContainer}>
-                <View style={styles.timeContainerS}>
+                <View style={styles.flex}>
                     <Text style={styles.greyText}>Start Time</Text>
                     <Text style={styles.timeText}>{startTime}</Text>
                     {alarmIcon && <Image source={alarm.link} style={styles.image} />}
                 </View>
-                <View style={styles.timeContainerS}>
+                <View style={styles.flex}>
                     <Text style={styles.greyText}>Due Time</Text>
                     <Text style={styles.timeText}>{dueTime}</Text>
                 </View>
             </View>
-            <View style={styles.discriptionContainer}>
+            <View style={styles.descriptionContainer}>
                 <Text style={styles.greyText}>Description</Text>
-                <Text style={styles.discriptionText}>{description}</Text>
+                <Text style={styles.descriptionText}>{description}</Text>
             </View>
             <View style={styles.catContainer}>
                 <Text style={styles.greyText}>Category</Text>
@@ -87,10 +83,10 @@ const styles = StyleSheet.create({
         left: '3%',
         top: '15%',
     },
-    timeContainerS: {
+    flex: {
         flex: 1,
     },
-    discriptionContainer: {
+    descriptionContainer: {
         flex: 2,
         left: '5%',
         top: '5%',
@@ -109,7 +105,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         color: Colors.white100,
     },
-    discriptionText: {
+    descriptionText: {
         fontSize: 22,
         color: Colors.white100,
     },

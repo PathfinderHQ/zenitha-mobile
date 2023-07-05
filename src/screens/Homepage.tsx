@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet } from 'react-native';
 import React, { FC } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import IconButtonComponent from '../components/IconButton';
+import { IconButtonComponent, FloatingButton } from '../components';
 import { useAuth } from '../hooks';
 import { Routes } from '../constants';
-import Fab from '../components/Fab';
 
 export type HomeScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, 'Homepage'>;
@@ -13,7 +13,7 @@ export type HomeScreenProps = {
 
 const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
     const { auth } = useAuth();
-
+    const [value] = React.useState();
     const { user } = auth;
     return (
         <View style={styles.container}>
@@ -25,8 +25,19 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
                     onPress={() => navigation.navigate(Routes.Profile)}
                 />
             </View>
-            <Text>Hello, {user?.email}</Text>
-            <Fab />
+            <Text style={styles.text}>
+                Hello, {user?.email}, type natural language to create tasks, enter time and date for more precision.
+            </Text>
+            <TextInput
+                editable
+                multiline
+                numberOfLines={4}
+                maxLength={40}
+                placeholder='Your task starts here'
+                value={value}
+                style={{ padding: 20 }}
+            />
+            <FloatingButton onPress={() => navigation.navigate(Routes.ViewTodayTasks)} />
         </View>
     );
 };
@@ -41,6 +52,11 @@ const styles = StyleSheet.create({
     },
     menu: {
         paddingTop: 30,
+    },
+    text: {
+        padding: 20,
+        fontSize: 18,
+        lineHeight: 22,
     },
 });
 export default Homepage;

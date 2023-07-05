@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import Colors from '../constants/colors';
+import { Colors } from '../constants';
 
 const { width } = Dimensions.get('screen');
 

@@ -1,23 +1,8 @@
 import React, { FC } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {
-    Dimensions,
-    StyleSheet,
-    Text,
-    ActivityIndicator,
-    ImageURISource,
-    Image,
-    StyleProp,
-    ViewStyle,
-    Button,
-    View,
-} from 'react-native';
-import Colors from '../constants/colors';
-import FontFamily from '../constants/font-family';
-import FontSize from '../constants/fontsize';
-import { alarm, menuHorizontal } from '../constants';
+import { Dimensions, StyleSheet, Text, ImageURISource, Image, StyleProp, ViewStyle, View } from 'react-native';
 import DotMenu from './DotMenu';
-import DotMenuVertical from './DotMenuVertical';
+import { alarm, FontSize, FontFamily, Colors } from '../constants';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -26,26 +11,17 @@ interface FutureTaskCardProps {
     dueTime: string;
     title: string;
     onPress: () => void;
-    loading?: boolean;
     alarmIcon?: ImageURISource;
     customStyles?: StyleProp<ViewStyle>;
 }
 
-const FutureTaskCard: FC<FutureTaskCardProps> = ({
-    startTime,
-    dueTime,
-    title,
-    onPress,
-    loading,
-    alarmIcon,
-    customStyles,
-}) => {
+const FutureTaskCard: FC<FutureTaskCardProps> = ({ startTime, dueTime, title, onPress, alarmIcon, customStyles }) => {
     const containerStyle = [styles.container, customStyles];
 
     return (
         <View style={styles.box}>
             <View style={styles.dot}>
-                <DotMenuVertical />
+                <DotMenu vertical />
             </View>
 
             <TouchableOpacity onPress={onPress} style={containerStyle}>
@@ -108,13 +84,13 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: FontSize.heading4Size,
         color: Colors.main_text,
-        fontFamily: FontFamily.Semibold,
+        fontFamily: FontFamily.InterSemiBold,
         fontWeight: '600',
     },
     detailText: {
         fontSize: FontSize.body2BoldSmall,
         color: Colors.main_text,
-        fontFamily: FontFamily.Semibold,
+        fontFamily: FontFamily.InterSemiBold,
         fontWeight: '600',
         textAlign: 'center',
     },

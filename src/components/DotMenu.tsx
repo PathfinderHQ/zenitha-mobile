@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { View, Text, StyleSheet } from 'react-native';
-import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
-import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
+import { Menu, Divider } from 'react-native-paper';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function DotMenu() {
+interface IDotMenuProps {
+    vertical?: boolean;
+}
+
+const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
     const [visible, setVisible] = useState(false);
 
     const hideMenu = () => setVisible(false);
 
     const showMenu = () => setVisible(true);
+
+    const direction = vertical ? 'dots-vertical' : 'dots-horizontal';
 
     return (
         <View style={styles.container}>
@@ -18,26 +24,33 @@ export default function DotMenu() {
                 visible={visible}
                 anchor={
                     <Text onPress={showMenu}>
-                        <MaterialCommunityIcons name='dots-horizontal' size={24} color='white' />
+                        <MaterialCommunityIcons name={direction} size={24} color='white' />
                     </Text>
                 }
-                onRequestClose={hideMenu}
+                onDismiss={hideMenu}
             >
-                <MenuItem style={{ backfaceVisibility: 'hidden' }} onPress={hideMenu}>
-                    <Feather name='edit-2' size={16} color='black' /> Edit
-                </MenuItem>
-                <MenuDivider color='grey' />
-                <MenuItem onPress={hideMenu}>
-                    <Feather name='check' size={20} color='black' /> Complete
-                </MenuItem>
-                <MenuDivider color='grey' />
-                <MenuItem onPress={hideMenu}>
-                    <MaterialCommunityIcons name='delete-outline' size={18} color='black' /> Delete
-                </MenuItem>
+                <Menu.Item style={{ backfaceVisibility: 'hidden' }} onPress={hideMenu} title='Edit' leadingIcon='pen' />
+                <Divider style={styles.grey} />
+                <Menu.Item
+                    style={{ backfaceVisibility: 'hidden' }}
+                    onPress={hideMenu}
+                    title='Complete'
+                    leadingIcon='check'
+                />
+                <Divider style={styles.grey} />
+                <Menu.Item
+                    style={{ backfaceVisibility: 'hidden' }}
+                    onPress={hideMenu}
+                    title='Delete'
+                    leadingIcon='delete'
+                />
             </Menu>
         </View>
     );
-}
+};
+
+export default DotMenu;
+
 const styles = StyleSheet.create({
     menu: {
         borderRadius: 8,
@@ -49,5 +62,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: '10%',
+    },
+    grey: {
+        backgroundColor: 'grey',
     },
 });

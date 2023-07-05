@@ -1,45 +1,56 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import { AuthRoutes, Icons, Routes } from '../constants';
-import Avatars from '../components/Avatars';
-import CategoryButton from '../components/CategoryButton';
+import { Avatar, CategoryButton, Carousel, IconButtonComponent } from '../components';
+
 import UpdateProfileForm from '../sections/profile/ProfileForm';
+import { Routes } from '../constants';
 
 export type EditProfileScreenProps = {
-    navigation: StackNavigationProp<RootStackParamList, 'EditProfile'>;
+    navigation: StackNavigationProp<RootStackParamList, Routes.EditProfile>;
 };
 
-const EditProfileScreen: React.FC<EditProfileScreenProps> = ({ navigation }) => {
-    const [selectedIndex, setSelectedIndex] = useState(0);
+const buttons = [
+    { id: 1, name: 'HOME', onPress: () => console.log('Pressed button 1'), color: 'red' },
+    { id: 2, name: 'WORK', onPress: () => console.log('Pressed button 2'), color: 'blue' },
+    { id: 3, name: 'FAMILY', onPress: () => console.log('Pressed button 3'), color: 'green' },
+    { id: 4, name: 'PERSONAL', onPress: () => console.log('Pressed button 4'), color: 'yellow' },
+    { id: 5, name: 'Button 5', onPress: () => console.log('Pressed button 5'), color: 'purple' },
+];
+
+const EditProfileScreen: React.FC<EditProfileScreenProps> = () => {
+    const [activeButton, setActiveButton] = useState<number | null>(null);
+
+    const handleButtonPress = (buttonIndex: number) => {
+        setActiveButton(buttonIndex);
+        console.log(`Pressed button ${buttonIndex + 1}`);
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.profileContainer}>
-                <Avatars />
+                <Avatar />
             </View>
             <UpdateProfileForm />
-            <CategoryButton
-                onPress={() => {
-                    console.log('pressed');
-                }}
-                name='WORK'
-                color='#252525'
-            />
-            <CategoryButton
-                onPress={() => {
-                    console.log('pressed');
-                }}
-                name='HOME'
-                color='red'
-            />
-            <CategoryButton
-                onPress={() => {
-                    console.log('pressed');
-                }}
-                name='PERSONAL'
-                color='blue'
-            />
+            <View style={styles.carousel}>
+                <Carousel>
+                    {buttons.map(({ id, name, onPress, color }) => (
+                        <CategoryButton key={id} onPress={onPress} name={name} color={color} />
+                    ))}
+                </Carousel>
+                <IconButtonComponent size={40} icon='plus' color='#252525' />
+            </View>
+            <View style={styles.buttons}>
+                {[0, 1, 2].map((buttonIndex) => (
+                    <CategoryButton
+                        key={buttonIndex}
+                        onPress={() => handleButtonPress(buttonIndex)}
+                        name={`Button ${buttonIndex + 1}`}
+                        color={activeButton === buttonIndex ? '#34ebc6' : '#ddd'}
+                    />
+                ))}
+            </View>
         </View>
     );
 };
@@ -53,8 +64,11 @@ const styles = StyleSheet.create({
     },
     profileContainer: {
         width: 400,
+        alignContent: 'center',
+        padding: 20,
+    },
+    icon: {
         alignSelf: 'center',
-        padding: 10,
     },
     text: {
         alignSelf: 'stretch',
@@ -71,5 +85,13 @@ const styles = StyleSheet.create({
         left: 20,
         width: 205,
         position: 'absolute',
+    },
+    buttons: {
+        flex: 1,
+        flexDirection: 'row',
+        height: 20,
+    },
+    carousel: {
+        flexDirection: 'row',
     },
 });

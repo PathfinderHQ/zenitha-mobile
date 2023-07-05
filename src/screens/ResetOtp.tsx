@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import Colors from '../constants/colors';
-import { AuthRoutes } from '../constants';
+import { AuthRoutes, Colors } from '../constants';
 import { ResetOtpForm } from '../sections/auth';
 
 const { width } = Dimensions.get('screen');

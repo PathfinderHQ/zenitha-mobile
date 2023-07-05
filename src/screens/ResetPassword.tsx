@@ -3,8 +3,7 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import Colors from '../constants/colors';
-import { AuthRoutes } from '../constants';
+import { AuthRoutes, Colors } from '../constants';
 import { ResetPasswordForm } from '../sections/auth';
 
 const { width } = Dimensions.get('screen');

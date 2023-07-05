@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import * as dateFns from 'date-fns';
-import Colors from '../constants/colors';
+import { Colors } from '../constants';
 
 const DateToday: FC = () => {
     const [date, setDate] = useState('');

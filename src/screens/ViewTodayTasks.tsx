@@ -4,10 +4,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { RootStackParamList } from '../types';
-import { Routes } from '../constants';
-import Colors from '../constants/colors';
-import { CurrentTaskCard, FutureTaskCard, DateToday, HorizontalCalendar } from '../components';
-import MainHorizontalDivider from '../components/MainHorizontalDivider';
+import { Routes, Colors } from '../constants';
+import { CurrentTaskCard, FutureTaskCard, DateToday, HorizontalCalendar, MainHorizontalDivider } from '../components';
 
 const { width } = Dimensions.get('screen');
 
@@ -54,7 +52,7 @@ const ViewTodayTasksScreen: FC<ViewTodayTasksProps> = ({ navigation }) => {
                 />
             </View>
             <View style={styles.addTask}>
-                <TouchableOpacity onPress={() => navigation.navigate(Routes.Dashboard)}>
+                <TouchableOpacity onPress={() => navigation.navigate(Routes.Homepage)}>
                     <Text style={styles.link_text}>Add task</Text>
                 </TouchableOpacity>
             </View>

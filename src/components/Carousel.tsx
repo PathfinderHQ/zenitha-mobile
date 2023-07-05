@@ -1,37 +1,22 @@
 import React, { FC } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
-
-interface IOptionProps {
-    title: string;
-    onPress?: () => void;
-}
+import { View, ScrollView, StyleSheet } from 'react-native';
 
 interface ICarouselProps {
-    data: IOptionProps[];
-    sliderWidth: number;
-    itemWidth: number;
+    children: React.ReactNode | React.ReactElement;
 }
 
-const MyCarousel: FC<ICarouselProps> = ({ data, sliderWidth, itemWidth }) => {
-    const renderItem = ({ item }: { item: IOptionProps }) => {
-        return (
-            <View style={styles.slide}>
-                <Text style={styles.title}>{item.title}</Text>
-            </View>
-        );
-    };
-
-    return <Carousel data={data} renderItem={renderItem} sliderWidth={sliderWidth} itemWidth={itemWidth} />;
+const Carousel: FC<ICarouselProps> = ({ children }) => {
+    return (
+        <View style={styles.container}>
+            <ScrollView horizontal>{children}</ScrollView>
+        </View>
+    );
 };
 
-export default MyCarousel;
+export default Carousel;
 
 const styles = StyleSheet.create({
-    slide: {
-        // Add your styles for the slide container here
-    },
-    title: {
-        // Add your styles for the slide title here
+    container: {
+        padding: 3,
     },
 });

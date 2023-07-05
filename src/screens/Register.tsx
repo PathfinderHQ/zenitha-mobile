@@ -4,9 +4,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { HorizontalDivider } from '../components';
 import { RootStackParamList } from '../types';
-import Colors from '../constants/colors';
 import { GoogleAuth, RegisterForm } from '../sections/auth';
-import { AuthRoutes } from '../constants';
+import { AuthRoutes, Colors } from '../constants';
 
 export type RegisterScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, AuthRoutes.Register>;

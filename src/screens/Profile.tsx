@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import { AuthRoutes, Icons, Routes } from '../constants';
-import Avatars from '../components/Avatars';
-import ProfileOption from '../components/ProfileOption';
+import { Avatar, ProfileOption, BackButton } from '../components';
 
 export type ProfileScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, Routes.Profile>;
@@ -14,7 +13,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.profileContainer}>
-                <Avatars />
+                <BackButton />
+                <Avatar />
             </View>
             <View style={styles.optionsContainer}>
                 <ProfileOption
@@ -43,8 +43,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        // justifyContent: 'center',
-        // alignItems: 'center',
     },
     profileContainer: {
         width: 400,

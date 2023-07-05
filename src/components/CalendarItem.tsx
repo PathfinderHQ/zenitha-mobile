@@ -1,8 +1,6 @@
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
-import * as dateFns from 'date-fns';
 import { FC } from 'react';
-
-const { height, width } = Dimensions.get('screen');
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import * as dateFns from 'date-fns';
 
 interface CalendarItemProps {
     date: Date;
@@ -39,14 +37,12 @@ const CalendarItem: FC<CalendarItemProps> = ({ date, onSelectDate, selected }) =
 
 const styles = StyleSheet.create({
     card: {
-        // backgroundColor: '#E9ECEF',
         borderRadius: 8,
         borderColor: '#ddd',
         padding: 3,
         alignItems: 'center',
         height: 70,
         width: 60,
-        // marginHorizontal: 1,
     },
     big: {
         fontWeight: 'bold',

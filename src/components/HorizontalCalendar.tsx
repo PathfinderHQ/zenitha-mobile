@@ -1,9 +1,9 @@
 import { useState, useEffect, FC } from 'react';
-import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, View, ScrollView, Dimensions } from 'react-native';
 import * as dateFns from 'date-fns';
 import CalendarItem from './CalendarItem';
 
-const { height, width } = Dimensions.get('screen');
+const { height } = Dimensions.get('screen');
 
 type HorizontalCalendarProps = {
     onSelectDate: (value: string) => void;
@@ -12,8 +12,6 @@ type HorizontalCalendarProps = {
 
 const HorizontalCalendar: FC<HorizontalCalendarProps> = ({ onSelectDate, selected }) => {
     const [dates, setDates] = useState<Date[]>([]);
-    const [scrollPosition, setScrollPosition] = useState(0);
-    const [currentMonth, setCurrentMonth] = useState();
 
     // get the dates from today to 10 days from now, format them as strings and store them in state
     const getDates = () => {

@@ -1,4 +1,4 @@
-const Colors = {
+export const Colors = {
     main_text: '#212529',
     disabled: '#ccc',
     button_background: '#000000',
@@ -24,5 +24,3 @@ const Colors = {
     cat_home: '52B788',
     cat_work: 'FAA307',
 };
-
-export default Colors;

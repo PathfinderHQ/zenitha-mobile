@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types/route';
+import { RootStackParamList } from '../types';
 import { AuthRoutes, logo, Routes } from '../constants';
 import useAuth from '../hooks/useAuth';
 
@@ -26,11 +26,11 @@ const SplashScreen: FC<SplashScreenProps> = ({ navigation }) => {
                 setWordIndex(wordIndex + 1);
                 setLetterIndex(0);
             } else {
-                const path = token ? Routes.Dashboard : AuthRoutes.Login;
+                const path = token ? Routes.Homepage : AuthRoutes.Login;
 
                 navigation.replace(path);
             }
-        }, 200);
+        }, 100);
 
         return () => clearTimeout(timer);
         // eslint-disable-next-line

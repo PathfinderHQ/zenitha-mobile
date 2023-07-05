@@ -1,21 +1,7 @@
 import React, { FC } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {
-    Dimensions,
-    StyleSheet,
-    Text,
-    ActivityIndicator,
-    ImageURISource,
-    Image,
-    StyleProp,
-    ViewStyle,
-    Button,
-    View,
-} from 'react-native';
-import Colors from '../constants/colors';
-import FontFamily from '../constants/font-family';
-import FontSize from '../constants/fontsize';
-import { alarm, menuHorizontal } from '../constants';
+import { Dimensions, StyleSheet, Text, ImageURISource, Image, StyleProp, ViewStyle, View } from 'react-native';
+import { Colors, alarm, FontFamily, FontSize } from '../constants';
 import DotMenu from './DotMenu';
 
 const { height, width } = Dimensions.get('screen');
@@ -25,7 +11,6 @@ interface CurrentTaskCardProps {
     duration: string;
     title: string;
     onPress: () => void;
-    loading?: boolean;
     alarmIcon?: ImageURISource;
     customStyles?: StyleProp<ViewStyle>;
 }
@@ -35,7 +20,6 @@ const CurrentTaskCard: FC<CurrentTaskCardProps> = ({
     duration,
     title,
     onPress,
-    loading,
     alarmIcon,
     customStyles,
 }) => {
@@ -94,7 +78,7 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: FontSize.heading2Size,
         color: Colors.white100,
-        fontFamily: FontFamily.Semibold,
+        fontFamily: FontFamily.InterSemiBold,
         fontWeight: '600',
         top: '100%',
         right: '10%',
@@ -102,7 +86,7 @@ const styles = StyleSheet.create({
     headerText: {
         fontSize: FontSize.body2BoldSmall,
         color: Colors.white100,
-        fontFamily: FontFamily.Semibold,
+        fontFamily: FontFamily.InterSemiBold,
         fontWeight: '600',
         textAlign: 'center',
     },

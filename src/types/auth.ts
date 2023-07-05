@@ -15,6 +15,11 @@ export enum AuthType {
     GOOGLE = 'google',
 }
 
+export interface ChangePasswordPayload {
+    password: string;
+    new_password: string;
+}
+
 export interface IAuthSlice {
     auth: {
         token: Promise<string | null> | string | null;
@@ -73,5 +78,5 @@ export interface IAuthSlice {
     resetPassword: (otp: string, password: string) => Promise<void>;
     forgotPassword: (email: string) => Promise<void>;
     verifyEmail: (otp: string) => Promise<void>;
-    changePassword: (password: string) => Promise<void>;
+    changePassword: (data: ChangePasswordPayload) => Promise<void>;
 }

@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Dialog, ThemeProvider } from '@rneui/themed';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Button, Dialog, Portal } from 'react-native-paper';
 
 const DeleteDialog: React.FunctionComponent = () => {
-    const theme = {
-        Dialog: {
-            titleStyle: {
-                color: 'red',
-            },
-        },
-    };
     const [visible2, setVisible2] = useState(false);
 
     const toggleDialog2 = () => {
@@ -17,34 +10,26 @@ const DeleteDialog: React.FunctionComponent = () => {
     };
 
     return (
-        <ThemeProvider>
-            <View>
-                <View style={styles.buttonContainer}>
-                    <Button title='press' onPress={toggleDialog2} buttonStyle={styles.button} />
-                </View>
-                <Dialog style={styles.dialogContainer} isVisible={visible2} onBackdropPress={toggleDialog2}>
-                    <Dialog.Title title='Delete Task?' />
+        <View>
+            <View style={styles.buttonContainer}>
+                <Button onPress={toggleDialog2} style={styles.button}>
+                    Press
+                </Button>
+            </View>
+            <Portal>
+                <Dialog style={styles.dialogContainer} visible={visible2} onDismiss={toggleDialog2}>
+                    <Dialog.Title>Delete Task?</Dialog.Title>
                     <Dialog.Actions>
-                        <Dialog.Button
-                            title='Cancel'
-                            onPress={() => console.log('Primary Action Clicked!')}
-                            titleStyle={{ color: 'black' }}
-                        />
-                        <Dialog.Button
-                            title='Delete'
-                            onPress={() => console.log('Secondary Action Clicked!')}
-                            titleStyle={{
-                                color: 'black',
-                                backgroundColor: 'grey',
-                                padding: 20,
-                                borderRadius: 8,
-                                height: 40,
-                            }}
-                        />
+                        <Button onPress={() => console.log('Primary Action Clicked!')} textColor='#000'>
+                            Cancel
+                        </Button>
+                        <Button onPress={() => console.log('Secondary Action Clicked!')} style={styles.secondary}>
+                            Delete
+                        </Button>
                     </Dialog.Actions>
                 </Dialog>
-            </View>
-        </ThemeProvider>
+            </Portal>
+        </View>
     );
 };
 
@@ -62,6 +47,13 @@ const styles = StyleSheet.create({
     },
     dialogContainer: {
         borderRadius: 8,
+    },
+    secondary: {
+        color: '#000',
+        backgroundColor: '#ccc',
+        padding: 20,
+        borderRadius: 8,
+        height: 40,
     },
 });
 
