@@ -8,7 +8,6 @@ import GoogleAuth from './google-auth/GoogleAuth';
 import CreateCategoryForm from '../task/CreateCategoryForm';
 import ChangePasswordForm from './change-password/ChangePasswordForm';
 
-
 export {
     LoginForm,
     RegisterForm,
