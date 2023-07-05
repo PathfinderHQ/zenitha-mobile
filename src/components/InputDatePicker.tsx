@@ -8,10 +8,10 @@ export default function InputDatePicker() {
 
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>
-            <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
+            <View style={{ justifyContent: 'center', flex: 1, alignItems: 'stretch', borderWidth: 1 }}>
                 <DatePickerInput
                     locale='en'
-                    label='Start'
+                    // label='Start'
                     value={inputDate}
                     onChange={(d) => setInputDate(d)}
                     inputMode='start'
