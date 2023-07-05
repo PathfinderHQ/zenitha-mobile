@@ -1,3 +1,5 @@
+import { StackNavigationProp } from '@react-navigation/stack';
+
 export type RootStackParamList = {
     Register: undefined;
     Splash: undefined;
@@ -17,3 +19,5 @@ export type RootStackParamList = {
     SearchTasks: undefined;
     // Add other screen names and their params here
 };
+
+export type Navigation = StackNavigationProp<RootStackParamList>;

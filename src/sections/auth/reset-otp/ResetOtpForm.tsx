@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { ResetOtpScreenProps } from '../../../screens/ResetOtp';
+import { ResetOtpScreenProps } from '../../../screens/auth/ResetOtp';
 import { Button, Otp } from '../../../components';
 import { AuthRoutes, OTP_LENGTH } from '../../../constants';
 import { useAuth } from '../../../hooks';

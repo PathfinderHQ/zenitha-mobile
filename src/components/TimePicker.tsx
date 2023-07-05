@@ -1,9 +1,7 @@
 import { en, registerTranslation, TimePickerModal } from 'react-native-paper-dates';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Button } from 'react-native-paper';
-
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 registerTranslation('en', en);
 
@@ -22,19 +20,11 @@ export default function TimePicker() {
     );
 
     return (
-        <SafeAreaProvider>
-            <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
-                <Button onPress={() => setVisible(true)} uppercase={false} mode='outlined'>
-                    Pick time
-                </Button>
-                <TimePickerModal
-                    visible={visible}
-                    onDismiss={onDismiss}
-                    onConfirm={onConfirm}
-                    hours={12}
-                    minutes={14}
-                />
-            </View>
-        </SafeAreaProvider>
+        <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
+            <Button onPress={() => setVisible(true)} uppercase={false} mode='outlined'>
+                Pick time
+            </Button>
+            <TimePickerModal visible={visible} onDismiss={onDismiss} onConfirm={onConfirm} hours={12} minutes={14} />
+        </View>
     );
 }

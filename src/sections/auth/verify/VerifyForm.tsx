@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Otp } from '../../../components';
 import { OTP_LENGTH, Routes } from '../../../constants';
-import { VerifyEmailScreenProps } from '../../../screens/VerifyEmail';
+import { VerifyEmailScreenProps } from '../../../screens/auth/VerifyEmail';
 import { useAuth, useError, useMessage } from '../../../hooks';
 
 const VerifyForm: FC<VerifyEmailScreenProps> = ({ navigation }) => {

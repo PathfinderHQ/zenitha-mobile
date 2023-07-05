@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { HorizontalDivider } from '../components';
-import { RootStackParamList } from '../types';
-import { GoogleAuth, RegisterForm } from '../sections/auth';
-import { AuthRoutes, Colors } from '../constants';
+import { HorizontalDivider } from '../../components';
+import { RootStackParamList } from '../../types';
+import { GoogleAuth, RegisterForm } from '../../sections/auth';
+import { AuthRoutes, Colors } from '../../constants';
 
 export type RegisterScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, AuthRoutes.Register>;

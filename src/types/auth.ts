@@ -18,6 +18,12 @@ export enum AuthType {
 export interface ChangePasswordPayload {
     password: string;
     new_password: string;
+    confirm_password: string;
+}
+
+export interface UpdateProfilePayload {
+    first_name: string | undefined;
+    last_name: string | undefined;
 }
 
 export interface IAuthSlice {
@@ -72,6 +78,22 @@ export interface IAuthSlice {
         clearError: () => void;
         clearMessage: () => void;
     };
+    profile: {
+        loading: boolean;
+        success: boolean;
+        error: string | null;
+        setLoading: (value: boolean) => void;
+        clearError: () => void;
+    };
+    resend: {
+        loading: boolean;
+        success: boolean;
+        error: string | null;
+        message: string | null;
+        setLoading: (value: boolean) => void;
+        clearError: () => void;
+        clearMessage: () => void;
+    };
     registerOrLogin: (data: AuthPayload | GoogleAuthPayload, type: AuthType) => Promise<void>;
     getCurrentUser: () => Promise<void>;
     logout: () => Promise<void>;
@@ -79,4 +101,6 @@ export interface IAuthSlice {
     forgotPassword: (email: string) => Promise<void>;
     verifyEmail: (otp: string) => Promise<void>;
     changePassword: (data: ChangePasswordPayload) => Promise<void>;
+    updateProfile: (data: UpdateProfilePayload) => Promise<void>;
+    resendVerifyOtp: () => Promise<void>;
 }

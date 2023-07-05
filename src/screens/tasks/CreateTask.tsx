@@ -1,16 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
-import { Routes } from '../constants';
-import { BackButton } from '../components';
-import CreateTaskForm from '../sections/task/CreateTaskFofm';
+import { BackButton } from '../../components';
+import CreateTaskForm from '../../sections/task/CreateTaskForm';
 
-export type CreateTaskScreenProps = {
-    navigation: StackNavigationProp<RootStackParamList, Routes.CreateTask>;
-};
-
-const CreateTaskScreen: React.FC<CreateTaskScreenProps> = ({ navigation }) => {
+const CreateTaskScreen: FC = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -20,7 +13,6 @@ const CreateTaskScreen: React.FC<CreateTaskScreenProps> = ({ navigation }) => {
             <View style={styles.profileContainer}>
                 <CreateTaskForm />
             </View>
-            {/* <View style={styles.optionsContainer}></View> */}
         </View>
     );
 };

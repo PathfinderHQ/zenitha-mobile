@@ -1,4 +1,5 @@
 import {
+    ChangePasswordScreen,
     EditProfileScreen,
     ProfileScreen,
     SearchTasksScreen,
@@ -42,6 +43,11 @@ export const appScreens = [
     },
     {
         id: 7,
+        name: Routes.ChangePassword,
+        component: ChangePasswordScreen,
+    },
+    {
+        id: 8,
         name: Routes.CreateTask,
         component: CreateTaskScreen,
     },

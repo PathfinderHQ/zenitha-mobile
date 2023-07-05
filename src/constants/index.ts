@@ -6,6 +6,7 @@ export * from './navigation';
 export * from './request';
 export * from './fonts';
 export * from './icons';
+export * from './theme';
 
 export const PASSWORD_REGEX = new RegExp('^(?=.*?[A-Z])(?=(.*[a-z])+)(?=(.*\\d)+)(?=(.*\\W)+)(?!.*\\s).{8,}$');
 export const EMAIL_REGEX = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;

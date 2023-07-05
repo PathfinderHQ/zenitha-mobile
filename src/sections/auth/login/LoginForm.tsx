@@ -10,7 +10,7 @@ import { Button, FormProvider, Input } from '../../../components';
 import { AuthPayload, AuthType } from '../../../types';
 import { EMAIL_REGEX, Routes } from '../../../constants';
 import { useAuth, useError } from '../../../hooks';
-import { LoginScreenProps } from '../../../screens/Login';
+import { LoginScreenProps } from '../../../screens/auth/Login';
 
 const LoginForm: FC<LoginScreenProps> = ({ navigation }) => {
     const { auth, registerOrLogin } = useAuth();
