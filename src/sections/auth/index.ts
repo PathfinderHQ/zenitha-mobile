@@ -5,6 +5,7 @@ import ForgotPasswordForm from './forgot-password/ForgotPasswordForm';
 import ResetPasswordForm from './reset-password/ResetPasswordForm';
 import ResetOtpForm from './reset-otp/ResetOtpForm';
 import GoogleAuth from './google-auth/GoogleAuth';
+import CreateCategoryForm from '../task/CreateCategoryForm';
 import ChangePasswordForm from './change-password/ChangePasswordForm';
 
 export {
@@ -15,5 +16,6 @@ export {
     ResetPasswordForm,
     ResetOtpForm,
     GoogleAuth,
+    CreateCategoryForm,
     ChangePasswordForm,
 };

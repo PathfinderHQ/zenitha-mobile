@@ -5,3 +5,7 @@ export interface CreateTaskPayload {
     dueTime: Date;
     description: string;
 }
+
+export interface CreateCategoryPayload {
+    category_name: string;
+}
