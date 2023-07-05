@@ -56,8 +56,13 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backfaceVisibility: 'hidden',
         zIndex: 100,
+        borderWidth: 1,
+        borderColor: '#1A4034961',
     },
-
+    menuItem: {
+        borderRadius: 8,
+        backgroundColor: '#1A4034961',
+    },
     container: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -65,5 +70,8 @@ const styles = StyleSheet.create({
     },
     grey: {
         backgroundColor: 'grey',
+    },
+    text: {
+        fontSize: 18,
     },
 });

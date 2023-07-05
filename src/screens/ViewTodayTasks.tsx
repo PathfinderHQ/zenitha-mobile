@@ -1,11 +1,17 @@
 import React, { FC, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { RootStackParamList } from '../types';
 import { Routes, Colors } from '../constants';
-import { CurrentTaskCard, FutureTaskCard, DateToday, HorizontalCalendar, MainHorizontalDivider } from '../components';
+import {
+    CurrentTaskCard,
+    FutureTaskCard,
+    DateToday,
+    HorizontalCalendar,
+    MainHorizontalDivider,
+    FloatingButton,
+} from '../components';
 
 const { width } = Dimensions.get('screen');
 
@@ -22,7 +28,17 @@ const ViewTodayTasksScreen: FC<ViewTodayTasksProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.calendarIcon}>
-                <MaterialCommunityIcons name='calendar-month-outline' size={30} color='black' onPress={toggle} />
+                <View style={styles.searchIconContainer}>
+                    <Feather
+                        name='search'
+                        size={24}
+                        color='black'
+                        onPress={() => navigation.navigate(Routes.SearchTasks)}
+                    />
+                </View>
+                <View style={styles.calenderIconContainer}>
+                    <MaterialCommunityIcons name='calendar-month-outline' size={30} color='black' onPress={toggle} />
+                </View>
             </View>
             <View style={styles.date}>
                 {showCalendar ? (
@@ -39,22 +55,38 @@ const ViewTodayTasksScreen: FC<ViewTodayTasksProps> = ({ navigation }) => {
                     title='Assignment'
                     onPress={() => navigation.navigate(Routes.ViewDetail)}
                 />
-                <MainHorizontalDivider />
             </View>
-            <View style={styles.futureCardContainer}>
-                <Text style={styles.reminder}>Today's Reminders</Text>
 
-                <FutureTaskCard
-                    startTime='5:30 pm'
-                    dueTime='8:30 pm'
-                    title='House Cleaning'
-                    onPress={() => navigation.navigate(Routes.ViewDetail)}
-                />
+            <View style={styles.futureCardContainer}>
+                <MainHorizontalDivider />
+                <ScrollView>
+                    <Text style={styles.reminder}>Today's Reminders</Text>
+
+                    <FutureTaskCard
+                        startTime='5:30 pm'
+                        dueTime='8:30 pm'
+                        title='House Cleaning'
+                        onPress={() => navigation.navigate(Routes.ViewDetail)}
+                    />
+                    <FutureTaskCard
+                        startTime='5:30 pm'
+                        dueTime='8:30 pm'
+                        title='Family Dinner'
+                        onPress={() => navigation.navigate(Routes.ViewDetail)}
+                    />
+                    <FutureTaskCard
+                        startTime='5:30 pm'
+                        dueTime='8:30 pm'
+                        title='Some Tasks'
+                        onPress={() => navigation.navigate(Routes.ViewDetail)}
+                    />
+                </ScrollView>
             </View>
             <View style={styles.addTask}>
                 <TouchableOpacity onPress={() => navigation.navigate(Routes.Homepage)}>
                     <Text style={styles.link_text}>Add task</Text>
                 </TouchableOpacity>
+                <FloatingButton />
             </View>
         </View>
     );
@@ -91,12 +123,23 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         marginLeft: '3%',
     },
+    calenderIconContainer: {
+        flex: 1,
+        alignItems: 'flex-end',
+    },
+    searchIconContainer: {
+        flex: 1,
+        marginLeft: '3%',
+        marginTop: 4,
+    },
     calendarIcon: {
         flex: 1,
-        alignSelf: 'flex-end',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
         flexShrink: 2,
         marginTop: '10%',
         marginRight: '5%',
+        position: 'relative',
     },
     addTask: {
         flex: 1,
