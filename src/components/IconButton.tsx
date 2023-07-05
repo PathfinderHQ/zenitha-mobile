@@ -27,11 +27,7 @@ export default IconButtonComponent;
 
 const styles = StyleSheet.create({
     container: {
-        width: 327,
         alignItems: 'flex-start',
-        gap: 16,
         flexDirection: 'row',
-        paddingVertical: 12,
-        paddingHorizontal: 0,
     },
 });
