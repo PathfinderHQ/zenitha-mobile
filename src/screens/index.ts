@@ -11,6 +11,7 @@ import ViewTodayTasksScreen from './tasks/ViewTodayTasks';
 import TaskDetailScreen from './tasks/ViewDetail';
 import SearchTasksScreen from './tasks/SearchTasks';
 import ChangePasswordScreen from './profile/ChangePassword';
+import CreateTaskScreen from './tasks/CreateTask';
 
 export {
     LoginScreen,
@@ -26,4 +27,5 @@ export {
     TaskDetailScreen,
     SearchTasksScreen,
     ChangePasswordScreen,
+    CreateTaskScreen,
 };

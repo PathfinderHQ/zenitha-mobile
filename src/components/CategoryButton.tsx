@@ -20,7 +20,7 @@ const CategoryButton: React.FC<Props> = ({ onPress, name, color }) => {
             style={[styles.button, { backgroundColor: isPressed ? color : '#ddd' }]}
             onPress={handlePress}
         >
-            <Text>{name}</Text>
+            <Text style={styles.text}>{name}</Text>
         </TouchableOpacity>
     );
 };
@@ -34,6 +34,10 @@ const styles = StyleSheet.create({
         width: 100,
         height: 45,
         margin: 5,
+    },
+    text: {
+        color: '#252525',
+        fontWeight: '600',
     },
 });
 

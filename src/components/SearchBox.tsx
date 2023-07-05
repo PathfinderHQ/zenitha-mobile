@@ -1,10 +1,10 @@
 import React from 'react';
 import { Searchbar } from 'react-native-paper';
-import { View, Dimensions, Text, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 
 import { Colors } from '../constants';
 
-const { width, height } = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
 const SearchBox = () => {
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -14,7 +14,7 @@ const SearchBox = () => {
     return (
         <View style={styles.container}>
             <Searchbar
-                style={{ backgroundColor: '#ffffff', borderWidth: 1, width: width / 1.4 }}
+                style={{ backgroundColor: '#ffffff', borderWidth: 1, width: width / 1.3 }}
                 placeholder='Search'
                 onChangeText={onChangeSearch}
                 value={searchQuery}

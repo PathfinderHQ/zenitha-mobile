@@ -5,6 +5,7 @@ import {
     SearchTasksScreen,
     TaskDetailScreen,
     ViewTodayTasksScreen,
+    CreateTaskScreen,
 } from '../screens';
 import { Routes } from '../constants';
 import Homepage from '../screens/Homepage';
@@ -44,5 +45,10 @@ export const appScreens = [
         id: 7,
         name: Routes.ChangePassword,
         component: ChangePasswordScreen,
+    },
+    {
+        id: 8,
+        name: Routes.CreateTask,
+        component: CreateTaskScreen,
     },
 ];

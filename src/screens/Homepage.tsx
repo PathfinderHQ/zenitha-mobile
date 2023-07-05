@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import { IconButtonComponent, FloatingButton } from '../components';
+import { IconButtonComponent, FloatingButton, TimePicker, InputDatePicker, DatePicker } from '../components';
 import { useAuth } from '../hooks';
 import { Routes } from '../constants';
 import DeleteDialog from '../components/DeleteDialog';
@@ -18,6 +18,8 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
     const { user } = auth;
     return (
         <View style={styles.container}>
+            <TimePicker />
+
             <View style={styles.menu}>
                 <IconButtonComponent
                     icon='menu'
@@ -26,13 +28,29 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
                     onPress={() => navigation.navigate(Routes.Profile)}
                 />
             </View>
-            <Text>Hello, {user?.email}</Text>
+            <Text style={styles.text}>
+                Hello, {user?.email}, type natural language to create tasks, enter time and date for more precision.
+            </Text>
+            <TextInput
+                editable
+                multiline
+                numberOfLines={4}
+                maxLength={40}
+                placeholder='Your task starts here'
+                // value={value}
+                style={{ padding: 20 }}
+            />
             <View>
                 <TouchableOpacity onPress={() => navigation.navigate(Routes.ViewTodayTasks)}>
                     <Text>ViewTask</Text>
                 </TouchableOpacity>
             </View>
+
+            <FloatingButton onPress={() => navigation.navigate(Routes.CreateTask)} />
+            <InputDatePicker />
+            <DatePicker />
             <FloatingButton />
+
             <DeleteDialog />
             <ToggleSearch />
         </View>
