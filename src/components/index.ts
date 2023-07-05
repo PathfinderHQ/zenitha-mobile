@@ -22,6 +22,7 @@ import ToggleSearch from './Search';
 import MainHorizontalDivider from './MainHorizontalDivider';
 import Snackbar from './Snackbar';
 import DotMenu from './DotMenu';
+import SearchBox from './SearchBox';
 
 export {
     Input,
@@ -48,4 +49,5 @@ export {
     MainHorizontalDivider,
     DeleteDialog,
     ToggleSearch,
+    SearchBox,
 };

@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { Searchbar } from 'react-native-paper';
 import { View, Dimensions, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import Colors from '../constants/colors';
+import { Colors } from '../constants';
 
-const { width, height } = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
 const ToggleSearch = () => {
     const [searchQuery, setSearchQuery] = React.useState('');

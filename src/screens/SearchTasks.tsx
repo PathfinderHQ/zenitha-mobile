@@ -2,13 +2,9 @@ import React, { FC, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { RootStackParamList } from '../types';
-import { Routes } from '../constants';
-import Colors from '../constants/colors';
-import { FutureTaskCard, DateToday, Fab } from '../components';
-import MainHorizontalDivider from '../components/MainHorizontalDivider';
-import SearchBox from '../components/SearchBox';
+import { Routes, Colors } from '../constants';
+import { FutureTaskCard, DateToday, FloatingButton, MainHorizontalDivider, SearchBox } from '../components';
 
 const { width } = Dimensions.get('screen');
 
@@ -77,7 +73,7 @@ const SearchTasksScreen: FC<SearchTasksProps> = ({ navigation }) => {
                     />
                 </ScrollView>
                 <View style={styles.addTask}>
-                    <Fab />
+                    <FloatingButton />
                 </View>
             </View>
         </View>

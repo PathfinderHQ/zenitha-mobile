@@ -1,11 +1,8 @@
-import React, { FC, useState } from 'react';
+import React from 'react';
 import { Searchbar } from 'react-native-paper';
 import { View, Dimensions, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
-import { Routes } from '../constants';
-
-import Colors from '../constants/colors';
+import { Colors } from '../constants';
 
 const { width, height } = Dimensions.get('screen');
 
