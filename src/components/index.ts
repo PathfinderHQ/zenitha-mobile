@@ -9,6 +9,10 @@ import FutureTaskCard from './FutureTaskCard';
 import DateToday from './DateToday';
 import TaskDetailCard from './TaskDetailCard';
 import HorizontalCalendar from './HorizontalCalendar';
+import DeleteDialog from './DeleteDialog';
+import ToggleSearch from './Search';
+import Fab from './Fab';
+import MainHorizontalDivider from './MainHorizontalDivider';
 
 export {
     Input,
@@ -22,4 +26,8 @@ export {
     DateToday,
     TaskDetailCard,
     HorizontalCalendar,
+    DeleteDialog,
+    ToggleSearch,
+    Fab,
+    MainHorizontalDivider,
 };

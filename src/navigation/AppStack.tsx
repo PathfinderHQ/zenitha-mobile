@@ -1,4 +1,10 @@
-import { EditProfileScreen, ProfileScreen, TaskDetailScreen, ViewTodayTasksScreen } from '../screens';
+import {
+    EditProfileScreen,
+    ProfileScreen,
+    SearchTasksScreen,
+    TaskDetailScreen,
+    ViewTodayTasksScreen,
+} from '../screens';
 import { Routes } from '../constants';
 import Homepage from '../screens/Homepage';
 
@@ -27,5 +33,10 @@ export const appScreens = [
         id: 5,
         name: Routes.ViewDetail,
         component: TaskDetailScreen,
+    },
+    {
+        id: 6,
+        name: Routes.SearchTasks,
+        component: SearchTasksScreen,
     },
 ];

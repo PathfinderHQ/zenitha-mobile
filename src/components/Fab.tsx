@@ -7,12 +7,12 @@ type FabProps = {
 };
 
 const Fab: FC<FabProps> = ({ onPress }) => {
-    const [visible] = React.useState(true);
+    const [isvisible] = React.useState(true);
 
     return (
         <View style={styles.container}>
             <FAB
-                visible={visible}
+                visible={isvisible}
                 icon={{ name: 'add', color: 'white' }}
                 color='#252525'
                 placement='right'

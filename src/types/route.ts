@@ -14,5 +14,6 @@ export type RootStackParamList = {
     ChangePassword: undefined;
     ViewTodayTasks: undefined;
     ViewDetail: undefined;
+    SearchTasks: undefined;
     // Add other screen names and their params here
 };

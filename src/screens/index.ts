@@ -9,6 +9,7 @@ import ProfileScreen from './Profile';
 import EditProfileScreen from './EditProfile';
 import ViewTodayTasksScreen from './ViewTodayTasks';
 import TaskDetailScreen from './ViewDetail';
+import SearchTasksScreen from './SearchTasks';
 
 export {
     LoginScreen,
@@ -22,4 +23,5 @@ export {
     EditProfileScreen,
     ViewTodayTasksScreen,
     TaskDetailScreen,
+    SearchTasksScreen,
 };

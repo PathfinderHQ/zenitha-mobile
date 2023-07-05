@@ -1,50 +1,43 @@
 import React, { useState } from 'react';
-import { Button, Dialog, ThemeProvider } from '@rneui/themed';
-import { View, Text, StyleSheet } from 'react-native';
+import { Button, Dialog } from '@rneui/themed';
+import { View, StyleSheet } from 'react-native';
 
 const DeleteDialog: React.FunctionComponent = () => {
-    const theme = {
-        Dialog: {
-            titleStyle: {
-                color: 'red',
-            },
-        },
-    };
-    const [visible2, setVisible2] = useState(false);
+    const [visibleDialog, setVisibleDialog] = useState(false);
 
-    const toggleDialog2 = () => {
-        setVisible2(!visible2);
+    const toggleDialog = () => {
+        setVisibleDialog(!visibleDialog);
     };
-
     return (
-        <ThemeProvider>
-            <View>
-                <View style={styles.buttonContainer}>
-                    <Button title='press' onPress={toggleDialog2} buttonStyle={styles.button} />
-                </View>
-                <Dialog style={styles.dialogContainer} isVisible={visible2} onBackdropPress={toggleDialog2}>
-                    <Dialog.Title title='Delete Task?' />
-                    <Dialog.Actions>
-                        <Dialog.Button
-                            title='Cancel'
-                            onPress={() => console.log('Primary Action Clicked!')}
-                            titleStyle={{ color: 'black' }}
-                        />
-                        <Dialog.Button
-                            title='Delete'
-                            onPress={() => console.log('Secondary Action Clicked!')}
-                            titleStyle={{
-                                color: 'black',
-                                backgroundColor: 'grey',
-                                padding: 20,
-                                borderRadius: 8,
-                                height: 40,
-                            }}
-                        />
-                    </Dialog.Actions>
-                </Dialog>
+        <View>
+            <View style={styles.buttonContainer}>
+                <Button title='press' onPress={toggleDialog} buttonStyle={styles.button} />
             </View>
-        </ThemeProvider>
+            <Dialog isVisible={visibleDialog} onBackdropPress={toggleDialog}>
+                <Dialog.Title
+                    title='Delete Task?'
+                    titleStyle={{ color: 'black', fontSize: 20, fontWeight: '400', marginLeft: '30%' }}
+                />
+                <Dialog.Actions>
+                    <Dialog.Button
+                        type='clear'
+                        title='Cancel'
+                        onPress={() => console.log('Primary Action Clicked!')}
+                        titleStyle={{ color: 'black', fontSize: 18, fontWeight: '100', padding: 20, marginRight: 20 }}
+                    />
+                    <Dialog.Button
+                        title='Delete'
+                        onPress={() => console.log('Secondary Action Clicked!')}
+                        titleStyle={{
+                            color: 'black',
+                            fontSize: 18,
+                            fontWeight: '100',
+                            padding: 20,
+                        }}
+                    />
+                </Dialog.Actions>
+            </Dialog>
+        </View>
     );
 };
 
@@ -59,9 +52,6 @@ const styles = StyleSheet.create({
         margin: 20,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    dialogContainer: {
-        borderRadius: 8,
     },
 });
 

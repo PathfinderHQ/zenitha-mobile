@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { FC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
@@ -6,6 +6,8 @@ import IconButtonComponent from '../components/IconButton';
 import { useAuth } from '../hooks';
 import { Routes } from '../constants';
 import Fab from '../components/Fab';
+import DeleteDialog from '../components/DeleteDialog';
+import ToggleSearch from '../components/Search';
 
 export type HomeScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, 'Homepage'>;
@@ -26,7 +28,14 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
                 />
             </View>
             <Text>Hello, {user?.email}</Text>
+            <View>
+                <TouchableOpacity onPress={() => navigation.navigate(Routes.ViewTodayTasks)}>
+                    <Text>ViewTask</Text>
+                </TouchableOpacity>
+            </View>
             <Fab />
+            <DeleteDialog />
+            <ToggleSearch />
         </View>
     );
 };

@@ -24,7 +24,6 @@ const HorizontalCalendar: FC<HorizontalCalendarProps> = ({ onSelectDate, selecte
         }
         setDates(datesArray);
     };
-
     useEffect(() => {
         getDates();
     }, []);
