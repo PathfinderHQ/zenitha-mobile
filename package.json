@@ -12,7 +12,7 @@
         "test": "yarn jest",
         "prettier:fix": "prettier --write .",
         "pre-commit": "yarn prettier:fix && yarn lint",
-        "ci:check": "yarn lint",
+        "ci:check": "yarn type:check && yarn lint",
         "build-apk": "eas build -p android --profile preview",
         "type:check": "tsc --project tsconfig.json --noEmit"
     },
