@@ -36,6 +36,7 @@ const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
                     onPress={hideMenu}
                     title='Complete'
                     leadingIcon='check'
+                    rippleColor='rgba(173, 181, 189, 0.5)'
                 />
                 <Divider style={styles.grey} />
                 <Menu.Item
@@ -56,12 +57,10 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backfaceVisibility: 'hidden',
         zIndex: 100,
-        borderWidth: 1,
-        borderColor: '#1A4034961',
     },
     menuItem: {
         borderRadius: 8,
-        backgroundColor: '#1A4034961',
+        backgroundColor: 'black',
     },
     container: {
         alignItems: 'center',

@@ -14,7 +14,7 @@ const SearchBox = () => {
     return (
         <View style={styles.container}>
             <Searchbar
-                style={{ backgroundColor: '#ffffff', borderWidth: 1, width: width / 1.4 }}
+                style={{ backgroundColor: '#ffffff', borderWidth: 1, width: width / 1.3 }}
                 placeholder='Search'
                 onChangeText={onChangeSearch}
                 value={searchQuery}
