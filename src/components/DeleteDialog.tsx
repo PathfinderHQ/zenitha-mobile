@@ -8,7 +8,6 @@ const DeleteDialog: React.FunctionComponent = () => {
     const toggleDialog2 = () => {
         setVisible2(!visible2);
     };
-
     return (
         <View>
             <View style={styles.buttonContainer}>

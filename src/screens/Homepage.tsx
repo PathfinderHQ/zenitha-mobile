@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import { IconButtonComponent, FloatingButton } from '../components';
 import { useAuth } from '../hooks';
 import { Routes } from '../constants';
+import DeleteDialog from '../components/DeleteDialog';
+import ToggleSearch from '../components/Search';
 
 export type HomeScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, 'Homepage'>;
@@ -13,7 +14,7 @@ export type HomeScreenProps = {
 
 const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
     const { auth } = useAuth();
-    const [value] = React.useState();
+
     const { user } = auth;
     return (
         <View style={styles.container}>
@@ -25,19 +26,15 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
                     onPress={() => navigation.navigate(Routes.Profile)}
                 />
             </View>
-            <Text style={styles.text}>
-                Hello, {user?.email}, type natural language to create tasks, enter time and date for more precision.
-            </Text>
-            <TextInput
-                editable
-                multiline
-                numberOfLines={4}
-                maxLength={40}
-                placeholder='Your task starts here'
-                value={value}
-                style={{ padding: 20 }}
-            />
-            <FloatingButton onPress={() => navigation.navigate(Routes.ViewTodayTasks)} />
+            <Text>Hello, {user?.email}</Text>
+            <View>
+                <TouchableOpacity onPress={() => navigation.navigate(Routes.ViewTodayTasks)}>
+                    <Text>ViewTask</Text>
+                </TouchableOpacity>
+            </View>
+            <FloatingButton />
+            <DeleteDialog />
+            <ToggleSearch />
         </View>
     );
 };

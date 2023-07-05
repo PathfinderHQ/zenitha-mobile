@@ -17,9 +17,11 @@ import FutureTaskCard from './FutureTaskCard';
 import DateToday from './DateToday';
 import TaskDetailCard from './TaskDetailCard';
 import HorizontalCalendar from './HorizontalCalendar';
+import DeleteDialog from './DeleteDialog';
+import ToggleSearch from './Search';
+import MainHorizontalDivider from './MainHorizontalDivider';
 import Snackbar from './Snackbar';
 import DotMenu from './DotMenu';
-import MainHorizontalDivider from './MainHorizontalDivider';
 
 export {
     Input,
@@ -44,4 +46,6 @@ export {
     Snackbar,
     DotMenu,
     MainHorizontalDivider,
+    DeleteDialog,
+    ToggleSearch,
 };
