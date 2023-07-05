@@ -18,5 +18,6 @@ export default Carousel;
 const styles = StyleSheet.create({
     container: {
         padding: 3,
+        width: 320,
     },
 });

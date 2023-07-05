@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     profileContainer: {
         width: 400,
-        paddingLeft: 20,
+        paddingLeft: 10,
         paddingTop: 100,
     },
     text: {
