@@ -34,6 +34,7 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate(Routes.ViewTodayTasks)}>
                     <Text>ViewTask</Text>
                 </TouchableOpacity>
+                <FloatingButton onPress={() => navigation.navigate(Routes.CreateTask)} />
             </View>
 
             <FloatingButton onPress={() => navigation.navigate(Routes.CreateTask)} />

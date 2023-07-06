@@ -16,7 +16,7 @@ const CalendarItem: FC<CalendarItemProps> = ({ date, onSelectDate, selected }) =
      */
     const day = dateFns.isEqual(date, new Date()) ? 'Today' : dateFns.format(date, 'E');
     // get the day number e.g 1, 2, 3, 4, 5, 6, 7
-    const dayNumber = dateFns.format(date, 'ii');
+    const dayNumber = dateFns.format(date, 'dd');
 
     // get the full date e.g 2021-01-01 - we'll use this to compare the date to the selected date
     const fullDate = dateFns.format(date, 'yyyy-MM-dd');

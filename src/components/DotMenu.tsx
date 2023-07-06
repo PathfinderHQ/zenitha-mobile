@@ -3,6 +3,7 @@ import React, { FC, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Menu, Divider } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import DeleteDialog from './DeleteDialog';
 
 interface IDotMenuProps {
     vertical?: boolean;
@@ -10,6 +11,12 @@ interface IDotMenuProps {
 
 const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
     const [visible, setVisible] = useState(false);
+    const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
+
+    const showDeleteDialog = () => {
+        setVisible(false);
+        setDeleteDialogVisible(true);
+    };
 
     const hideMenu = () => setVisible(false);
 
@@ -41,11 +48,12 @@ const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
                 <Divider style={styles.grey} />
                 <Menu.Item
                     style={{ backfaceVisibility: 'hidden' }}
-                    onPress={hideMenu}
+                    onPress={showDeleteDialog}
                     title='Delete'
                     leadingIcon='delete'
                 />
             </Menu>
+            <DeleteDialog visible={deleteDialogVisible} toggleVisible={setDeleteDialogVisible} />
         </View>
     );
 };

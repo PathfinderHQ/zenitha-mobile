@@ -1,7 +1,7 @@
 // react
 import React, { FC } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 // form
@@ -51,27 +51,39 @@ const CreateTaskForm: FC<TaskFormProp> = ({ type }) => {
 
     return (
         <FormProvider methods={methods}>
-            <View>
-                <Text>Task Name</Text>
-                <Input name='taskName' placeholder='' />
+            <View style={styles.flex}>
+                <View style={styles.flex}>
+                    <Text>Task Name</Text>
+                    <Input name='taskName' placeholder='' />
+                </View>
+                <View style={styles.flex}>
+                    <Text>Date</Text>
+                    <InputDatePicker />
+                </View>
+                <View style={[styles.flex, styles.timeContainer]}>
+                    <Text>Start Time</Text>
+                    <TimePicker />
+                    <Text>End Time</Text>
+                    <TimePicker />
+                </View>
+                <View style={styles.flex}>
+                    <Text>Description</Text>
+                    <TextInput editable multiline numberOfLines={3} placeholder='add task description here' />
+                </View>
+                <Categories type='select' />
+                <Button title={type === 'create' ? 'Create Task' : 'Edit Task'} onPress={handleSubmit(onSubmit)} />
             </View>
-            {/* -----date picker here */}
-            <View>
-                <Text>Date</Text>
-                <InputDatePicker />
-            </View>
-            <View>
-                <Text>Start Time</Text>
-                <TimePicker />
-                <Text>End Time</Text>
-                <TimePicker />
-            </View>
-            <Text>Description</Text>
-            <TextInput editable multiline numberOfLines={3} placeholder='add task description here' />
-            <Categories type='select' horizontal />
-            <Button title={type === 'create' ? 'Create Task' : 'Edit Task'} onPress={handleSubmit(onSubmit)} />
         </FormProvider>
     );
 };
 
 export default CreateTaskForm;
+
+const styles = StyleSheet.create({
+    flex: {
+        flex: 1,
+    },
+    timeContainer: {
+        flexDirection: 'row',
+    },
+});
