@@ -10,6 +10,7 @@ import {
 import { Routes } from '../constants';
 import Homepage from '../screens/Homepage';
 import CreateCategoryScreen from '../screens/CreateCategory';
+import EditTaskScreen from '../screens/tasks/EditTask';
 
 export const appScreens = [
     {
@@ -53,8 +54,13 @@ export const appScreens = [
         component: CreateTaskScreen,
     },
     {
-        id: 8,
+        id: 9,
         name: Routes.CreateCategory,
         component: CreateCategoryScreen,
+    },
+    {
+        id: 10,
+        name: Routes.EditTask,
+        component: EditTaskScreen,
     },
 ];
