@@ -9,7 +9,7 @@ import BackButton from './BackButton';
 import ProfileOption from './ProfileOption';
 import FloatingButton from './FloatingButton';
 import Carousel from './Carousel';
-import IconButtonComponent from './IconButton';
+import IconButton from './IconButton';
 import ImagePickerComponent from './ImagePicker';
 import CategoryButton from './CategoryButton';
 import CurrentTaskCard from './CurrentTaskCard';
@@ -40,7 +40,7 @@ export {
     ProfileOption,
     FloatingButton,
     Carousel,
-    IconButtonComponent,
+    IconButton,
     ImagePickerComponent,
     CurrentTaskCard,
     FutureTaskCard,

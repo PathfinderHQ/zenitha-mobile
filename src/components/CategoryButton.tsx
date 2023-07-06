@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
+import { FC } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 type Props = {
-    onPress: () => void;
+    onPress?: () => void;
     name: string;
     color: string;
+    selected?: boolean;
 };
 
-const CategoryButton: React.FC<Props> = ({ onPress, name, color }) => {
-    const [isPressed, setIsPressed] = useState(false);
-
-    const handlePress = () => {
-        setIsPressed(!isPressed);
-        onPress();
-    };
-
+const CategoryButton: FC<Props> = ({ onPress, name, color, selected }) => {
     return (
-        <TouchableOpacity
-            style={[styles.button, { backgroundColor: isPressed ? color : '#ddd' }]}
-            onPress={handlePress}
-        >
-            <Text style={styles.text}>{name}</Text>
+        <TouchableOpacity style={[styles.button, { backgroundColor: color }]} onPress={onPress}>
+            {selected && <MaterialCommunityIcons style={styles.icon} name='check-circle' />}
+            <Text style={[styles.text]}>{name}</Text>
         </TouchableOpacity>
     );
 };
@@ -34,10 +27,24 @@ const styles = StyleSheet.create({
         width: 100,
         height: 45,
         margin: 5,
+        position: 'relative',
     },
     text: {
-        color: '#252525',
         fontWeight: '600',
+        color: '#ffffff',
+    },
+    selected: {
+        borderWidth: 2,
+        borderColor: '#000000',
+    },
+    whiteBorder: {
+        borderColor: '#cccccc',
+    },
+    icon: {
+        position: 'absolute',
+        top: 5,
+        right: 7,
+        color: '#ffffff',
     },
 });
 

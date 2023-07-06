@@ -8,7 +8,9 @@ interface ICarouselProps {
 const Carousel: FC<ICarouselProps> = ({ children }) => {
     return (
         <View style={styles.container}>
-            <ScrollView horizontal>{children}</ScrollView>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                {children}
+            </ScrollView>
         </View>
     );
 };
