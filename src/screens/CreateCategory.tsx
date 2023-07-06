@@ -1,23 +1,31 @@
-import { FC } from 'react';
+import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { BackButton } from '../../components';
-import TaskForm from '../../sections/task/TaskForm';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types';
+import { Routes } from '../constants';
+import { BackButton } from '../components';
+import { CreateCategoryForm } from '../sections/auth';
 
-const CreateTaskScreen: FC = () => {
+export type CreateCategoryScreenProps = {
+    navigation: StackNavigationProp<RootStackParamList, Routes.CreateCategory>;
+};
+
+const CreateCategoryScreen: React.FC<CreateCategoryScreenProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <BackButton />
-                <Text style={styles.text}>Create Task</Text>
+                <Text style={styles.text}>Create a Category</Text>
             </View>
             <View style={styles.profileContainer}>
-                <TaskForm type='create' />
+                <CreateCategoryForm />
             </View>
+            {/* <View style={styles.optionsContainer}></View> */}
         </View>
     );
 };
 
-export default CreateTaskScreen;
+export default CreateCategoryScreen;
 
 const styles = StyleSheet.create({
     container: {

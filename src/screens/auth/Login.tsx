@@ -12,6 +12,7 @@ const { width } = Dimensions.get('screen');
 export type LoginScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, AuthRoutes.Login>;
 };
+
 const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
