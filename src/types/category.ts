@@ -13,6 +13,10 @@ export interface CategoryPayload {
 
 export interface ICategorySlice {
     categories: Category[];
+    category: {
+        current: string;
+        choose: (value: string) => void;
+    };
     create: {
         loading: boolean;
         error: string | null;

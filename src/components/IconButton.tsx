@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { IconButton } from 'react-native-paper';
+import { IconButton as RNIconButton } from 'react-native-paper';
 
 interface IconButtonProps {
     size: number;
@@ -9,21 +9,15 @@ interface IconButtonProps {
     color: string;
 }
 
-const IconButtonComponent: FC<IconButtonProps> = ({ icon, onPress, size, color }) => {
+const IconButton: FC<IconButtonProps> = ({ icon, onPress, size, color }) => {
     return (
         <View style={styles.container}>
-            <IconButton
-                icon={icon}
-                iconColor={color}
-                size={size}
-                // ------------------------------------------------add navigation here
-                onPress={onPress}
-            />
+            <RNIconButton icon={icon} iconColor={color} size={size} onPress={onPress} />
         </View>
     );
 };
 
-export default IconButtonComponent;
+export default IconButton;
 
 const styles = StyleSheet.create({
     container: {

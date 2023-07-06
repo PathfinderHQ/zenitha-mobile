@@ -8,7 +8,9 @@ interface ICarouselProps {
 const Carousel: FC<ICarouselProps> = ({ children }) => {
     return (
         <View style={styles.container}>
-            <ScrollView horizontal>{children}</ScrollView>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                {children}
+            </ScrollView>
         </View>
     );
 };
@@ -18,6 +20,6 @@ export default Carousel;
 const styles = StyleSheet.create({
     container: {
         padding: 3,
-        width: 320,
+        width: 350,
     },
 });

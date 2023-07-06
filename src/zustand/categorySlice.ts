@@ -3,8 +3,30 @@ import { CategoryPayload, ICategorySlice } from '../types/category';
 import { makeRequest } from '../utils';
 import { RequestMethod } from '../types';
 
-export const useCategorySlice = create<ICategorySlice>((set, get) => ({
+export const useCategories = create<ICategorySlice>((set, get) => ({
     categories: [],
+    category: {
+        current: '',
+        choose: (value: string) => {
+            if (value === get().category.current) {
+                set((state) => ({
+                    ...state,
+                    category: {
+                        ...state.category,
+                        current: '',
+                    },
+                }));
+            } else {
+                set((state) => ({
+                    ...state,
+                    category: {
+                        ...state.category,
+                        current: value,
+                    },
+                }));
+            }
+        },
+    },
     create: {
         loading: false,
         error: null,
@@ -49,6 +71,10 @@ export const useCategorySlice = create<ICategorySlice>((set, get) => ({
         set((state) => ({
             ...state,
             categories: [...state.categories, result.data],
+            create: {
+                ...state.create,
+                loading: false,
+            },
         }));
     },
     updateCategory: async (id: string, data: CategoryPayload) => {
@@ -78,6 +104,10 @@ export const useCategorySlice = create<ICategorySlice>((set, get) => ({
 
                 return category;
             }),
+            update: {
+                ...state.update,
+                loading: false,
+            },
         }));
     },
     fetchCategories: async () => {
@@ -100,6 +130,10 @@ export const useCategorySlice = create<ICategorySlice>((set, get) => ({
         set((state) => ({
             ...state,
             categories: result.data,
+            fetch: {
+                ...state.fetch,
+                loading: false,
+            },
         }));
     },
     removeCategory: async (id: string) => {
@@ -122,6 +156,10 @@ export const useCategorySlice = create<ICategorySlice>((set, get) => ({
         set((state) => ({
             ...state,
             categories: state.categories.filter((category) => category.id !== id),
+            remove: {
+                ...state.remove,
+                loading: false,
+            },
         }));
     },
 }));

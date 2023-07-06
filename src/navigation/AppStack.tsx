@@ -6,11 +6,11 @@ import {
     TaskDetailScreen,
     ViewTodayTasksScreen,
     CreateTaskScreen,
+    EditTaskScreen,
+    CreateCategoryScreen,
 } from '../screens';
 import { Routes } from '../constants';
 import Homepage from '../screens/Homepage';
-import CreateCategoryScreen from '../screens/CreateCategory';
-import EditTaskScreen from '../screens/tasks/EditTask';
 
 export const appScreens = [
     {

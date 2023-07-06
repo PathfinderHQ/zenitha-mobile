@@ -1,26 +1,17 @@
-import React, { useState } from 'react';
+import { FC } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 type Props = {
-    onPress: () => void;
+    onPress?: () => void;
     name: string;
     color: string;
+    selected?: boolean;
 };
 
-const CategoryButton: React.FC<Props> = ({ onPress, name, color }) => {
-    const [isPressed, setIsPressed] = useState(false);
-
-    const handlePress = () => {
-        setIsPressed(!isPressed);
-        onPress();
-    };
-
+const CategoryButton: FC<Props> = ({ onPress, name, color, selected }) => {
     return (
-        <TouchableOpacity
-            style={[styles.button, { backgroundColor: isPressed ? color : '#ddd' }]}
-            onPress={handlePress}
-        >
-            <Text style={styles.text}>{name}</Text>
+        <TouchableOpacity style={[styles.button, { backgroundColor: selected ? '#ddd' : color }]} onPress={onPress}>
+            <Text style={[styles.text, { color: selected ? '#000000' : '#ffffff' }]}>{name}</Text>
         </TouchableOpacity>
     );
 };
@@ -36,7 +27,6 @@ const styles = StyleSheet.create({
         margin: 5,
     },
     text: {
-        color: '#252525',
         fontWeight: '600',
     },
 });

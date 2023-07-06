@@ -1,16 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
-import { Routes } from '../constants';
-import { BackButton } from '../components';
-import { CreateCategoryForm } from '../sections/auth';
+import { BackButton } from '../../components';
+import { CreateCategoryForm } from '../../sections/categories';
 
-export type CreateCategoryScreenProps = {
-    navigation: StackNavigationProp<RootStackParamList, Routes.CreateCategory>;
-};
-
-const CreateCategoryScreen: React.FC<CreateCategoryScreenProps> = ({ navigation }) => {
+const CreateCategoryScreen: FC = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -20,7 +13,6 @@ const CreateCategoryScreen: React.FC<CreateCategoryScreenProps> = ({ navigation 
             <View style={styles.profileContainer}>
                 <CreateCategoryForm />
             </View>
-            {/* <View style={styles.optionsContainer}></View> */}
         </View>
     );
 };

@@ -10,15 +10,21 @@ type HorizontalCalendarProps = {
     selected: string;
 };
 
+type IDate = {
+    id: number;
+    date: Date;
+};
+
 const HorizontalCalendar: FC<HorizontalCalendarProps> = ({ onSelectDate, selected }) => {
-    const [dates, setDates] = useState<Date[]>([]);
+    const [dates, setDates] = useState<IDate[]>([]);
 
     // get the dates from today to 10 days from now, format them as strings and store them in state
     const getDates = () => {
-        const datesArray = [];
+        const datesArray: IDate[] = [];
+
         for (let i = 0; i < 10; i++) {
             const date = dateFns.addDays(new Date(), i);
-            datesArray.push(date);
+            datesArray.push({ id: i + 1, date });
         }
         setDates(datesArray);
     };
@@ -30,13 +36,8 @@ const HorizontalCalendar: FC<HorizontalCalendarProps> = ({ onSelectDate, selecte
         <View style={styles.dateSection}>
             <View style={styles.scroll}>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    {dates.map((date) => (
-                        <CalendarItem
-                            key={date.getMilliseconds()}
-                            date={date}
-                            onSelectDate={onSelectDate}
-                            selected={selected}
-                        />
+                    {dates.map(({ id, date }) => (
+                        <CalendarItem key={id} date={date} onSelectDate={onSelectDate} selected={selected} />
                     ))}
                 </ScrollView>
             </View>
