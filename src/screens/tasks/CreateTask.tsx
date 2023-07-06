@@ -23,14 +23,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
+        padding: 20,
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 30,
+        flex: 1,
     },
     profileContainer: {
-        width: 400,
+        flex: 5,
     },
     text: {
         fontSize: 22,

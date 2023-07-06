@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Dialog, Portal } from 'react-native-paper';
 
-const DeleteDialog: React.FunctionComponent = () => {
+interface DeleteDialogProps {
+    visible: boolean;
+    toggleVisible: (visible: boolean) => void;
+}
+
+const DeleteDialog: React.FunctionComponent<DeleteDialogProps> = () => {
     const [visible2, setVisible2] = useState(false);
 
     const toggleDialog2 = () => {
@@ -10,11 +15,6 @@ const DeleteDialog: React.FunctionComponent = () => {
     };
     return (
         <View>
-            <View style={styles.buttonContainer}>
-                <Button onPress={toggleDialog2} style={styles.button}>
-                    Press
-                </Button>
-            </View>
             <Portal>
                 <Dialog style={styles.dialogContainer} visible={visible2} onDismiss={toggleDialog2}>
                     <Dialog.Title>Delete Task?</Dialog.Title>

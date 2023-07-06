@@ -10,10 +10,9 @@ import CategoryGrid from '../../components/CategoryGrid';
 
 interface CategoriesProps {
     type: 'view' | 'select';
-    horizontal?: boolean;
 }
 
-const Categories: FC<CategoriesProps> = ({ type, horizontal }) => {
+const Categories: FC<CategoriesProps> = ({ type }) => {
     const navigation = useNavigation<Navigation>();
 
     const { categories, fetchCategories, fetch, category } = useCategories();
