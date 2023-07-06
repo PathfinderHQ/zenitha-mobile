@@ -15,7 +15,7 @@ import { AuthRoutes, navigationRef } from '../constants';
 import { IAuthSlice, RootStackParamList } from '../types';
 
 // state
-import { authSlice } from '../zustand/authSlice';
+import { authSlice } from '../zustand';
 
 // ----------------------------------------------------------------------
 const AuthContext = createContext<IAuthSlice | null>(null);
