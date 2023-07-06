@@ -1,4 +1,5 @@
 import {
+    ChangePasswordScreen,
     EditProfileScreen,
     ProfileScreen,
     SearchTasksScreen,
@@ -8,6 +9,7 @@ import {
 } from '../screens';
 import { Routes } from '../constants';
 import Homepage from '../screens/Homepage';
+import CreateCategoryScreen from '../screens/CreateCategory';
 
 export const appScreens = [
     {
@@ -42,7 +44,17 @@ export const appScreens = [
     },
     {
         id: 7,
+        name: Routes.ChangePassword,
+        component: ChangePasswordScreen,
+    },
+    {
+        id: 8,
         name: Routes.CreateTask,
         component: CreateTaskScreen,
+    },
+    {
+        id: 8,
+        name: Routes.CreateCategory,
+        component: CreateCategoryScreen,
     },
 ];

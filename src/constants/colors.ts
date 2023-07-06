@@ -21,6 +21,6 @@ export const Colors = {
     buttonTextUnselected: '#ced4da',
     lightgray_200: '#ccced3',
     labelHover: 'rgba(67, 73, 97, 0.06)',
-    cat_home: '52B788',
-    cat_work: 'FAA307',
+    cat_home: '#52B788',
+    cat_work: '#FAA307',
 };

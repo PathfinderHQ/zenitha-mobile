@@ -18,7 +18,7 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
     const { user } = auth;
     return (
         <View style={styles.container}>
-            <TimePicker />
+            {/* <TimePicker /> */}
 
             <View style={styles.menu}>
                 <IconButtonComponent
@@ -47,11 +47,12 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
                 <FloatingButton onPress={() => navigation.navigate(Routes.CreateTask)} />
             </View>
 
-            <InputDatePicker />
+            <FloatingButton onPress={() => navigation.navigate(Routes.CreateTask)} />
+            {/* <InputDatePicker />
             <DatePicker />
 
             <DeleteDialog />
-            <ToggleSearch />
+            <ToggleSearch /> */}
         </View>
     );
 };

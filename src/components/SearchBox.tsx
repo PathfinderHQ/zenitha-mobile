@@ -1,10 +1,10 @@
 import React from 'react';
 import { Searchbar } from 'react-native-paper';
-import { View, Dimensions, Text, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 
 import { Colors } from '../constants';
 
-const { width, height } = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
 const SearchBox = () => {
     const [searchQuery, setSearchQuery] = React.useState('');

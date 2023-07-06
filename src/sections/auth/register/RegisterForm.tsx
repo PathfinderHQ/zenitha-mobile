@@ -25,7 +25,7 @@ const RegisterForm: FC<SignUpFormProps> = ({ navigation }) => {
 
     const { loading, error, clearError, isAuthenticated } = auth;
 
-    const LoginSchema = Yup.object().shape({
+    const RegisterSchema = Yup.object().shape({
         email: Yup.string().matches(EMAIL_REGEX, 'Please enter a valid email').required('Email is required'),
         password: Yup.string()
             .matches(
@@ -41,7 +41,7 @@ const RegisterForm: FC<SignUpFormProps> = ({ navigation }) => {
     };
 
     const methods = useForm<AuthPayload>({
-        resolver: yupResolver(LoginSchema),
+        resolver: yupResolver(RegisterSchema),
         defaultValues,
     });
 

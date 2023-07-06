@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface FetchResponse {
     response: Response;
-    result: Record<string, any>;
+    result: any;
     error: boolean;
 }
 

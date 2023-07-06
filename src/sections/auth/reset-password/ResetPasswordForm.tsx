@@ -8,11 +8,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, FormProvider, Input } from '../../../components';
 import { AuthRoutes, PASSWORD_REGEX } from '../../../constants';
 import { useAuth, useError, useMessage } from '../../../hooks';
-import { ResetPasswordScreenProps } from '../../../screens/ResetPassword';
+import { ResetPasswordScreenProps } from '../../../screens/auth/ResetPassword';
 
 interface IResetPasswordSchema {
     password: string;
-    confirmPassword: string;
+    confirm_password: string;
 }
 
 const ResetPasswordForm: FC<ResetPasswordScreenProps> = ({ navigation }) => {
@@ -27,7 +27,7 @@ const ResetPasswordForm: FC<ResetPasswordScreenProps> = ({ navigation }) => {
                 'Password should be minimum of 8 characters\n1 Uppercase letter\n1 lower case\n1 number\n1 special character',
             )
             .required('Password is required'),
-        confirmPassword: Yup.string()
+        confirm_password: Yup.string()
             .oneOf([Yup.ref('password')], 'Passwords must match')
             .required(),
     });
@@ -72,7 +72,7 @@ const ResetPasswordForm: FC<ResetPasswordScreenProps> = ({ navigation }) => {
     return (
         <FormProvider methods={methods}>
             <Input name='password' placeholder='New Password' secureTextEntry />
-            <Input name='confirmPassword' placeholder='Confirm Password' secureTextEntry />
+            <Input name='confirm_password' placeholder='Confirm Password' secureTextEntry />
 
             <Button loading={loading} title='Reset' onPress={handleSubmit(onSubmit)} />
         </FormProvider>

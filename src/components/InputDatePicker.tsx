@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform, StatusBar } from 'react-native';
+import { View, StyleSheet, Platform, StatusBar } from 'react-native';
 import { DatePickerInput } from 'react-native-paper-dates';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function InputDatePicker() {
     const [inputDate, setInputDate] = React.useState<Date | undefined>(new Date());

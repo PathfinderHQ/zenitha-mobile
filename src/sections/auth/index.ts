@@ -5,5 +5,17 @@ import ForgotPasswordForm from './forgot-password/ForgotPasswordForm';
 import ResetPasswordForm from './reset-password/ResetPasswordForm';
 import ResetOtpForm from './reset-otp/ResetOtpForm';
 import GoogleAuth from './google-auth/GoogleAuth';
+import CreateCategoryForm from '../task/CreateCategoryForm';
+import ChangePasswordForm from './change-password/ChangePasswordForm';
 
-export { LoginForm, RegisterForm, VerifyForm, ForgotPasswordForm, ResetPasswordForm, ResetOtpForm, GoogleAuth };
+export {
+    LoginForm,
+    RegisterForm,
+    VerifyForm,
+    ForgotPasswordForm,
+    ResetPasswordForm,
+    ResetOtpForm,
+    GoogleAuth,
+    CreateCategoryForm,
+    ChangePasswordForm,
+};

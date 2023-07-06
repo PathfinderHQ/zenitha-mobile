@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform, StatusBar, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Platform, StatusBar, SafeAreaView } from 'react-native';
 import { Button } from 'react-native-paper';
-import { Calendar, DatePickerModal } from 'react-native-paper-dates';
+import { DatePickerModal } from 'react-native-paper-dates';
 import { CalendarDate } from 'react-native-paper-dates/lib/typescript/Date/Calendar';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function DatePicker() {
     const [date, setDate] = React.useState<Date | undefined>(new Date());

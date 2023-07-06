@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useFonts } from 'expo-font';
 import { PaperProvider } from 'react-native-paper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // types
 import { RootStackParamList } from '../types';
@@ -12,7 +13,7 @@ import { AuthProvider } from '../contexts/AuthContext';
 import { SnackbarProvider } from '../contexts/SnackbarContext';
 
 // constants
-import { Fonts, navigationRef } from '../constants';
+import { Fonts, navigationRef, theme } from '../constants';
 
 // screens
 import { appScreens } from './AppStack';
@@ -38,21 +39,23 @@ const Main: FC = () => {
         <NavigationContainer ref={navigationRef}>
             <SnackbarProvider>
                 <AuthProvider>
-                    <PaperProvider>
-                        <Stack.Navigator>
-                            <Stack.Group screenOptions={{ headerShown: false }}>
-                                {authScreens.map(({ id, name, component }) => (
-                                    <Stack.Screen key={id} name={name} component={component} />
-                                ))}
-                            </Stack.Group>
-                            <Stack.Group screenOptions={{ headerShown: false }}>
-                                {appScreens.map(({ id, name, component }) => (
-                                    <Stack.Screen key={id} name={name} component={component} />
-                                ))}
-                            </Stack.Group>
-                        </Stack.Navigator>
-                        <Snackbar />
-                    </PaperProvider>
+                    <SafeAreaProvider>
+                        <PaperProvider theme={theme}>
+                            <Stack.Navigator>
+                                <Stack.Group screenOptions={{ headerShown: false }}>
+                                    {authScreens.map(({ id, name, component }) => (
+                                        <Stack.Screen key={id} name={name} component={component} />
+                                    ))}
+                                </Stack.Group>
+                                <Stack.Group screenOptions={{ headerShown: false }}>
+                                    {appScreens.map(({ id, name, component }) => (
+                                        <Stack.Screen key={id} name={name} component={component} />
+                                    ))}
+                                </Stack.Group>
+                            </Stack.Navigator>
+                            <Snackbar />
+                        </PaperProvider>
+                    </SafeAreaProvider>
                 </AuthProvider>
             </SnackbarProvider>
         </NavigationContainer>
