@@ -35,7 +35,11 @@ const defaultValues = {
     description: '',
 };
 
-const CreateTaskForm: FC = () => {
+interface TaskFormProp {
+    type: 'create' | 'edit';
+}
+
+const CreateTaskForm: FC<TaskFormProp> = ({ type }) => {
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
     const methods = useForm<CreateTaskPayload>({
@@ -93,7 +97,7 @@ const CreateTaskForm: FC = () => {
                     onPress={() => navigation.navigate(Routes.CreateCategory)}
                 />
             </View>
-            <Button title='Create Task' onPress={handleSubmit(onSubmit)} />
+            <Button title={type === 'create' ? 'Create Task' : 'Edit Task'} onPress={handleSubmit(onSubmit)} />
         </FormProvider>
     );
 };

@@ -1,17 +1,17 @@
 import { FC } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { BackButton } from '../../components';
-import CreateTaskForm from '../../sections/task/CreateTaskForm';
+import TaskForm from '../../sections/task/TaskForm';
 
 const CreateTaskScreen: FC = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <BackButton />
-                <Text style={styles.text}>Create a Task</Text>
+                <Text style={styles.text}>Create Task</Text>
             </View>
             <View style={styles.profileContainer}>
-                <CreateTaskForm />
+                <TaskForm type='create' />
             </View>
         </View>
     );
