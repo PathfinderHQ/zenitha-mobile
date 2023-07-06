@@ -67,37 +67,40 @@ const CreateTaskForm: FC<TaskFormProp> = ({ type }) => {
 
     return (
         <FormProvider methods={methods}>
-            <View>
-                <Text>Task Name</Text>
-                <Input name='taskName' placeholder='' />
+            <View style={styles.container}>
+                <View style={styles.titleContainer}>
+                    <Text>Task Name</Text>
+                    <Input name='taskName' placeholder='' />
+                </View>
+                <View style={styles.dateContainer}>
+                    <Text>Date</Text>
+                    <InputDatePicker />
+                </View>
+                <View style={styles.timeContainer}>
+                    <Text>Start Time</Text>
+                    <TimePicker />
+                    <Text>End Time</Text>
+                    <TimePicker />
+                </View>
+                <View style={styles.discription}>
+                    <Text>Description</Text>
+                    <TextInput editable multiline numberOfLines={3} placeholder='add task description here' />
+                </View>
+                <View style={styles.carouselContainer}>
+                    <Carousel>
+                        {buttons.map(({ id, name, onPress, color }) => (
+                            <CategoryButton key={id} onPress={onPress} name={name} color={color} />
+                        ))}
+                    </Carousel>
+                    <IconButtonComponent
+                        size={40}
+                        icon='plus'
+                        color='#252525'
+                        onPress={() => navigation.navigate(Routes.CreateCategory)}
+                    />
+                </View>
+                <Button title={type === 'create' ? 'Create Task' : 'Edit Task'} onPress={handleSubmit(onSubmit)} />
             </View>
-            {/* -----date picker here */}
-            <View>
-                <Text>Date</Text>
-                <InputDatePicker />
-            </View>
-            <View>
-                <Text>Start Time</Text>
-                <TimePicker />
-                <Text>End Time</Text>
-                <TimePicker />
-            </View>
-            <Text>Description</Text>
-            <TextInput editable multiline numberOfLines={3} placeholder='add task description here' />
-            <View style={styles.carouselContainer}>
-                <Carousel>
-                    {buttons.map(({ id, name, onPress, color }) => (
-                        <CategoryButton key={id} onPress={onPress} name={name} color={color} />
-                    ))}
-                </Carousel>
-                <IconButtonComponent
-                    size={40}
-                    icon='plus'
-                    color='#252525'
-                    onPress={() => navigation.navigate(Routes.CreateCategory)}
-                />
-            </View>
-            <Button title={type === 'create' ? 'Create Task' : 'Edit Task'} onPress={handleSubmit(onSubmit)} />
         </FormProvider>
     );
 };
@@ -109,5 +112,27 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         padding: 5,
+    },
+    container: {
+        flex: 1,
+    },
+    titleContainer: {
+        flex: 1,
+    },
+    timeContainer: {
+        flexDirection: 'row',
+        flex: 1,
+    },
+    dateContainer: {
+        flex: 1,
+    },
+    catContainer: {
+        flex: 1,
+    },
+    buttonContainer: {
+        flex: 1,
+    },
+    discription: {
+        flex: 1,
     },
 });
