@@ -6,12 +6,14 @@ import { Routes } from '../../constants';
 import { Navigation } from '../../types';
 import { useCategories } from '../../zustand';
 import { useError } from '../../hooks';
+import CategoryGrid from '../../components/CategoryGrid';
 
 interface CategoriesProps {
     type: 'view' | 'select';
+    horizontal?: boolean;
 }
 
-const Categories: FC<CategoriesProps> = ({ type }) => {
+const Categories: FC<CategoriesProps> = ({ type, horizontal }) => {
     const navigation = useNavigation<Navigation>();
 
     const { categories, fetchCategories, fetch, category } = useCategories();
@@ -37,17 +39,22 @@ const Categories: FC<CategoriesProps> = ({ type }) => {
 
     return (
         <View style={styles.carouselContainer}>
-            <Carousel>
-                {categories.map(({ id, name, color }) => (
-                    <CategoryButton
-                        selected={type === 'select' ? current === id : false}
-                        key={id}
-                        name={name}
-                        color={color}
-                        onPress={type === 'select' ? () => choose(id) : undefined}
-                    />
-                ))}
-            </Carousel>
+            {type === 'select' ? (
+                <Carousel>
+                    {categories.map(({ id, name, color }) => (
+                        <CategoryButton
+                            selected={current === id}
+                            key={id}
+                            name={name}
+                            color={color}
+                            onPress={() => choose(id)}
+                        />
+                    ))}
+                </Carousel>
+            ) : (
+                <CategoryGrid categories={categories} />
+            )}
+
             {type === 'select' && <IconButton size={40} icon='plus' color='#252525' onPress={redirectToCreateTask} />}
         </View>
     );

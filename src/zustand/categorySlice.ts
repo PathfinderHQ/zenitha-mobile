@@ -1,7 +1,6 @@
 import { create } from 'zustand';
-import { CategoryPayload, ICategorySlice } from '../types/category';
+import { CategoryPayload, ICategorySlice, RequestMethod } from '../types';
 import { makeRequest } from '../utils';
-import { RequestMethod } from '../types';
 
 export const useCategories = create<ICategorySlice>((set, get) => ({
     categories: [],

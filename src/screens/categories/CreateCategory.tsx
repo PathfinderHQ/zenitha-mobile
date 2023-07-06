@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { BackButton } from '../../components';
 import { CreateCategoryForm } from '../../sections/categories';
+import Categories from '../../sections/categories/Categories';
 
 const CreateCategoryScreen: FC = () => {
     return (
@@ -12,6 +13,8 @@ const CreateCategoryScreen: FC = () => {
             </View>
             <View style={styles.profileContainer}>
                 <CreateCategoryForm />
+                <Text>All Categories</Text>
+                <Categories type='view' />
             </View>
         </View>
     );

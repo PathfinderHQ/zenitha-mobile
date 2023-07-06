@@ -68,7 +68,7 @@ const CreateTaskForm: FC<TaskFormProp> = ({ type }) => {
             </View>
             <Text>Description</Text>
             <TextInput editable multiline numberOfLines={3} placeholder='add task description here' />
-            <Categories type='select' />
+            <Categories type='select' horizontal />
             <Button title={type === 'create' ? 'Create Task' : 'Edit Task'} onPress={handleSubmit(onSubmit)} />
         </FormProvider>
     );

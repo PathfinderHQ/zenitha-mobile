@@ -1,7 +1,5 @@
 // react
-import React, { FC } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { Text } from 'react-native';
+import React, { FC, useEffect } from 'react';
 
 // form
 import * as Yup from 'yup';
@@ -10,41 +8,52 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 // components
 import { Button, FormProvider, Input } from '../../components';
-import Categories from './Categories';
 
 // types
-import { CreateCategoryPayload, Navigation } from '../../types';
+import { CategoryPayload } from '../../types';
+import { useCategories } from '../../zustand';
+import { useError } from '../../hooks';
 
 const CreateCategoryForm: FC = () => {
-    const navigation = useNavigation<Navigation>();
+    const { create, createCategory } = useCategories();
+
+    const { loading, error, clearError } = create;
 
     const CreateCategorySchema = Yup.object().shape({
-        category_name: Yup.string().required(),
+        name: Yup.string().required(),
     });
 
-    const defaultValues = {
-        category_name: '',
-    };
+    const defaultValues = { name: '' };
 
-    const methods = useForm<CreateCategoryPayload>({
+    const methods = useForm<CategoryPayload>({
         resolver: yupResolver(CreateCategorySchema),
         defaultValues,
     });
 
-    const { handleSubmit } = methods;
+    const { handleSubmit, reset } = methods;
 
     // handle error
+    useError(error, clearError);
 
     // push user to home screen when the user is authenticated
-    const onSubmit = () => navigation.goBack();
+    const onSubmit = async (data: CategoryPayload) => {
+        createCategory(data);
+        reset();
+    };
+
+    // reset form when done
+    useEffect(() => {
+        if (!loading) {
+            reset();
+        }
+
+        // eslint-disable-next-line
+    }, [loading]);
 
     return (
         <FormProvider methods={methods}>
-            <Text>Add Category</Text>
-            <Input name='category_name' placeholder='Category Name' />
-            <Text>All Categories</Text>
-            <Categories type='view' />
-            <Button title='Save' onPress={handleSubmit(onSubmit)} />
+            <Input name='name' placeholder='Personal' />
+            <Button loading={loading} title='Save' onPress={handleSubmit(onSubmit)} />
         </FormProvider>
     );
 };
