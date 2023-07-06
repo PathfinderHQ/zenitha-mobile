@@ -18,6 +18,7 @@ export type RootStackParamList = {
     ViewDetail: undefined;
     SearchTasks: undefined;
     CreateCategory: undefined;
+    EditTask: undefined;
     // Add other screen names and their params here
 };
 

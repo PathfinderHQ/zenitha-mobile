@@ -3,21 +3,21 @@ import { View, StyleSheet, Text } from 'react-native';
 import { BackButton } from '../../components';
 import TaskForm from '../../sections/task/TaskForm';
 
-const CreateTaskScreen: FC = () => {
+const EditTaskScreen: FC = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <BackButton />
-                <Text style={styles.text}>Create Task</Text>
+                <Text style={styles.text}>Edit Task</Text>
             </View>
             <View style={styles.profileContainer}>
-                <TaskForm type='create' />
+                <TaskForm type='edit' />
             </View>
         </View>
     );
 };
 
-export default CreateTaskScreen;
+export default EditTaskScreen;
 
 const styles = StyleSheet.create({
     container: {
