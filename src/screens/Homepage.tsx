@@ -2,9 +2,10 @@ import React, { FC } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import { IconButton, FloatingButton } from '../components';
+import { IconButton, FloatingButton, CategoryButton } from '../components';
 import { useAuth } from '../hooks';
 import { Routes } from '../constants';
+import { Categories } from '../sections/categories';
 
 export type HomeScreenProps = {
     navigation: StackNavigationProp<RootStackParamList, 'Homepage'>;

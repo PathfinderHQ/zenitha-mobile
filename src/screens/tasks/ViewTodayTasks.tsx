@@ -99,9 +99,6 @@ const ViewTodayTasksScreen: FC<ViewTodayTasksProps> = ({ navigation }) => {
                     </ScrollView>
                 </View>
                 <View style={styles.addTask}>
-                    <TouchableOpacity onPress={() => navigation.navigate(Routes.Homepage)}>
-                        <Text style={styles.link_text}>Add task</Text>
-                    </TouchableOpacity>
                     <FloatingButton />
                 </View>
             </View>
