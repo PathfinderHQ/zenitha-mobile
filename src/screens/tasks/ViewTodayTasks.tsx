@@ -10,9 +10,9 @@ import {
     SafeAreaView,
     Platform,
 } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
-import { RootStackParamList } from '../../types';
+import { useNavigation } from '@react-navigation/core';
+import { Navigation } from '../../types';
 import { Routes, Colors } from '../../constants';
 import {
     CurrentTaskCard,
@@ -25,11 +25,9 @@ import {
 
 const { width } = Dimensions.get('screen');
 
-export type ViewTodayTasksProps = {
-    navigation: StackNavigationProp<RootStackParamList, Routes.ViewTodayTasks>;
-};
+const ViewTodayTasksScreen: FC = () => {
+    const navigation = useNavigation<Navigation>();
 
-const ViewTodayTasksScreen: FC<ViewTodayTasksProps> = ({ navigation }) => {
     const [showCalendar, setShowCalendar] = useState<boolean>(false);
     const [selectedDate, setSelectedDate] = useState<string>('');
 
@@ -99,7 +97,7 @@ const ViewTodayTasksScreen: FC<ViewTodayTasksProps> = ({ navigation }) => {
                     </ScrollView>
                 </View>
                 <View style={styles.addTask}>
-                    <TouchableOpacity onPress={() => navigation.navigate(Routes.Homepage)}>
+                    <TouchableOpacity onPress={() => navigation.navigate(Routes.Dashboard)}>
                         <Text style={styles.link_text}>Add task</Text>
                     </TouchableOpacity>
                     <FloatingButton />

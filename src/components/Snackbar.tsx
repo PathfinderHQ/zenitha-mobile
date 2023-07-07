@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Portal, Snackbar as RNSnackbar } from 'react-native-paper';
-import { useSnackbar } from '../hooks';
+import { useSnackbar } from '../zustand';
 
 const { width } = Dimensions.get('screen');
 
