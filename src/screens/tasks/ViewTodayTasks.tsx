@@ -1,14 +1,5 @@
 import React, { FC, useState } from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    Dimensions,
-    ScrollView,
-    StatusBar,
-    SafeAreaView,
-    Platform,
-} from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView, StatusBar, SafeAreaView, Platform } from 'react-native';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
 import { Navigation } from '../../types';
