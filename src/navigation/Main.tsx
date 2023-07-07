@@ -15,7 +15,6 @@ import { AuthProvider } from '../contexts/AuthContext';
 import { Fonts, navigationRef, Routes, theme } from '../constants';
 
 // screens
-import { appScreens } from './AppStack';
 import { authScreens } from './AuthStack';
 
 // components

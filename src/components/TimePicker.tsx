@@ -11,13 +11,9 @@ export default function TimePicker() {
         setVisible(false);
     }, [setVisible]);
 
-    const onConfirm = React.useCallback(
-        ({ hours, minutes }: { hours: number; minutes: number }) => {
-            setVisible(false);
-            console.log({ hours, minutes });
-        },
-        [setVisible],
-    );
+    const onConfirm = React.useCallback(() => {
+        setVisible(false);
+    }, [setVisible]);
 
     return (
         <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>

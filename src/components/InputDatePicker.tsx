@@ -1,31 +1,13 @@
 import React from 'react';
-import { View, StyleSheet, Platform, StatusBar, Dimensions } from 'react-native';
+import { View } from 'react-native';
 import { DatePickerInput } from 'react-native-paper-dates';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
-const { height, width } = Dimensions.get('screen');
 
 export default function InputDatePicker() {
     const [inputDate, setInputDate] = React.useState<Date | undefined>(new Date());
 
     return (
-        // <SafeAreaView style={styles.AndroidSafeArea}>
         <View style={{ justifyContent: 'center', alignItems: 'stretch', alignSelf: 'stretch' }}>
-            <DatePickerInput
-                locale='en'
-                // label='Start'
-                value={inputDate}
-                onChange={(d) => setInputDate(d)}
-                inputMode='start'
-            />
+            <DatePickerInput locale='en' value={inputDate} onChange={(d) => setInputDate(d)} inputMode='start' />
         </View>
-        // </SafeAreaView>
     );
 }
-
-const styles = StyleSheet.create({
-    AndroidSafeArea: {
-        flex: 1,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    },
-});
