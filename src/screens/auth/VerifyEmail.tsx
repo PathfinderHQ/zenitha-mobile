@@ -17,7 +17,7 @@ const VerifyEmailScreen: React.FC<VerifyEmailScreenProps> = ({ navigation }) => 
             <Text style={styles.title}>Let's verify your email</Text>
             <Text style={styles.small_text}>Please enter the six digit code sent to your email.</Text>
             <VerifyForm navigation={navigation} />
-            <Pressable onPress={() => navigation.navigate(Routes.Homepage)}>
+            <Pressable onPress={() => navigation.navigate(Routes.Dashboard)}>
                 <Text style={styles.link_text}>Skip</Text>
             </Pressable>
         </View>

@@ -19,12 +19,8 @@ const DeleteDialog: React.FunctionComponent<DeleteDialogProps> = () => {
                 <Dialog style={styles.dialogContainer} visible={visible2} onDismiss={toggleDialog2}>
                     <Dialog.Title>Delete Task?</Dialog.Title>
                     <Dialog.Actions>
-                        <Button onPress={() => console.log('Primary Action Clicked!')} textColor='#000'>
-                            Cancel
-                        </Button>
-                        <Button onPress={() => console.log('Secondary Action Clicked!')} style={styles.secondary}>
-                            Delete
-                        </Button>
+                        <Button textColor='#000'>Cancel</Button>
+                        <Button style={styles.secondary}>Delete</Button>
                     </Dialog.Actions>
                 </Dialog>
             </Portal>

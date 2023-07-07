@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useSnackbar from './useSnackbar';
+import { useSnackbar } from '../zustand';
 
 const useError = (error: string | null, errorHandler: () => void) => {
     const { show, setMessage } = useSnackbar();

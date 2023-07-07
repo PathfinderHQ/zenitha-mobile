@@ -53,7 +53,7 @@ const LoginForm: FC<LoginScreenProps> = ({ navigation }) => {
     // push user to home screen when the user is authenticated
     useEffect(() => {
         if (isAuthenticated) {
-            navigation.navigate(Routes.Homepage);
+            navigation.navigate(Routes.Dashboard);
         }
 
         // eslint-disable-next-line

@@ -9,7 +9,7 @@ export enum AuthRoutes {
 }
 
 export enum Routes {
-    Homepage = 'Homepage',
+    Dashboard = 'Dashboard',
     Profile = 'Profile',
     ChangePassword = 'ChangePassword',
     EditProfile = 'EditProfile',
