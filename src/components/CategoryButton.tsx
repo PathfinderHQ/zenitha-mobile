@@ -57,8 +57,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         width: width / 3.7,
         height: height / 16,
-
-        // position: 'relative',
     },
     text: {
         fontSize: 18,

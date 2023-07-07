@@ -1,24 +1,33 @@
+// react
 import React, { FC } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
-import { IconButton, FloatingButton, CategoryButton } from '../components';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+import { DrawerActions } from '@react-navigation/native';
+
+// components
+import { IconButton, FloatingButton } from '../components';
+
+// hooks
 import { useAuth } from '../hooks';
+
+// constants
 import { Routes } from '../constants';
-import { Categories } from '../sections/categories';
+import { Navigation } from '../types';
 
-export type HomeScreenProps = {
-    navigation: StackNavigationProp<RootStackParamList, 'Homepage'>;
-};
-
-const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
+const Dashboard: FC = () => {
+    const navigation = useNavigation<Navigation>();
     const { auth } = useAuth();
 
     const { user } = auth;
     return (
         <View style={styles.container}>
             <View style={styles.menu}>
-                <IconButton icon='menu' size={20} color='#252525' onPress={() => navigation.navigate(Routes.Profile)} />
+                <IconButton
+                    icon='menu'
+                    size={20}
+                    color='#252525'
+                    onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+                />
             </View>
             <Text style={styles.text}>
                 Hello, {user?.email}, type natural language to create tasks, enter time and date for more precision.
@@ -31,12 +40,6 @@ const Homepage: FC<HomeScreenProps> = ({ navigation }) => {
                 placeholder='Your task starts here'
                 style={{ padding: 20 }}
             />
-            <View>
-                <TouchableOpacity onPress={() => navigation.navigate(Routes.ViewTodayTasks)}>
-                    <Text>ViewTask</Text>
-                </TouchableOpacity>
-                <FloatingButton onPress={() => navigation.navigate(Routes.CreateTask)} />
-            </View>
 
             <FloatingButton onPress={() => navigation.navigate(Routes.CreateTask)} />
         </View>
@@ -60,4 +63,4 @@ const styles = StyleSheet.create({
         lineHeight: 22,
     },
 });
-export default Homepage;
+export default Dashboard;

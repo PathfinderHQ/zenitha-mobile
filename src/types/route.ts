@@ -9,7 +9,7 @@ export type RootStackParamList = {
     Verify: undefined;
     ResetOtp: undefined;
     Fab: undefined;
-    Homepage: undefined;
+    Dashboard: undefined;
     Profile: undefined;
     EditProfile: undefined;
     CreateTask: undefined;

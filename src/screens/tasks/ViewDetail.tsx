@@ -18,7 +18,7 @@ const TaskDetailScreen: FC<TaskDetailProps> = ({ navigation }) => {
                 title='Assignment'
                 date='July 02, 2023'
                 description='Descriptions here Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo'
-                category='Home'
+                category='Dashboard'
                 onPress={() => navigation.navigate(Routes.ViewTodayTasks)}
             />
         </View>

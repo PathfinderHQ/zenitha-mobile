@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView, SafeAreaView, Platform, StatusBar } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -13,11 +13,6 @@ export type SearchTasksProps = {
 };
 
 const SearchTasksScreen: FC<SearchTasksProps> = ({ navigation }) => {
-    const [showCalendar, setShowCalendar] = useState<boolean>(false);
-    const [selectedDate, setSelectedDate] = useState<string>('');
-
-    const toggle = () => setShowCalendar((prevState) => !prevState);
-
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>
             <View style={styles.container}>

@@ -26,7 +26,7 @@ const SplashScreen: FC<SplashScreenProps> = ({ navigation }) => {
                 setWordIndex(wordIndex + 1);
                 setLetterIndex(0);
             } else {
-                const path = token ? Routes.Homepage : AuthRoutes.Login;
+                const path = token ? Routes.Dashboard : AuthRoutes.Login;
 
                 navigation.replace(path);
             }

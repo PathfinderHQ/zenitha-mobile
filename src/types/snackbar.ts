@@ -1,6 +1,6 @@
-export interface ISnackbarContext {
+export interface ISnackbarSlice {
     visible: boolean;
-    message: string;
+    message: string | null;
     dismiss: () => void;
     show: () => void;
     setMessage: (value: string) => void;

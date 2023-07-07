@@ -6,7 +6,6 @@ import HorizontalDivider from './HorizontalDivider';
 import Otp from './otp/Otp';
 import Avatar from './Avatar';
 import BackButton from './BackButton';
-import ProfileOption from './ProfileOption';
 import FloatingButton from './FloatingButton';
 import Carousel from './Carousel';
 import IconButton from './IconButton';
@@ -37,7 +36,6 @@ export {
     Spinner,
     Avatar,
     BackButton,
-    ProfileOption,
     FloatingButton,
     Carousel,
     IconButton,

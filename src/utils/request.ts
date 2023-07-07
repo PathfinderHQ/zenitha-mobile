@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Constants from 'expo-constants';
 import { headers } from '../constants';
-import { setSession } from './secure_storage';
 import { FetchResponse, RequestMethod, RequestConfig, RequestBody } from '../types';
 
 export const makeRequest = async (
