@@ -27,6 +27,7 @@ const CustomDrawerContent: FC<DrawerContentComponentProps> = (props) => {
 const DrawerNavigator: FC = () => {
     return (
         <BaseDrawer.Navigator
+            useLegacyImplementation
             drawerContent={(props: DrawerContentComponentProps) => <CustomDrawerContent {...props} />}
         >
             <BaseDrawer.Screen name='Bottom' component={BottomTabNavigator} />
