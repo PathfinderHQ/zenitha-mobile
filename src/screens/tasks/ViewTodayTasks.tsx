@@ -5,7 +5,6 @@ import {
     StyleSheet,
     Dimensions,
     ScrollView,
-    TouchableOpacity,
     StatusBar,
     SafeAreaView,
     Platform,
@@ -97,9 +96,6 @@ const ViewTodayTasksScreen: FC = () => {
                     </ScrollView>
                 </View>
                 <View style={styles.addTask}>
-                    <TouchableOpacity onPress={() => navigation.navigate(Routes.Dashboard)}>
-                        <Text style={styles.link_text}>Add task</Text>
-                    </TouchableOpacity>
                     <FloatingButton />
                 </View>
             </View>
