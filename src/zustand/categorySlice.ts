@@ -138,6 +138,11 @@ export const useCategories = create<ICategorySlice>((set, get) => ({
     removeCategory: async (id: string) => {
         get().remove.setLoading(true);
 
+        set((state) => ({
+            ...state,
+            categories: state.categories.filter((category) => category.id !== id),
+        }));
+
         const { result, error } = await makeRequest(`categories/${id}`, RequestMethod.DELETE);
 
         if (error) {
@@ -154,7 +159,6 @@ export const useCategories = create<ICategorySlice>((set, get) => ({
 
         set((state) => ({
             ...state,
-            categories: state.categories.filter((category) => category.id !== id),
             remove: {
                 ...state.remove,
                 loading: false,

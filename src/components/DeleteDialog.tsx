@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
+import React, { FC } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Dialog, Portal } from 'react-native-paper';
 
 interface DeleteDialogProps {
     visible: boolean;
-    toggleVisible: (visible: boolean) => void;
+    text: string;
+    close: () => void;
+    onDelete: () => void;
 }
 
-const DeleteDialog: React.FunctionComponent<DeleteDialogProps> = () => {
-    const [visible2, setVisible2] = useState(false);
-
-    const toggleDialog2 = () => {
-        setVisible2(!visible2);
-    };
+const DeleteDialog: FC<DeleteDialogProps> = ({ visible, text, close, onDelete }) => {
     return (
         <View>
             <Portal>
-                <Dialog style={styles.dialogContainer} visible={visible2} onDismiss={toggleDialog2}>
-                    <Dialog.Title>Delete Task?</Dialog.Title>
-                    <Dialog.Actions>
-                        <Button textColor='#000'>Cancel</Button>
-                        <Button style={styles.secondary}>Delete</Button>
+                <Dialog style={styles.dialogContainer} visible={visible} onDismiss={close}>
+                    <Dialog.Title>{text}</Dialog.Title>
+                    <Dialog.Actions style={styles.actions}>
+                        <Button onPress={close} textColor='#000' style={styles.button}>
+                            Cancel
+                        </Button>
+                        <Button onPress={onDelete} textColor='#fff' style={[styles.button, styles.remove]}>
+                            Delete
+                        </Button>
                     </Dialog.Actions>
                 </Dialog>
             </Portal>
@@ -29,26 +30,26 @@ const DeleteDialog: React.FunctionComponent<DeleteDialogProps> = () => {
 };
 
 const styles = StyleSheet.create({
-    button: {
-        borderRadius: 50,
-        width: 220,
-        margin: 20,
-    },
-    buttonContainer: {
-        borderRadius: 50,
-        margin: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     dialogContainer: {
         borderRadius: 8,
+        backgroundColor: '#fff',
     },
-    secondary: {
+    actions: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 0,
+    },
+    button: {
         color: '#000',
         backgroundColor: '#ccc',
-        padding: 20,
-        borderRadius: 8,
-        height: 40,
+        paddingVertical: 6,
+        paddingHorizontal: 20,
+        margin: 2,
+    },
+    remove: {
+        marginLeft: 3,
+        backgroundColor: '#f00',
     },
 });
 

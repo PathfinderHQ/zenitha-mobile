@@ -40,13 +40,12 @@ const Categories: FC<CategoriesProps> = ({ type }) => {
         <View style={styles.carouselContainer}>
             {type === 'select' ? (
                 <Carousel>
-                    {categories.map(({ id, name, color }) => (
+                    {categories.map((item) => (
                         <CategoryButton
-                            selected={current === id}
-                            key={id}
-                            name={name}
-                            color={color}
-                            onPress={() => choose(id)}
+                            selected={current === item.id}
+                            key={item.id}
+                            item={item}
+                            onPress={() => choose(item.id)}
                         />
                     ))}
                 </Carousel>
