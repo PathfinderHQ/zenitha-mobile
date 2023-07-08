@@ -12,7 +12,7 @@ const CategoryGrid: FC<ICategoryGridProps> = ({ categories }) => {
         <SafeAreaView style={styles.container}>
             <FlatList
                 data={categories}
-                renderItem={({ item }) => <CategoryButton key={item.id} name={item.name} color={item.color} />}
+                renderItem={({ item }) => <CategoryButton canDelete={!!item.user} key={item.id} item={item} />}
                 numColumns={3}
             />
         </SafeAreaView>

@@ -18,9 +18,14 @@ const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
         setDeleteDialogVisible(true);
     };
 
+    const close = () => setDeleteDialogVisible(false);
+
     const hideMenu = () => setVisible(false);
 
     const showMenu = () => setVisible(true);
+
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const onDelete = () => {};
 
     const direction = vertical ? 'dots-vertical' : 'dots-horizontal';
 
@@ -53,7 +58,7 @@ const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
                     leadingIcon='delete'
                 />
             </Menu>
-            <DeleteDialog visible={deleteDialogVisible} toggleVisible={setDeleteDialogVisible} />
+            <DeleteDialog onDelete={onDelete} text='Delete Task?' visible={deleteDialogVisible} close={close} />
         </View>
     );
 };

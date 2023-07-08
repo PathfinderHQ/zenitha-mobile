@@ -30,7 +30,7 @@ const DrawerNavigator: FC = () => {
             useLegacyImplementation
             drawerContent={(props: DrawerContentComponentProps) => <CustomDrawerContent {...props} />}
         >
-            <BaseDrawer.Screen name='Bottom' component={BottomTabNavigator} />
+            <BaseDrawer.Screen options={{ headerShown: false }} name='Bottom' component={BottomTabNavigator} />
         </BaseDrawer.Navigator>
     );
 };
