@@ -12,7 +12,7 @@ import IconButton from './IconButton';
 import ImagePickerComponent from './ImagePicker';
 import CategoryButton from './CategoryButton';
 import CurrentTaskCard from './CurrentTaskCard';
-import FutureTaskCard from './FutureTaskCard';
+import TaskCard from './TaskCard';
 import DateToday from './DateToday';
 import TaskDetailCard from './TaskDetailCard';
 import HorizontalCalendar from './HorizontalCalendar';
@@ -41,7 +41,7 @@ export {
     IconButton,
     ImagePickerComponent,
     CurrentTaskCard,
-    FutureTaskCard,
+    TaskCard,
     DateToday,
     TaskDetailCard,
     HorizontalCalendar,

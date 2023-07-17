@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
-import { FutureTaskCard, MainHorizontalDivider, Spinner } from '../../components';
+import { TaskCard, MainHorizontalDivider, Spinner } from '../../components';
 import { Colors, Routes } from '../../constants';
 import { Navigation, Task } from '../../types';
 
@@ -35,7 +35,7 @@ const Tasks: FC<TasksProps> = ({ text, tasks, loading, searchBar, placeholder })
             ) : (
                 <ScrollView>
                     {tasks.map((task) => (
-                        <FutureTaskCard key={task.id} task={task} />
+                        <TaskCard key={task.id} task={task} />
                     ))}
                 </ScrollView>
             )}

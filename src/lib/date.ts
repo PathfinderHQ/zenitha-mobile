@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export enum Direction {
     GREATER = 'greater',
     LESSER = 'lesser',
@@ -11,38 +13,16 @@ export const extractDateTime = (value: string) => {
     return { date, time };
 };
 
-export const getCurrentDate = () => {
-    const date = new Date();
+export const formatTaskDate = (value: string): string => {
+    let { date, time } = extractDateTime(value);
 
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const currentYear = new Date().getFullYear();
 
-    return `${year}-${month}-${day}`;
-};
+    const year = dayjs(date).year();
 
-const isSameDate = (date1: Date, date2: Date) => {
-    return (
-        date1.getFullYear() === date2.getFullYear() &&
-        date1.getMonth() === date2.getMonth() &&
-        date1.getDate() === date2.getDate()
-    );
-};
+    time = dayjs(value).format('H:mm');
 
-export const filterDateFromToday = (date: Date, direction: Direction): boolean => {
-    const today = new Date();
+    date = currentYear === year ? dayjs(date).format('ddd, D MMM') : dayjs(date).format('ddd, D MMM YYYY');
 
-    date.setHours(0, 0, 0, 0);
-    today.setHours(0, 0, 0, 0);
-
-    // Get difference in whole
-
-    if (direction === Direction.GREATER) {
-        return date > today;
-    }
-
-    console.log('date', date);
-    console.log('today', today);
-
-    return date < today;
+    return `${date}, ${time}`;
 };

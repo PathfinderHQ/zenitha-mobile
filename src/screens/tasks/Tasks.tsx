@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { View, StyleSheet, StatusBar, SafeAreaView, Platform } from 'react-native';
-import { FloatingButton, Spinner } from '../../components';
+import { FloatingButton } from '../../components';
 import { TaskFilter, Tasks } from '../../sections/tasks';
 import { useTasks } from '../../zustand';
 
@@ -21,15 +21,12 @@ const TodayTasksScreen: FC = () => {
         <SafeAreaView style={styles.AndroidSafeArea}>
             <View style={styles.container}>
                 <TaskFilter />
-                {loading ? (
-                    <Spinner />
-                ) : (
-                    <Tasks
-                        text={`Today's Reminder`}
-                        tasks={todayTasks}
-                        placeholder='There are no tasks available today'
-                    />
-                )}
+                <Tasks
+                    loading={loading}
+                    text={`Today's Reminder`}
+                    tasks={todayTasks}
+                    placeholder='There are no tasks available today'
+                />
                 <View style={styles.addTask}>
                     <FloatingButton />
                 </View>

@@ -4,7 +4,9 @@ import { Tasks } from '../../sections/tasks';
 import { useTasks } from '../../zustand';
 
 const UpcomingTasksScreen: FC = () => {
-    const { upcomingTasks, tasks, fetchTasks } = useTasks();
+    const { upcomingTasks, tasks, fetchTasks, fetch } = useTasks();
+
+    const { loading } = fetch;
 
     useEffect(() => {
         if (tasks.length === 0) {
@@ -17,7 +19,7 @@ const UpcomingTasksScreen: FC = () => {
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>
             <View style={styles.container}>
-                <Tasks text='Upcoming Tasks' tasks={upcomingTasks} searchBar />
+                <Tasks loading={loading} text='Upcoming Tasks' tasks={upcomingTasks} searchBar />
             </View>
         </SafeAreaView>
     );

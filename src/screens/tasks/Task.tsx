@@ -1,26 +1,29 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../../types';
+import { useNavigation } from '@react-navigation/core';
+import { Spinner, TaskDetailCard } from '../../components';
+import { useTasks } from '../../zustand';
+import { Navigation } from '../../types';
 import { Routes } from '../../constants';
-import { TaskDetailCard } from '../../components';
 
-export type TaskDetailProps = {
-    navigation: StackNavigationProp<RootStackParamList, Routes.Task>;
-};
+const Task: FC = () => {
+    const navigation = useNavigation<Navigation>();
 
-const Task: FC<TaskDetailProps> = ({ navigation }) => {
+    const { task } = useTasks();
+
+    useEffect(() => {
+        if (!task) {
+            navigation.navigate(Routes.Tasks);
+        }
+
+        // eslint-disable-next-line
+    }, []);
+
+    if (!task) return <Spinner />;
+
     return (
         <View style={styles.container}>
-            <TaskDetailCard
-                startTime='8:20'
-                dueTime='11:20'
-                title='Assignment'
-                date='July 02, 2023'
-                description='Descriptions here Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo'
-                category='Dashboard'
-                onPress={() => navigation.navigate(Routes.Tasks)}
-            />
+            <TaskDetailCard task={task} />
         </View>
     );
 };

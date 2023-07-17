@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import dayjs from 'dayjs';
 import { AutomatedTaskPayload, ITaskSlice, RequestMethod, Task, TaskPayload } from '../types';
 import { makeRequest, extractDateTime } from '../lib';
+import { useCategories } from './categorySlice';
 
 export const useTasks = create<ITaskSlice>((set, get) => ({
     tasks: [],
@@ -10,7 +11,13 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
     upcomingTasks: [],
     filtered: [],
     task: null,
-    setCurrent: (task: Task) => set((state) => ({ ...state, task })),
+    setCurrent: (task: Task) => {
+        const category = useCategories.getState().categories.find((data) => data.id === task.category);
+        set((state) => ({
+            ...state,
+            task: { ...task, category_data: category },
+        }));
+    },
     filterTasks: (value: string) => {
         set((state) => ({
             ...state,
@@ -23,6 +30,7 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
     },
     clearFilter: () => set((state) => ({ ...state, filtered: [] })),
     automated: {
+        success: false,
         loading: false,
         error: null,
         setLoading: (value: boolean) =>
@@ -30,6 +38,7 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
         clearError: () => set((state) => ({ ...state, automated: { ...state.automated, error: null } })),
     },
     create: {
+        success: false,
         loading: false,
         error: null,
         setLoading: (value: boolean) => set((state) => ({ ...state, create: { ...state.create, loading: value } })),
@@ -70,11 +79,15 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             return;
         }
 
+        // set current task
+        get().setCurrent(result.data);
+
         set((state) => ({
             ...state,
             tasks: [result.data, ...state.tasks],
             create: {
                 ...state.create,
+                success: true,
                 loading: false,
             },
         }));
@@ -102,6 +115,7 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             automated: {
                 ...state.automated,
                 loading: false,
+                success: true,
             },
         }));
     },

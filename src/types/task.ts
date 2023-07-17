@@ -1,8 +1,17 @@
+import { Category } from './category';
+
 export interface TaskPayload {
     title: string;
     category?: string;
     description?: string;
     time?: string;
+}
+
+export interface TaskCreate {
+    title: string;
+    category?: string;
+    description?: string;
+    date: Date;
 }
 
 export interface AutomatedTaskPayload {
@@ -19,6 +28,7 @@ export interface Task {
     time: string;
     created_at: Date;
     updated_at: Date;
+    category_data?: Category;
 }
 
 export interface ITaskSlice {
@@ -32,12 +42,14 @@ export interface ITaskSlice {
     filterTasks: (value: string) => void;
     clearFilter: () => void;
     automated: {
+        success: boolean;
         loading: boolean;
         error: string | null;
         setLoading: (value: boolean) => void;
         clearError: () => void;
     };
     create: {
+        success: boolean;
         loading: boolean;
         error: string | null;
         setLoading: (value: boolean) => void;

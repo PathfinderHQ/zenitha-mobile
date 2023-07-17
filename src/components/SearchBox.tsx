@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
 import { Searchbar } from 'react-native-paper';
 import { View, Dimensions, StyleSheet } from 'react-native';
-
-import { Colors } from '../constants';
-import { BackButton } from './index';
+import BackButton from './BackButton';
 
 const { width } = Dimensions.get('screen');
 

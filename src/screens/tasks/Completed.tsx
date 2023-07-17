@@ -4,7 +4,9 @@ import { Tasks } from '../../sections/tasks';
 import { useTasks } from '../../zustand';
 
 const CompletedTasksScreen: FC = () => {
-    const { pastTasks, tasks, fetchTasks } = useTasks();
+    const { pastTasks, tasks, fetchTasks, fetch } = useTasks();
+
+    const { loading } = fetch;
 
     useEffect(() => {
         if (tasks.length === 0) {
@@ -17,7 +19,7 @@ const CompletedTasksScreen: FC = () => {
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>
             <View style={styles.container}>
-                <Tasks text='Past Tasks' tasks={pastTasks} searchBar />
+                <Tasks loading={loading} text='Past Tasks' tasks={pastTasks} searchBar />
             </View>
         </SafeAreaView>
     );
