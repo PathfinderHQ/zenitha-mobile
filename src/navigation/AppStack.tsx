@@ -2,13 +2,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {
     ChangePasswordScreen,
     EditProfileScreen,
-    SearchTasksScreen,
-    TaskDetailScreen,
-    ViewTodayTasksScreen,
+    CompletedTasksScreen,
+    TaskScreen,
+    TodayTasksScreen,
     CreateTaskScreen,
     EditTaskScreen,
     CreateCategoryScreen,
     DashboardScreen,
+    SearchTaskScreen,
+    UpcomingTasksScreen,
 } from '../screens';
 import { Routes } from '../constants';
 import { RootStackParamList } from '../types';
@@ -28,18 +30,18 @@ export const appScreens = [
     },
     {
         id: 3,
-        name: Routes.ViewTodayTasks,
-        component: ViewTodayTasksScreen,
+        name: Routes.Tasks,
+        component: TodayTasksScreen,
     },
     {
         id: 4,
-        name: Routes.ViewDetail,
-        component: TaskDetailScreen,
+        name: Routes.Task,
+        component: TaskScreen,
     },
     {
         id: 5,
-        name: Routes.SearchTasks,
-        component: SearchTasksScreen,
+        name: Routes.CompletedTasks,
+        component: CompletedTasksScreen,
     },
     {
         id: 6,
@@ -60,6 +62,16 @@ export const appScreens = [
         id: 9,
         name: Routes.EditTask,
         component: EditTaskScreen,
+    },
+    {
+        id: 10,
+        name: Routes.Search,
+        component: SearchTaskScreen,
+    },
+    {
+        id: 10,
+        name: Routes.Upcoming,
+        component: UpcomingTasksScreen,
     },
 ];
 

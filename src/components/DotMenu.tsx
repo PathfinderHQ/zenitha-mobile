@@ -7,9 +7,11 @@ import DeleteDialog from './DeleteDialog';
 
 interface IDotMenuProps {
     vertical?: boolean;
+    dark?: boolean;
+    onDelete: () => void;
 }
 
-const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
+const DotMenu: FC<IDotMenuProps> = ({ vertical, dark, onDelete }) => {
     const [visible, setVisible] = useState(false);
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
 
@@ -24,9 +26,6 @@ const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
 
     const showMenu = () => setVisible(true);
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const onDelete = () => {};
-
     const direction = vertical ? 'dots-vertical' : 'dots-horizontal';
 
     return (
@@ -36,7 +35,7 @@ const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
                 visible={visible}
                 anchor={
                     <Text onPress={showMenu}>
-                        <MaterialCommunityIcons name={direction} size={24} color='white' />
+                        <MaterialCommunityIcons name={direction} size={30} color={dark ? '#000000' : 'white'} />
                     </Text>
                 }
                 onDismiss={hideMenu}

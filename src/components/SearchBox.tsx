@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Searchbar } from 'react-native-paper';
 import { View, Dimensions, StyleSheet } from 'react-native';
 
 import { Colors } from '../constants';
+import { BackButton } from './index';
 
 const { width } = Dimensions.get('screen');
 
-const SearchBox = () => {
-    const [searchQuery, setSearchQuery] = React.useState('');
+type ISearchBoxProps = {
+    query: string;
+    onSearch: (value: string) => void;
+};
 
-    const onChangeSearch = (query: string) => setSearchQuery(query);
-
+const SearchBox: FC<ISearchBoxProps> = ({ query, onSearch }) => {
     return (
         <View style={styles.container}>
+            <View style={styles.back}>
+                <BackButton size={28} />
+            </View>
             <Searchbar
-                style={{ backgroundColor: '#ffffff', borderWidth: 1, width: width / 1.3 }}
+                style={styles.input}
                 placeholder='Search'
-                onChangeText={onChangeSearch}
-                value={searchQuery}
+                onChangeText={onSearch}
+                value={query}
                 mode='bar'
+                clearIcon='close-circle-outline'
             />
         </View>
     );
@@ -28,15 +34,17 @@ export default SearchBox;
 const styles = StyleSheet.create({
     container: {
         padding: 20,
-        flexDirection: 'row',
+        position: 'relative',
     },
-    icon: {
-        alignSelf: 'center',
+    input: {
+        backgroundColor: '#ffffff',
+        borderWidth: 1,
+        width: width / 1.3,
+        marginLeft: '10%',
     },
-    text: {
-        alignSelf: 'center',
-        color: Colors.placeholder,
-        fontSize: 16,
-        margin: 10,
+    back: {
+        position: 'absolute',
+        left: -10,
+        top: 20,
     },
 });

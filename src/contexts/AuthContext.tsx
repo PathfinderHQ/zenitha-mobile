@@ -2,8 +2,8 @@ import React, { createContext, FC, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-// utils
-import { getSession, isValidToken, setSession } from '../utils';
+// lib
+import { getSession, isValidToken, setSession } from '../lib';
 
 // hooks
 import useError from '../hooks/useError';
@@ -48,6 +48,9 @@ const AuthProvider: FC<Props> = ({ children }) => {
                 await setSession(accessToken);
 
                 await getCurrentUser();
+            } else {
+                // delete the token from session since it is not valid
+                await setSession();
             }
         };
 

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { getSession, makeRequest, setSession } from '../utils';
+import { getSession, makeRequest, setSession } from '../lib';
 import {
     AuthPayload,
     AuthType,

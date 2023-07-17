@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Avatar as BaseAvatar } from 'react-native-paper';
-import { getInitials } from '../utils';
+import { getInitials } from '../lib';
 import { User } from '../types';
 
 type IAvatarProps = {

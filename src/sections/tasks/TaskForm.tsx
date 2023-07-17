@@ -14,24 +14,8 @@ import { Button, FormProvider, Input, InputDatePicker, TimePicker } from '../../
 import { Categories } from '../categories';
 
 // types
-import { CreateTaskPayload, Navigation } from '../../types';
+import { Navigation } from '../../types';
 import { Routes } from '../../constants';
-
-const CreateTaskSchema = Yup.object().shape({
-    taskName: Yup.string().required(),
-    date: Yup.date().required(),
-    startTime: Yup.date().required(),
-    dueTime: Yup.date().required(),
-    description: Yup.string().required(),
-});
-
-const defaultValues = {
-    taskName: '',
-    date: undefined,
-    startTime: undefined,
-    dueTime: undefined,
-    description: '',
-};
 
 interface TaskFormProp {
     type: 'create' | 'edit';
@@ -40,14 +24,21 @@ interface TaskFormProp {
 const CreateTaskForm: FC<TaskFormProp> = ({ type }) => {
     const navigation = useNavigation<Navigation>();
 
-    const methods = useForm<CreateTaskPayload>({
+    const CreateTaskSchema = Yup.object().shape({
+        title: Yup.string().required('Title is required'),
+        description: Yup.string().optional(),
+    });
+
+    const defaultValues = { title: '' };
+
+    const methods = useForm<any>({
         resolver: yupResolver(CreateTaskSchema),
         defaultValues,
     });
 
     const { handleSubmit } = methods;
 
-    const onSubmit = () => navigation.navigate(Routes.ViewTodayTasks);
+    const onSubmit = () => navigation.navigate(Routes.Tasks);
 
     return (
         <FormProvider methods={methods}>

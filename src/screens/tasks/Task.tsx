@@ -6,10 +6,10 @@ import { Routes } from '../../constants';
 import { TaskDetailCard } from '../../components';
 
 export type TaskDetailProps = {
-    navigation: StackNavigationProp<RootStackParamList, Routes.ViewDetail>;
+    navigation: StackNavigationProp<RootStackParamList, Routes.Task>;
 };
 
-const TaskDetailScreen: FC<TaskDetailProps> = ({ navigation }) => {
+const Task: FC<TaskDetailProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <TaskDetailCard
@@ -19,13 +19,13 @@ const TaskDetailScreen: FC<TaskDetailProps> = ({ navigation }) => {
                 date='July 02, 2023'
                 description='Descriptions here Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo'
                 category='Dashboard'
-                onPress={() => navigation.navigate(Routes.ViewTodayTasks)}
+                onPress={() => navigation.navigate(Routes.Tasks)}
             />
         </View>
     );
 };
 
-export default TaskDetailScreen;
+export default Task;
 
 const styles = StyleSheet.create({
     container: {

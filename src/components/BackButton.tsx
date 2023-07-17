@@ -2,13 +2,18 @@ import React, { FC } from 'react';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import IconButtonComponent from './IconButton';
+import { Navigation } from '../types';
 
-const BackButton: FC = () => {
-    const { goBack } = useNavigation();
+type BackButtonProps = {
+    size?: number;
+};
+
+const BackButton: FC<BackButtonProps> = ({ size = 20 }) => {
+    const { goBack } = useNavigation<Navigation>();
 
     return (
         <View>
-            <IconButtonComponent size={20} icon='keyboard-backspace' color='#252525' onPress={goBack} />
+            <IconButtonComponent size={size} icon='keyboard-backspace' color='#252525' onPress={goBack} />
         </View>
     );
 };

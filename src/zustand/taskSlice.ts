@@ -1,30 +1,33 @@
 import { create } from 'zustand';
-import { CategoryPayload, ICategorySlice, RequestMethod } from '../types';
-import { makeRequest } from '../lib';
+import dayjs from 'dayjs';
+import { AutomatedTaskPayload, ITaskSlice, RequestMethod, Task, TaskPayload } from '../types';
+import { makeRequest, extractDateTime } from '../lib';
 
-export const useCategories = create<ICategorySlice>((set, get) => ({
-    categories: [],
-    category: {
-        current: '',
-        choose: (value: string) => {
-            if (value === get().category.current) {
-                set((state) => ({
-                    ...state,
-                    category: {
-                        ...state.category,
-                        current: '',
-                    },
-                }));
-            } else {
-                set((state) => ({
-                    ...state,
-                    category: {
-                        ...state.category,
-                        current: value,
-                    },
-                }));
-            }
-        },
+export const useTasks = create<ITaskSlice>((set, get) => ({
+    tasks: [],
+    todayTasks: [],
+    pastTasks: [],
+    upcomingTasks: [],
+    filtered: [],
+    task: null,
+    setCurrent: (task: Task) => set((state) => ({ ...state, task })),
+    filterTasks: (value: string) => {
+        set((state) => ({
+            ...state,
+            filtered: get().tasks.filter((task) => {
+                const regex = new RegExp(`${value}`, 'gi');
+
+                return task.title.match(regex) || task.description?.match(regex);
+            }),
+        }));
+    },
+    clearFilter: () => set((state) => ({ ...state, filtered: [] })),
+    automated: {
+        loading: false,
+        error: null,
+        setLoading: (value: boolean) =>
+            set((state) => ({ ...state, automated: { ...state.automated, loading: value } })),
+        clearError: () => set((state) => ({ ...state, automated: { ...state.automated, error: null } })),
     },
     create: {
         loading: false,
@@ -50,10 +53,10 @@ export const useCategories = create<ICategorySlice>((set, get) => ({
         setLoading: (value: boolean) => set((state) => ({ ...state, remove: { ...state.remove, loading: value } })),
         clearError: () => set((state) => ({ ...state, remove: { ...state.remove, error: null } })),
     },
-    createCategory: async (data: CategoryPayload) => {
+    createTask: async (data: TaskPayload) => {
         get().create.setLoading(true);
 
-        const { result, error } = await makeRequest('categories', RequestMethod.POST, data);
+        const { result, error } = await makeRequest('tasks', RequestMethod.POST, data);
 
         if (error) {
             set((state) => ({
@@ -69,17 +72,43 @@ export const useCategories = create<ICategorySlice>((set, get) => ({
 
         set((state) => ({
             ...state,
-            categories: [...state.categories, result.data],
+            tasks: [result.data, ...state.tasks],
             create: {
                 ...state.create,
                 loading: false,
             },
         }));
     },
-    updateCategory: async (id: string, data: CategoryPayload) => {
+    createAutomatedTask: async (data: AutomatedTaskPayload) => {
+        get().automated.setLoading(true);
+
+        const { result, error } = await makeRequest('tasks/automated', RequestMethod.POST, data);
+
+        if (error) {
+            set((state) => ({
+                ...state,
+                automated: {
+                    ...state.automated,
+                    error: result?.message || 'An error occurred',
+                    loading: false,
+                },
+            }));
+            return;
+        }
+
+        set((state) => ({
+            ...state,
+            tasks: [...result.data, ...state.tasks],
+            automated: {
+                ...state.automated,
+                loading: false,
+            },
+        }));
+    },
+    updateTask: async (id: string, data: TaskPayload) => {
         get().update.setLoading(true);
 
-        const { result, error } = await makeRequest(`categories/${id}`, RequestMethod.PUT, data);
+        const { result, error } = await makeRequest(`tasks/${id}`, RequestMethod.PUT, data);
 
         if (error) {
             set((state) => ({
@@ -95,13 +124,13 @@ export const useCategories = create<ICategorySlice>((set, get) => ({
 
         set((state) => ({
             ...state,
-            categories: state.categories.map((category) => {
-                // return updated category
-                if (category.id === id) {
+            tasks: state.tasks.map((task) => {
+                // return updated tasks
+                if (task.id === id) {
                     return result.data;
                 }
 
-                return category;
+                return task;
             }),
             update: {
                 ...state.update,
@@ -109,10 +138,10 @@ export const useCategories = create<ICategorySlice>((set, get) => ({
             },
         }));
     },
-    fetchCategories: async () => {
+    fetchTasks: async () => {
         get().fetch.setLoading(true);
 
-        const { result, error } = await makeRequest('categories', RequestMethod.GET);
+        const { result, error } = await makeRequest('tasks', RequestMethod.GET);
 
         if (error) {
             set((state) => ({
@@ -128,22 +157,37 @@ export const useCategories = create<ICategorySlice>((set, get) => ({
 
         set((state) => ({
             ...state,
-            categories: result.data,
+            tasks: result.data,
+            todayTasks: result.data.filter((task: Task) => {
+                const { date } = extractDateTime(task.time);
+
+                return dayjs().isSame(dayjs(date), 'day');
+            }),
+            pastTasks: result.data.filter((task: Task) => {
+                const { date } = extractDateTime(task.time);
+
+                return dayjs().isAfter(dayjs(date), 'day');
+            }),
+            upcomingTasks: result.data.filter((task: Task) => {
+                const { date } = extractDateTime(task.time);
+
+                return dayjs().isBefore(dayjs(date), 'day');
+            }),
             fetch: {
                 ...state.fetch,
                 loading: false,
             },
         }));
     },
-    removeCategory: async (id: string) => {
+    removeTask: async (id: string) => {
         get().remove.setLoading(true);
 
         set((state) => ({
             ...state,
-            categories: state.categories.filter((category) => category.id !== id),
+            tasks: state.tasks.filter((task) => task.id !== id),
         }));
 
-        const { result, error } = await makeRequest(`categories/${id}`, RequestMethod.DELETE);
+        const { result, error } = await makeRequest(`tasks/${id}`, RequestMethod.DELETE);
 
         if (error) {
             set((state) => ({

@@ -10,13 +10,14 @@ export enum AuthRoutes {
 
 export enum Routes {
     Dashboard = 'Dashboard',
-    Profile = 'Profile',
     ChangePassword = 'ChangePassword',
     EditProfile = 'EditProfile',
     CreateTask = 'CreateTask',
-    ViewTodayTasks = 'ViewTodayTasks',
-    ViewDetail = 'ViewDetail',
-    SearchTasks = 'SearchTasks',
+    Tasks = 'Tasks',
+    Task = 'Task',
+    CompletedTasks = 'CompletedTasks',
     CreateCategory = 'CreateCategory',
     EditTask = 'EditTask',
+    Search = 'Search',
+    Upcoming = 'Upcoming',
 }

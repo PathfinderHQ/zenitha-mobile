@@ -1,27 +1,41 @@
 import React, { FC } from 'react';
+import dayjs from 'dayjs';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Dimensions, StyleSheet, Text, ImageURISource, Image, StyleProp, ViewStyle, View } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 import DotMenu from './DotMenu';
-import { alarm, FontSize, FontFamily, Colors } from '../constants';
+import { alarm, FontSize, FontFamily, Colors, Routes } from '../constants';
+import { Navigation, Task } from '../types';
+import { extractDateTime } from '../lib';
+import { useTasks } from '../zustand';
 
 const { height, width } = Dimensions.get('screen');
 
 interface FutureTaskCardProps {
-    startTime: string;
-    dueTime: string;
-    title: string;
-    onPress: () => void;
+    task: Task;
     alarmIcon?: ImageURISource;
     customStyles?: StyleProp<ViewStyle>;
 }
 
-const FutureTaskCard: FC<FutureTaskCardProps> = ({ startTime, dueTime, title, onPress, alarmIcon, customStyles }) => {
+const FutureTaskCard: FC<FutureTaskCardProps> = ({ task, alarmIcon, customStyles }) => {
+    const navigation = useNavigation<Navigation>();
+
+    const { setCurrent, removeTask } = useTasks();
+
     const containerStyle = [styles.container, customStyles];
+
+    const onPress = () => {
+        setCurrent(task);
+        navigation.navigate(Routes.Task);
+    };
+    const onDelete = () => removeTask(task.id);
+
+    const { date } = extractDateTime(task.time);
 
     return (
         <View style={styles.box}>
             <View style={styles.dot}>
-                <DotMenu vertical />
+                <DotMenu vertical dark onDelete={onDelete} />
             </View>
 
             <TouchableOpacity onPress={onPress} style={containerStyle}>
@@ -29,10 +43,8 @@ const FutureTaskCard: FC<FutureTaskCardProps> = ({ startTime, dueTime, title, on
                     <Text style={styles.bullet}>{'\u2B24'}</Text>
                 </View>
                 <View style={styles.middleContainer}>
-                    <Text style={styles.titleText}>{title}</Text>
-                    <Text style={styles.detailText}>
-                        {startTime} -- {dueTime}
-                    </Text>
+                    <Text style={styles.titleText}>{task.title}</Text>
+                    <Text style={styles.detailText}>{`${date}  ${dayjs(task.time).format('h:mm A')}`}</Text>
                 </View>
                 <View style={styles.leftContainer} />
                 {alarmIcon && <Image source={alarm.link} style={styles.image} />}

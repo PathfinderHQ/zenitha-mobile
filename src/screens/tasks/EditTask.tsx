@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { BackButton } from '../../components';
-import TaskForm from '../../sections/task/TaskForm';
+import TaskForm from '../../sections/tasks/TaskForm';
 
 const EditTaskScreen: FC = () => {
     return (

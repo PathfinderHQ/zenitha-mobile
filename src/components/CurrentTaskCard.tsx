@@ -1,44 +1,45 @@
 import React, { FC } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Dimensions, StyleSheet, Text, ImageURISource, Image, StyleProp, ViewStyle, View } from 'react-native';
+import dayjs from 'dayjs';
 import { Colors, alarm, FontFamily, FontSize } from '../constants';
 import DotMenu from './DotMenu';
+import { Task } from '../types';
+import { useTasks } from '../zustand';
+import { extractDateTime } from '../lib';
 
 const { height, width } = Dimensions.get('screen');
 
 interface CurrentTaskCardProps {
-    startTime: string;
-    duration: string;
-    title: string;
+    task: Task;
     onPress: () => void;
     alarmIcon?: ImageURISource;
     customStyles?: StyleProp<ViewStyle>;
 }
 
-const CurrentTaskCard: FC<CurrentTaskCardProps> = ({
-    startTime,
-    duration,
-    title,
-    onPress,
-    alarmIcon,
-    customStyles,
-}) => {
+const CurrentTaskCard: FC<CurrentTaskCardProps> = ({ task, onPress, alarmIcon, customStyles }) => {
     const containerStyle = [styles.container, customStyles];
+
+    const { removeTask } = useTasks();
+
+    const { date } = extractDateTime(task.time);
+
+    const onDelete = () => removeTask(task.id);
 
     return (
         <View style={styles.box}>
             <View style={styles.dot}>
-                <DotMenu />
+                <DotMenu onDelete={onDelete} />
             </View>
 
             <TouchableOpacity onPress={onPress} style={containerStyle}>
                 <View style={styles.headerContainer}>
-                    <Text style={styles.headerText}>{startTime}</Text>
-                    <Text style={styles.headerText}>{duration}</Text>
+                    <Text style={styles.headerText}>{date}</Text>
+                    <Text style={styles.headerText}>{`${dayjs(task.time).format('h:mm A')}`}</Text>
                     <Text />
                 </View>
                 <View>
-                    <Text style={styles.titleText}>{title}</Text>
+                    <Text style={styles.titleText}>{task.title}</Text>
                 </View>
                 {alarmIcon && <Image source={alarm.link} style={styles.image} />}
             </TouchableOpacity>
