@@ -20,14 +20,15 @@ const BottomTabNavigator = () => {
                 tabBarStyle: { height: 60, paddingBottom: 3 },
                 tabBarLabelStyle: { height: 20, fontSize: 13 },
                 tabBarIcon: ({ color, size }) => {
-                    const icons: Record<string, any> = {
+                    const icons: Record<string, string> = {
                         Home: 'home',
                         Tasks: 'calendar-month',
                         Completed: 'check-all',
                         Upcoming: 'clock-time-three-outline',
                     };
 
-                    return <MaterialCommunityIcons name={icons[route.name]} size={size} color={color} />;
+                    // used `as function` string to satisfy typescript, name props accept type 'function' | 'symbol'
+                    return <MaterialCommunityIcons name={icons[route.name] as 'function'} size={size} color={color} />;
                 },
                 headerShown: false,
                 tabBarActiveTintColor: '#000',

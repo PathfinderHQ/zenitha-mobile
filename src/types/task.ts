@@ -77,5 +77,6 @@ export interface ITaskSlice {
     createAutomatedTask: (data: AutomatedTaskPayload) => Promise<void>;
     updateTask: (id: string, data: TaskPayload) => Promise<void>;
     fetchTasks: () => Promise<void>;
+    sortTasks: () => void;
     removeTask: (id: string) => Promise<void>;
 }

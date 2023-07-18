@@ -27,12 +27,12 @@ const TaskCard: FC<FutureTaskCardProps> = ({ task, alarmIcon, customStyles }) =>
         setCurrent(task);
         navigation.navigate(Routes.Task);
     };
-    const onDelete = () => removeTask(task.id);
+    const onRemove = () => removeTask(task.id);
 
     return (
         <View style={styles.box}>
             <View style={styles.dot}>
-                <DotMenu vertical dark onDelete={onDelete} />
+                <DotMenu vertical dark onRemove={onRemove} />
             </View>
 
             <TouchableOpacity onPress={onPress} style={containerStyle}>

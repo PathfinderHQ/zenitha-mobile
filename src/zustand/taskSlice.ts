@@ -26,6 +26,10 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
 
                 return task.title.match(regex) || task.description?.match(regex);
             }),
+            fetch: {
+                ...state.fetch,
+                loading: false,
+            },
         }));
     },
     clearFilter: () => set((state) => ({ ...state, filtered: [] })),
@@ -193,6 +197,32 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             },
         }));
     },
+    sortTasks: async () => {
+        get().fetch.setLoading(true);
+
+        set((state) => ({
+            ...state,
+            todayTasks: get().tasks.filter((task: Task) => {
+                const { date } = extractDateTime(task.time);
+
+                return dayjs().isSame(dayjs(date), 'day');
+            }),
+            pastTasks: get().tasks.filter((task: Task) => {
+                const { date } = extractDateTime(task.time);
+
+                return dayjs().isAfter(dayjs(date), 'day');
+            }),
+            upcomingTasks: get().tasks.filter((task: Task) => {
+                const { date } = extractDateTime(task.time);
+
+                return dayjs().isBefore(dayjs(date), 'day');
+            }),
+            fetch: {
+                ...state.fetch,
+                loading: false,
+            },
+        }));
+    },
     removeTask: async (id: string) => {
         get().remove.setLoading(true);
 
@@ -200,6 +230,8 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             ...state,
             tasks: state.tasks.filter((task) => task.id !== id),
         }));
+
+        get().sortTasks();
 
         const { result, error } = await makeRequest(`tasks/${id}`, RequestMethod.DELETE);
 

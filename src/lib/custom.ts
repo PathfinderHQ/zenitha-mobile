@@ -1,5 +1,3 @@
-import { Task } from '../types';
-
 export const getInitials = (name: string) => {
     // Split the name into separate words
     const words = name.split(' ');

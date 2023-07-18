@@ -8,10 +8,10 @@ import DeleteDialog from './DeleteDialog';
 interface IDotMenuProps {
     vertical?: boolean;
     dark?: boolean;
-    onDelete: () => void;
+    onRemove: () => void;
 }
 
-const DotMenu: FC<IDotMenuProps> = ({ vertical, dark, onDelete }) => {
+const DotMenu: FC<IDotMenuProps> = ({ vertical, dark, onRemove }) => {
     const [visible, setVisible] = useState(false);
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
 
@@ -25,6 +25,11 @@ const DotMenu: FC<IDotMenuProps> = ({ vertical, dark, onDelete }) => {
     const hideMenu = () => setVisible(false);
 
     const showMenu = () => setVisible(true);
+
+    const onDelete = () => {
+        onRemove();
+        close();
+    };
 
     const direction = vertical ? 'dots-vertical' : 'dots-horizontal';
 

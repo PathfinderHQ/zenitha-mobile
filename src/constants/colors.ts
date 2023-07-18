@@ -23,4 +23,6 @@ export const Colors = {
     labelHover: 'rgba(67, 73, 97, 0.06)',
     cat_home: '#52B788',
     cat_work: '#FAA307',
+    danger: '#f00',
+    success: '#4fd14f',
 };
