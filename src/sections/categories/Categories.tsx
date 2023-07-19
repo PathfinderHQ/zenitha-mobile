@@ -10,9 +10,10 @@ import CategoryGrid from '../../components/CategoryGrid';
 
 interface CategoriesProps {
     type: 'view' | 'select';
+    selected?: string;
 }
 
-const Categories: FC<CategoriesProps> = ({ type }) => {
+const Categories: FC<CategoriesProps> = ({ type, selected }) => {
     const navigation = useNavigation<Navigation>();
 
     const { categories, fetchCategories, fetch, category } = useCategories();
@@ -42,7 +43,7 @@ const Categories: FC<CategoriesProps> = ({ type }) => {
                 <Carousel>
                     {categories.map((item) => (
                         <CategoryButton
-                            selected={current === item.id}
+                            selected={current === item.id || selected === item.id}
                             key={item.id}
                             item={item}
                             onPress={() => choose(item.id)}

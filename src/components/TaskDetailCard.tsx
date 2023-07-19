@@ -1,60 +1,44 @@
 import React, { FC } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Dimensions, StyleSheet, Text, ImageURISource, Image, StyleProp, ViewStyle, View } from 'react-native';
+import dayjs from 'dayjs';
 import { alarm, Colors, FontSize } from '../constants';
+import { Task } from '../types';
 
 const { height, width } = Dimensions.get('screen');
 
 interface TaskDetailCardProps {
-    title: string;
-    date: string;
-    startTime: string;
-    dueTime: string;
-    description: string;
-    category: string;
-    onPress: () => void;
+    task: Task;
     alarmIcon?: ImageURISource;
     customStyles?: StyleProp<ViewStyle>;
 }
 
-const TaskDetailCard: FC<TaskDetailCardProps> = ({
-    startTime,
-    dueTime,
-    title,
-    date,
-    description,
-    category,
-    onPress,
-    alarmIcon,
-    customStyles,
-}) => {
-    const containerStyle = [styles.container, customStyles];
+const TaskDetailCard: FC<TaskDetailCardProps> = ({ task, alarmIcon, customStyles }) => {
+    const { title, description, category, category_data } = task;
 
     return (
-        <TouchableOpacity onPress={onPress} style={containerStyle}>
+        <TouchableOpacity style={[styles.container, customStyles]}>
             <View style={styles.headerContainer}>
                 <Text style={styles.titleText}>{title}</Text>
-                <Text style={styles.titleText}>{date}</Text>
+                <Text style={styles.titleText}>{dayjs(task.time).format('ddd, D MMM, YYYY')}</Text>
             </View>
             <View style={styles.timeContainer}>
                 <View style={styles.flex}>
-                    <Text style={styles.greyText}>Start Time</Text>
-                    <Text style={styles.timeText}>{startTime}</Text>
+                    <Text style={styles.greyText}>Time</Text>
+                    <Text style={styles.timeText}>{dayjs(task.time).format('HH:mm')}</Text>
                     {alarmIcon && <Image source={alarm.link} style={styles.image} />}
-                </View>
-                <View style={styles.flex}>
-                    <Text style={styles.greyText}>Due Time</Text>
-                    <Text style={styles.timeText}>{dueTime}</Text>
                 </View>
             </View>
             <View style={styles.descriptionContainer}>
                 <Text style={styles.greyText}>Description</Text>
                 <Text style={styles.descriptionText}>{description}</Text>
             </View>
-            <View style={styles.catContainer}>
-                <Text style={styles.greyText}>Category</Text>
-                <Text style={styles.catText}>{category}</Text>
-            </View>
+            {category && (
+                <View style={styles.catContainer}>
+                    <Text style={styles.greyText}>Category</Text>
+                    <Text style={styles.catText}>{category_data?.name}</Text>
+                </View>
+            )}
         </TouchableOpacity>
     );
 };

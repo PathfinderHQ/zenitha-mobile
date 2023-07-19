@@ -1,15 +1,23 @@
 import React, { FC, useState } from 'react';
-
 import { View, Text, StyleSheet } from 'react-native';
 import { Menu, Divider } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+import { useNavigation } from '@react-navigation/core';
 import DeleteDialog from './DeleteDialog';
+import { useTasks } from '../zustand';
+import { Navigation, Task } from '../types';
+import { Routes } from '../constants';
 
 interface IDotMenuProps {
     vertical?: boolean;
+    dark?: boolean;
+    task: Task;
 }
 
-const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
+const DotMenu: FC<IDotMenuProps> = ({ vertical, dark, task }) => {
+    const navigation = useNavigation<Navigation>();
+
     const [visible, setVisible] = useState(false);
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
 
@@ -24,10 +32,20 @@ const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
 
     const showMenu = () => setVisible(true);
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const onDelete = () => {};
+    const { setCurrent, removeTask } = useTasks();
+
+    const onDelete = () => {
+        removeTask(task.id);
+        close();
+    };
 
     const direction = vertical ? 'dots-vertical' : 'dots-horizontal';
+
+    const onEdit = () => {
+        setCurrent(task);
+        close();
+        navigation.navigate(Routes.EditTask, { task });
+    };
 
     return (
         <View style={styles.container}>
@@ -36,20 +54,12 @@ const DotMenu: FC<IDotMenuProps> = ({ vertical }) => {
                 visible={visible}
                 anchor={
                     <Text onPress={showMenu}>
-                        <MaterialCommunityIcons name={direction} size={24} color='white' />
+                        <MaterialCommunityIcons name={direction} size={30} color={dark ? '#000000' : 'white'} />
                     </Text>
                 }
                 onDismiss={hideMenu}
             >
-                <Menu.Item style={{ backfaceVisibility: 'hidden' }} onPress={hideMenu} title='Edit' leadingIcon='pen' />
-                <Divider style={styles.grey} />
-                <Menu.Item
-                    style={{ backfaceVisibility: 'hidden' }}
-                    onPress={hideMenu}
-                    title='Complete'
-                    leadingIcon='check'
-                    rippleColor='rgba(173, 181, 189, 0.5)'
-                />
+                <Menu.Item style={{ backfaceVisibility: 'hidden' }} onPress={onEdit} title='Edit' leadingIcon='pen' />
                 <Divider style={styles.grey} />
                 <Menu.Item
                     style={{ backfaceVisibility: 'hidden' }}

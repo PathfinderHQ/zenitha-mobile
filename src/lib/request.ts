@@ -2,6 +2,7 @@
 import Constants from 'expo-constants';
 import { headers } from '../constants';
 import { FetchResponse, RequestMethod, RequestConfig, RequestBody } from '../types';
+import { setSession } from './secure_storage';
 
 export const makeRequest = async (
     endpoint: string,
@@ -21,6 +22,12 @@ export const makeRequest = async (
         const response = await fetch(`${baseUrl}/${endpoint}`, config);
 
         const result = await response.json();
+
+        // if it is unauthorized status response,
+        // token has expired, and we should delete it from storage
+        if (response.status === 401) {
+            await setSession();
+        }
 
         if (!response.ok) {
             return { response, result, error: true };
