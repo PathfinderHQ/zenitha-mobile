@@ -1,4 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
+import { Task } from './task';
 
 export type RootStackParamList = {
     Register: undefined;
@@ -14,10 +15,14 @@ export type RootStackParamList = {
     CreateTask: undefined;
     ChangePassword: undefined;
     Tasks: undefined;
-    Task: undefined;
+    Task: {
+        task: Task;
+    };
     CompletedTasks: undefined;
     CreateCategory: undefined;
-    EditTask: undefined;
+    EditTask: {
+        task: Task;
+    };
     Search: undefined;
     Upcoming: undefined;
     // Add other screen names and their params here

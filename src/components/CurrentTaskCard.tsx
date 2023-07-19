@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Dimensions, StyleSheet, Text, ImageURISource, Image, StyleProp, ViewStyle, View } from 'react-native';
+import { Dimensions, Image, ImageURISource, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import dayjs from 'dayjs';
-import { Colors, alarm, FontFamily, FontSize } from '../constants';
+import { alarm, Colors, FontFamily, FontSize } from '../constants';
 import DotMenu from './DotMenu';
 import { Task } from '../types';
-import { useTasks } from '../zustand';
 import { extractDateTime } from '../lib';
 
 const { height, width } = Dimensions.get('screen');
@@ -20,16 +19,12 @@ interface CurrentTaskCardProps {
 const CurrentTaskCard: FC<CurrentTaskCardProps> = ({ task, onPress, alarmIcon, customStyles }) => {
     const containerStyle = [styles.container, customStyles];
 
-    const { removeTask } = useTasks();
-
     const { date } = extractDateTime(task.time);
-
-    const onDelete = () => removeTask(task.id);
 
     return (
         <View style={styles.box}>
             <View style={styles.dot}>
-                <DotMenu onDelete={onDelete} />
+                <DotMenu task={task} />
             </View>
 
             <TouchableOpacity onPress={onPress} style={containerStyle}>

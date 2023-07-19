@@ -1,29 +1,16 @@
-import React, { FC, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-import { Spinner, TaskDetailCard } from '../../components';
-import { useTasks } from '../../zustand';
-import { Navigation } from '../../types';
+import React, { FC } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { TaskDetailCard } from '../../components';
+import { RootStackParamList } from '../../types';
 import { Routes } from '../../constants';
 
 const Task: FC = () => {
-    const navigation = useNavigation<Navigation>();
-
-    const { task } = useTasks();
-
-    useEffect(() => {
-        if (!task) {
-            navigation.navigate(Routes.Tasks);
-        }
-
-        // eslint-disable-next-line
-    }, []);
-
-    if (!task) return <Spinner />;
+    const { params } = useRoute<RouteProp<RootStackParamList, Routes.Task>>();
 
     return (
         <View style={styles.container}>
-            <TaskDetailCard task={task} />
+            <TaskDetailCard task={params.task} />
         </View>
     );
 };

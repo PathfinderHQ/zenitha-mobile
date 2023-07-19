@@ -19,20 +19,19 @@ interface FutureTaskCardProps {
 const TaskCard: FC<FutureTaskCardProps> = ({ task, alarmIcon, customStyles }) => {
     const navigation = useNavigation<Navigation>();
 
-    const { setCurrent, removeTask } = useTasks();
+    const { setCurrent } = useTasks();
 
     const containerStyle = [styles.container, customStyles];
 
     const onPress = () => {
         setCurrent(task);
-        navigation.navigate(Routes.Task);
+        navigation.navigate(Routes.Task, { task });
     };
-    const onRemove = () => removeTask(task.id);
 
     return (
         <View style={styles.box}>
             <View style={styles.dot}>
-                <DotMenu vertical dark onRemove={onRemove} />
+                <DotMenu vertical dark task={task} />
             </View>
 
             <TouchableOpacity onPress={onPress} style={containerStyle}>

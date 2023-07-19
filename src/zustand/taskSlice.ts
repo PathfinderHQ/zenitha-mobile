@@ -47,6 +47,7 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
         error: null,
         setLoading: (value: boolean) => set((state) => ({ ...state, create: { ...state.create, loading: value } })),
         clearError: () => set((state) => ({ ...state, create: { ...state.create, error: null } })),
+        clearSuccess: () => set((state) => ({ ...state, create: { ...state.create, success: false } })),
     },
     fetch: {
         loading: false,
@@ -55,10 +56,12 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
         clearError: () => set((state) => ({ ...state, fetch: { ...state.fetch, error: null } })),
     },
     update: {
+        success: false,
         loading: false,
         error: null,
         setLoading: (value: boolean) => set((state) => ({ ...state, update: { ...state.update, loading: value } })),
         clearError: () => set((state) => ({ ...state, update: { ...state.update, error: null } })),
+        clearSuccess: () => set((state) => ({ ...state, update: { ...state.update, success: false } })),
     },
     remove: {
         loading: false,
@@ -140,6 +143,18 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             return;
         }
 
+        // set current task
+        get().setCurrent(result.data);
+
+        set((state) => ({
+            update: {
+                ...state.update,
+                success: true,
+                loading: false,
+            },
+        }));
+
+        // add task to list of tasks
         set((state) => ({
             ...state,
             tasks: state.tasks.map((task) => {
@@ -150,11 +165,10 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
 
                 return task;
             }),
-            update: {
-                ...state.update,
-                loading: false,
-            },
         }));
+
+        // sort tasks
+        get().sortTasks();
     },
     fetchTasks: async () => {
         get().fetch.setLoading(true);

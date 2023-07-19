@@ -1,9 +1,14 @@
 import { FC } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { BackButton } from '../../components';
-import TaskForm from '../../sections/tasks/TaskForm';
+import { EditTaskForm } from '../../sections/tasks';
+import { RootStackParamList } from '../../types';
+import { Routes } from '../../constants';
 
 const EditTaskScreen: FC = () => {
+    const { params } = useRoute<RouteProp<RootStackParamList, Routes.EditTask>>();
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -11,7 +16,7 @@ const EditTaskScreen: FC = () => {
                 <Text style={styles.text}>Edit Task</Text>
             </View>
             <View style={styles.profileContainer}>
-                <TaskForm type='edit' />
+                <EditTaskForm task={params.task} />
             </View>
         </View>
     );
@@ -23,14 +28,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
+        padding: 20,
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 30,
+        flex: 1,
     },
     profileContainer: {
-        width: 400,
+        flex: 5,
     },
     text: {
         fontSize: 22,

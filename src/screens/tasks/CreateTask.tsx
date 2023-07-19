@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { BackButton } from '../../components';
-import { TaskForm } from '../../sections/tasks';
+import { CreateTaskForm } from '../../sections/tasks';
 
 const CreateTaskScreen: FC = () => {
     return (
@@ -11,7 +11,7 @@ const CreateTaskScreen: FC = () => {
                 <Text style={styles.text}>Create Task</Text>
             </View>
             <View style={styles.profileContainer}>
-                <TaskForm type='create' />
+                <CreateTaskForm />
             </View>
         </View>
     );

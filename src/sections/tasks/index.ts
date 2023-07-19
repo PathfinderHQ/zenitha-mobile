@@ -1,6 +1,7 @@
-import TaskForm from './TaskForm';
+import CreateTaskForm from './CreateTaskForm';
+import EditTaskForm from './EditTaskForm';
 import TaskFilter from './TaskFilter';
 import CurrentTask from './CurrentTask';
 import Tasks from './Tasks';
 
-export { TaskFilter, TaskForm, CurrentTask, Tasks };
+export { TaskFilter, CreateTaskForm, CurrentTask, Tasks, EditTaskForm };

@@ -15,7 +15,7 @@ const CurrentTask: FC<ICurrentTaskProp> = ({ task }) => {
     return (
         <View style={styles.currentCardContainer}>
             <MainHorizontalDivider />
-            <CurrentTaskCard task={task} onPress={() => navigation.navigate(Routes.Task)} />
+            <CurrentTaskCard task={task} onPress={() => navigation.navigate(Routes.Task, { task })} />
         </View>
     );
 };

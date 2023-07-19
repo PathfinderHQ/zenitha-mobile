@@ -7,7 +7,7 @@ export interface TaskPayload {
     time?: string;
 }
 
-export interface TaskCreate {
+export interface TaskData {
     title: string;
     category?: string;
     description?: string;
@@ -54,6 +54,7 @@ export interface ITaskSlice {
         error: string | null;
         setLoading: (value: boolean) => void;
         clearError: () => void;
+        clearSuccess: () => void;
     };
     fetch: {
         loading: boolean;
@@ -62,10 +63,12 @@ export interface ITaskSlice {
         clearError: () => void;
     };
     update: {
+        success: boolean;
         loading: boolean;
         error: string | null;
         setLoading: (value: boolean) => void;
         clearError: () => void;
+        clearSuccess: () => void;
     };
     remove: {
         loading: boolean;

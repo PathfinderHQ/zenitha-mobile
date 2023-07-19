@@ -16,28 +16,62 @@ import { Button, FormProvider, Input, InputDatePicker, TimePicker } from '../../
 import { Categories } from '../categories';
 
 // types
-import { Navigation, TaskCreate, TaskPayload } from '../../types';
+import { Navigation, Task, TaskData, TaskPayload } from '../../types';
 import { Routes } from '../../constants';
 import { useCategories, useSnackbar, useTasks } from '../../zustand';
 import { useError } from '../../hooks';
+import { extractDateTime } from '../../lib';
 
 interface TaskFormProp {
-    type: 'create' | 'edit';
+    task: Task;
 }
 
-const CreateTaskForm: FC<TaskFormProp> = ({ type }) => {
+const EditTaskForm: FC<TaskFormProp> = ({ task }) => {
     const navigation = useNavigation<Navigation>();
 
     const { show, setMessage } = useSnackbar();
 
-    const { create, createTask } = useTasks();
+    const { update, task: currentTask, updateTask } = useTasks();
 
     const { category } = useCategories();
 
-    const { loading, error, clearError, success } = create;
+    const { loading, error, clearError, success, clearSuccess } = update;
 
     const [isTimePickerVisible, setIsTimePickerVisible] = useState<boolean>(false);
     const [time, setTime] = useState<string>('');
+    const [selectedCategory, setSelectedCategory] = useState<string>('');
+
+    const EditTaskSchema = Yup.object().shape({
+        title: Yup.string().required('Title is required'),
+        date: Yup.date().required('Date is required'),
+    });
+
+    const { date: taskDate } = extractDateTime(task.time);
+
+    const methods = useForm<TaskData>({
+        resolver: yupResolver(EditTaskSchema),
+    });
+
+    const { handleSubmit, reset, setValue } = methods;
+
+    useEffect(() => {
+        const { time: taskTime } = extractDateTime(task.time);
+
+        setTime(taskTime.slice(0, 5));
+
+        const fields = ['title', 'description'] as ['title', 'description'];
+
+        fields.forEach((field) => {
+            setValue(field, task[field]);
+        });
+
+        // set date
+        setValue('date', new Date(taskDate));
+
+        if (task?.category) setSelectedCategory(task.category);
+
+        // eslint-disable-next-line
+    }, [task]);
 
     const onOpen = () => setIsTimePickerVisible(true);
     const onDismiss = () => setIsTimePickerVisible(false);
@@ -47,21 +81,7 @@ const CreateTaskForm: FC<TaskFormProp> = ({ type }) => {
         onDismiss();
     };
 
-    const CreateTaskSchema = Yup.object().shape({
-        title: Yup.string().required('Title is required'),
-        date: Yup.date().required('Date is required'),
-    });
-
-    const defaultValues = { title: '', date: new Date() };
-
-    const methods = useForm<TaskCreate>({
-        resolver: yupResolver(CreateTaskSchema),
-        defaultValues,
-    });
-
-    const { handleSubmit, reset } = methods;
-
-    const onSubmit = (data: TaskCreate) => {
+    const onSubmit = (data: TaskData) => {
         if (time === '') {
             setMessage('Please choose a time');
             show();
@@ -83,7 +103,7 @@ const CreateTaskForm: FC<TaskFormProp> = ({ type }) => {
         // eslint-disable-next-line no-param-reassign
         payload.time = `${dayjs(data.date).format('YYYY-MM-DD')} ${time}:00`;
 
-        createTask(payload);
+        updateTask(task.id, payload);
     };
 
     const clearForm = () => {
@@ -96,9 +116,12 @@ const CreateTaskForm: FC<TaskFormProp> = ({ type }) => {
 
     useEffect(() => {
         if (success) {
-            navigation.navigate(Routes.Task);
+            clearSuccess();
+            // unselect category
+            category.choose(category.current);
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            navigation.navigate(Routes.Task, { task: currentTask! });
             clearForm();
-            category.choose(category.current); // unselect category
         }
 
         // eslint-disable-next-line
@@ -127,20 +150,16 @@ const CreateTaskForm: FC<TaskFormProp> = ({ type }) => {
                 </View>
                 <View style={[styles.flex, styles.description]}>
                     <Text>Description</Text>
-                    <Input multiline numberOFLines={4} name='description' placeholder='add task description here' />
+                    <Input multiline numberOFLines={4} name='description' placeholder='Add task description here' />
                 </View>
-                <Categories type='select' />
-                <Button
-                    loading={loading}
-                    title={type === 'create' ? 'Create Task' : 'Edit Task'}
-                    onPress={handleSubmit(onSubmit)}
-                />
+                <Categories selected={selectedCategory} type='select' />
+                <Button loading={loading} title='Edit Task' onPress={handleSubmit(onSubmit)} />
             </View>
         </FormProvider>
     );
 };
 
-export default CreateTaskForm;
+export default EditTaskForm;
 
 const styles = StyleSheet.create({
     flex: {
