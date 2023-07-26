@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8,
-        width: width / 3.7,
+        width: width / 3.9,
         height: height / 16,
     },
     text: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     icon: {
         position: 'absolute',
         top: 5,
-        right: 6,
+        right: 9,
         color: '#E9ECEF',
         fontSize: 17,
         zIndex: 200,

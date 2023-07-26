@@ -64,7 +64,6 @@ export default Categories;
 const styles = StyleSheet.create({
     carouselContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 5,
+        paddingTop: '2%',
     },
 });

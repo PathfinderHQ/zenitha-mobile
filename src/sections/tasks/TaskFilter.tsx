@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
         flex: 2,
         flexShrink: 1,
         alignSelf: 'flex-start',
-        marginLeft: '3%',
+        marginLeft: '1%',
+        marginRight: '1%',
     },
     calenderIconContainer: {
         flex: 1,
