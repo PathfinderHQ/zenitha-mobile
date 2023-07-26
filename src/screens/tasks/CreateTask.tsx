@@ -3,8 +3,6 @@ import { View, StyleSheet, Text, Dimensions, SafeAreaView, Platform, StatusBar }
 import { BackButton } from '../../components';
 import { CreateTaskForm } from '../../sections/tasks';
 
-const { width } = Dimensions.get('screen');
-
 const CreateTaskScreen: FC = () => {
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>

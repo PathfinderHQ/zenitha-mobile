@@ -54,7 +54,7 @@ const Categories: FC<CategoriesProps> = ({ type, selected }) => {
                 <CategoryGrid categories={categories} />
             )}
 
-            {type === 'select' && <IconButton size={40} icon='plus' color='#252525' onPress={redirectToCreateTask} />}
+            {type === 'select' && <IconButton size={36} icon='plus' color='#252525' onPress={redirectToCreateTask} />}
         </View>
     );
 };
@@ -65,5 +65,7 @@ const styles = StyleSheet.create({
     carouselContainer: {
         flexDirection: 'row',
         paddingTop: '2%',
+        justifyContent: 'flex-start',
+        columnGap: -11,
     },
 });

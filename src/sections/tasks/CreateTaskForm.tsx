@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
     flex: {
         flex: 1,
         marginBottom: 2,
-        // borderWidth:1,
     },
     description: {
         marginBottom: 8,

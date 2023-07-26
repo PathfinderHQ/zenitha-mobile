@@ -1,6 +1,6 @@
 import { en, registerTranslation, TimePickerModal } from 'react-native-paper-dates';
 import React, { FC } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 
 registerTranslation('en', en);
@@ -15,8 +15,8 @@ type ITimePickerProps = {
 
 const TimePicker: FC<ITimePickerProps> = ({ visible, onDismiss, onConfirm, onOpen, text }) => {
     return (
-        <View style={{ width: '30%', marginTop: 10 }}>
-            <Button onPress={onOpen} uppercase={false} mode='outlined'>
+        <View style={styles.container}>
+            <Button onPress={onOpen} uppercase={false} mode='outlined' contentStyle={styles.content}>
                 {text}
             </Button>
             <TimePickerModal visible={visible} onDismiss={onDismiss} onConfirm={onConfirm} hours={12} minutes={14} />
@@ -25,3 +25,12 @@ const TimePicker: FC<ITimePickerProps> = ({ visible, onDismiss, onConfirm, onOpe
 };
 
 export default TimePicker;
+const styles = StyleSheet.create({
+    container: {
+        width: '30%',
+        marginTop: 10,
+    },
+    content: {
+        width: '100%',
+    },
+});
