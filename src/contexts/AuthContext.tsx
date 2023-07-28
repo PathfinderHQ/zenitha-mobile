@@ -15,7 +15,7 @@ import { AuthRoutes, navigationRef } from '../constants';
 import { IAuthSlice, RootStackParamList } from '../types';
 
 // state
-import { authSlice } from '../zustand';
+import { useAuthSlice } from '../zustand';
 
 // ----------------------------------------------------------------------
 const AuthContext = createContext<IAuthSlice | null>(null);
@@ -31,7 +31,7 @@ type NavigationProp = StackNavigationProp<RootStackParamList>;
 const AuthProvider: FC<Props> = ({ children }) => {
     const navigation = useNavigation<NavigationProp>();
 
-    const store = authSlice();
+    const store = useAuthSlice();
 
     const { auth, getCurrentUser } = store;
 

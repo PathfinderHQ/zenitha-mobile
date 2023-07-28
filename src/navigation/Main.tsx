@@ -1,9 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import * as Notifications from 'expo-notifications';
 import { useFonts } from 'expo-font';
 import { PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Subscription } from 'expo-modules-core';
 
 // types
 import { RootStackParamList } from '../types';
@@ -20,10 +22,24 @@ import { authScreens } from './AuthStack';
 // components
 import { Snackbar, Spinner } from '../components';
 import DrawerNavigator from './DrawerNavigator';
+import { registerForPushNotificationsAsync } from '../lib/notifications';
+import { getExpoToken, setExpoToken } from '../lib';
+import { useAuthSlice } from '../zustand';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: true,
+    }),
+});
+
 const Main: FC = () => {
+    const { addUserPushToken } = useAuthSlice();
+    const notificationListener = useRef<Subscription>({} as Subscription);
+
     const [loaded] = useFonts({
         Inter: Fonts.Inter,
         InterSemiBold: Fonts.InterSemiBold,
@@ -31,6 +47,40 @@ const Main: FC = () => {
         InterLight: Fonts.InterLight,
         InterMedium: Fonts.InterMedium,
     });
+
+    useEffect(() => {
+        // add notification listener
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        notificationListener.current = Notifications.addNotificationReceivedListener((_notification) => {});
+
+        return () => {
+            Notifications.removeNotificationSubscription(notificationListener.current);
+        };
+    }, []);
+
+    // register for push token
+    useEffect(() => {
+        const notificationSetup = async () => {
+            // check if push token exists in secure storage
+            const pushToken = await getExpoToken();
+
+            // only register if no push token in secure storage
+            if (!pushToken) {
+                const expoPushToken = await registerForPushNotificationsAsync();
+                if (expoPushToken) {
+                    // store in secure storage
+                    setExpoToken(expoPushToken);
+
+                    // send to backend
+                    addUserPushToken({ push_token: expoPushToken });
+                }
+            }
+        };
+
+        notificationSetup();
+
+        // eslint-disable-next-line
+    }, []);
 
     if (!loaded) return <Spinner size='large' />;
 

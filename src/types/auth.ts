@@ -103,4 +103,5 @@ export interface IAuthSlice {
     changePassword: (data: ChangePasswordPayload) => Promise<void>;
     updateProfile: (data: UpdateProfilePayload) => Promise<void>;
     resendVerifyOtp: () => Promise<void>;
+    addUserPushToken: ({ push_token }: { push_token: string }) => Promise<void>;
 }

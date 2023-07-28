@@ -11,7 +11,7 @@ import {
     User,
 } from '../types';
 
-export const authSlice = create<IAuthSlice>((set, get) => ({
+export const useAuthSlice = create<IAuthSlice>((set, get) => ({
     auth: {
         token: null,
         isInitialized: false,
@@ -334,7 +334,7 @@ export const authSlice = create<IAuthSlice>((set, get) => ({
     },
     resendVerifyOtp: async () => {
         get().resend.setLoading(true);
-        const { error, result } = await makeRequest('/user/resend_verify', RequestMethod.POST);
+        const { error, result } = await makeRequest('user/resend_verify', RequestMethod.POST);
 
         if (error) {
             set((state) => ({
@@ -359,5 +359,8 @@ export const authSlice = create<IAuthSlice>((set, get) => ({
                 loading: false,
             },
         }));
+    },
+    addUserPushToken: async () => {
+        await makeRequest('user-push-token', RequestMethod.POST);
     },
 }));

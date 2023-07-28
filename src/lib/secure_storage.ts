@@ -4,6 +4,7 @@ import * as SecureStore from 'expo-secure-store';
 import { headers } from '../constants';
 
 const KEY = 'accessToken';
+const EXPO_TOKEN_KEY = 'expoToken';
 
 // ----------------------------------------------------------------------
 interface JwtPayload {
@@ -48,4 +49,21 @@ const getSession = async (): Promise<string | null> => {
     }
 };
 
-export { isValidToken, setSession, getSession };
+const getExpoToken = async (): Promise<string | null> => {
+    try {
+        return SecureStore.getItemAsync(EXPO_TOKEN_KEY);
+    } catch (err) {
+        console.log('[GetExpoToken Error]', err);
+        return null;
+    }
+};
+
+const setExpoToken = async (expoToken: string): Promise<void> => {
+    try {
+        await SecureStore.setItemAsync(EXPO_TOKEN_KEY, expoToken);
+    } catch (err) {
+        console.log('[SetExpoToken Error]', err);
+    }
+};
+
+export { isValidToken, setSession, getSession, getExpoToken, setExpoToken };
