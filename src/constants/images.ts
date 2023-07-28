@@ -30,3 +30,7 @@ export const completeIcon: ImageData = {
 export const deleteIcon: ImageData = {
     link: require('../../assets/delete.png'),
 };
+
+export const sendIcon: ImageData = {
+    link: require('../../assets/send.png'),
+};

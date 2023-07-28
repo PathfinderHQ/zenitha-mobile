@@ -150,7 +150,7 @@ const EditTaskForm: FC<TaskFormProp> = ({ task }) => {
                 </View>
                 <View style={[styles.flex, styles.description]}>
                     <Text>Description</Text>
-                    <Input multiline numberOFLines={4} name='description' placeholder='Add task description here' />
+                    <Input multiline numberOfLines={4} name='description' placeholder='Add task description here' />
                 </View>
                 <Categories selected={selectedCategory} type='select' />
                 <Button loading={loading} title='Edit Task' onPress={handleSubmit(onSubmit)} />

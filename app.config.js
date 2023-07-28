@@ -3,8 +3,8 @@ import 'dotenv/config';
 export default {
     expo: {
         name: 'Zenitha',
-        slug: 'zenitha',
-        scheme: 'zenitha',
+        slug: 'zenitha-app',
+        scheme: 'zenitha-app',
         version: '1.0.0',
         orientation: 'portrait',
         icon: './assets/logo.png',
@@ -23,7 +23,8 @@ export default {
                 foregroundImage: './assets/adaptive-icon.png',
                 backgroundColor: '#ffffff',
             },
-            package: 'com.zenitha.com',
+            package: 'com.zen.app',
+            googleServicesFile: './google-services.json',
         },
         web: {
             favicon: './assets/favicon.png',

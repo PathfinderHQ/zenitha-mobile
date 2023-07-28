@@ -46,6 +46,7 @@ export interface ITaskSlice {
         loading: boolean;
         error: string | null;
         setLoading: (value: boolean) => void;
+        clearSuccess: () => void;
         clearError: () => void;
     };
     create: {
