@@ -1,5 +1,5 @@
 // react
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { DrawerActions } from '@react-navigation/native';
@@ -14,12 +14,23 @@ import { useAuth } from '../hooks';
 import { Routes } from '../constants';
 import { Navigation } from '../types';
 import { AutomatedTaskForm } from '../sections/tasks';
+import { useTasks } from '../zustand';
 
 const Dashboard: FC = () => {
     const navigation = useNavigation<Navigation>();
+
+    const { fetchTasks } = useTasks();
+
     const { auth } = useAuth();
 
     const { user } = auth;
+
+    useEffect(() => {
+        fetchTasks();
+
+        // eslint-disable-next-line
+    }, []);
+
     return (
         <View style={styles.container}>
             <View style={styles.menu}>
