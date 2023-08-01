@@ -39,16 +39,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         flex: 1,
+        position: 'relative',
     },
     profileContainer: {
-        flex: 5,
+        flex: 7,
     },
     text: {
         fontSize: 22,
         color: '#212529',
         fontFamily: 'Inter',
         fontWeight: '500',
-        paddingLeft: 50,
     },
     optionsContainer: {
         top: 323,

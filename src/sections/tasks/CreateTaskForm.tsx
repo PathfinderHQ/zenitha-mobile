@@ -121,7 +121,7 @@ const CreateTaskForm: FC = () => {
                 <View style={styles.flex}>
                     <Text>Time</Text>
                     <TimePicker
-                        text={time || 'Pick Time'}
+                        text={time || '12:00'}
                         visible={isTimePickerVisible}
                         onOpen={onOpen}
                         onDismiss={onDismiss}
@@ -144,7 +144,7 @@ export default CreateTaskForm;
 const styles = StyleSheet.create({
     flex: {
         flex: 1,
-        marginBottom: 2,
+        marginBottom: 5,
     },
     description: {
         marginBottom: 8,
