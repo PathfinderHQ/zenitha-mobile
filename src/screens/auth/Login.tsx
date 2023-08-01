@@ -16,20 +16,19 @@ export type LoginScreenProps = {
 const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>
-               <View style={styles.container}>
-            <LoginForm navigation={navigation} />
-            <HorizontalDivider />
-            <View style={styles.linkContainer}>         
-                <TouchableOpacity onPress={() => navigation.navigate(AuthRoutes.Forgot)} style={styles.link}>
-                    <Text style={styles.link_text}>Forgot Password?</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate(AuthRoutes.Register)} style={styles.link}>
-                    <Text style={styles.link_text}>Register</Text>
-                </TouchableOpacity>
+            <View style={styles.container}>
+                <LoginForm navigation={navigation} />
+                <HorizontalDivider />
+                <View style={styles.linkContainer}>
+                    <TouchableOpacity onPress={() => navigation.navigate(AuthRoutes.Forgot)} style={styles.link}>
+                        <Text style={styles.link_text}>Forgot Password?</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate(AuthRoutes.Register)} style={styles.link}>
+                        <Text style={styles.link_text}>Register</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
         </SafeAreaView>
-     
     );
 };
 
@@ -44,8 +43,8 @@ const styles = StyleSheet.create({
     linkContainer: {
         flexDirection: 'row',
         marginVertical: 20,
-        height:40,
-        alignContent:'space-between',
+        height: 40,
+        alignContent: 'space-between',
     },
     separator: {
         fontSize: 14,
@@ -55,11 +54,11 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         color: Colors.main_text,
         fontSize: 14,
-        alignSelf:'center',
+        alignSelf: 'center',
     },
-    link:{
-        flex:1,
-        width:width/2.2,       
+    link: {
+        flex: 1,
+        width: width / 2.2,
     },
     AndroidSafeArea: {
         flex: 1,

@@ -8,21 +8,20 @@ const CreateCategoryScreen: FC = () => {
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>
             <View style={styles.container}>
-             <View style={styles.header}>
-                <View style={styles.backButton}>
-                    <BackButton />
+                <View style={styles.header}>
+                    <View style={styles.backButton}>
+                        <BackButton />
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.text}>Create a Category</Text>
+                    </View>
                 </View>
-                <View style={styles.textContainer}>
-                    <Text style={styles.text}>Create a Category</Text>        
-                </View>
-            </View>
-            <View style={styles.profileContainer}>
-                <CreateCategoryForm />
+                <View style={styles.profileContainer}>
+                    <CreateCategoryForm />
                     <Text>All Categories</Text>
-                <Categories type='view' />
+                    <Categories type='view' />
+                </View>
             </View>
-            </View>
-           
         </SafeAreaView>
     );
 };
@@ -39,14 +38,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
         position: 'relative',
-
     },
     profileContainer: {
         flex: 6,
     },
-    categoryCotainer:{
-        flex:2,
-        borderWidth:2,
+    categoryCotainer: {
+        flex: 2,
+        borderWidth: 2,
     },
     text: {
         fontSize: 22,

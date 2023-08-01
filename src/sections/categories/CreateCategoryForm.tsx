@@ -1,6 +1,6 @@
 // react
 import React, { FC, useEffect } from 'react';
-import {Text} from 'react-native';
+import { Text } from 'react-native';
 
 // form
 import * as Yup from 'yup';

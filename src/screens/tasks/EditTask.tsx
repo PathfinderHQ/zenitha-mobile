@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { View, StyleSheet, Text, SafeAreaView, Platform, StatusBar  } from 'react-native';
+import { View, StyleSheet, Text, SafeAreaView, Platform, StatusBar } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { BackButton } from '../../components';
 import { EditTaskForm } from '../../sections/tasks';
@@ -14,12 +14,11 @@ const EditTaskScreen: FC = () => {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <View style={styles.backButton}>
-                         <BackButton />
+                        <BackButton />
                     </View>
-                   <View style={styles.textContainer}>
+                    <View style={styles.textContainer}>
                         <Text style={styles.text}>Edit Task</Text>
-                   </View>
-
+                    </View>
                 </View>
                 <View style={styles.profileContainer}>
                     <EditTaskForm task={params.task} />

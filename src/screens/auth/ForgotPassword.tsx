@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     small_text: {
-        width: width/1.1,
+        width: width / 1.1,
         fontSize: 16,
-        marginVertical:20,
+        marginVertical: 20,
     },
 });
