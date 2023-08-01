@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
         position: 'relative',
         width: width / 3.7,
         height: height / 16,
-        margin: 1,
+        marginHorizontal:1,
+        marginVertical:5,
     },
 });
 

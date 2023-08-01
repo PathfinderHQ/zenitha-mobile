@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { View, StyleSheet, Text, Dimensions, SafeAreaView, Platform, StatusBar } from 'react-native';
+import { View, StyleSheet, Text, SafeAreaView, Platform, StatusBar } from 'react-native';
 import { BackButton } from '../../components';
 import { CreateTaskForm } from '../../sections/tasks';
 

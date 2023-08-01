@@ -1,5 +1,6 @@
 // react
 import React, { FC, useEffect } from 'react';
+import {Text} from 'react-native';
 
 // form
 import * as Yup from 'yup';
@@ -52,6 +53,7 @@ const CreateCategoryForm: FC = () => {
 
     return (
         <FormProvider methods={methods}>
+            <Text>Category Name</Text>
             <Input name='name' placeholder='Personal' />
             <Button loading={loading} title='Save' onPress={handleSubmit(onSubmit)} />
         </FormProvider>
