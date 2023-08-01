@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { View, Text, StyleSheet, Platform, SafeAreaView, StatusBar } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { HorizontalDivider } from '../../components';
 import { RootStackParamList } from '../../types';
 import { RegisterForm } from '../../sections/auth';
 import { AuthRoutes, Colors } from '../../constants';
