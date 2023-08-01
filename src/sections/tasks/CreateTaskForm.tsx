@@ -130,7 +130,7 @@ const CreateTaskForm: FC = () => {
                 </View>
                 <View style={[styles.flex, styles.description]}>
                     <Text>Description</Text>
-                    <Input multiline numberOFLines={4} name='description' placeholder='Add task description here' />
+                    <Input multiline numberOfLines={4} name='description' placeholder='Add task description here' />
                 </View>
                 <Categories type='select' />
                 <Button loading={loading} title='Create Task' onPress={handleSubmit(onSubmit)} />

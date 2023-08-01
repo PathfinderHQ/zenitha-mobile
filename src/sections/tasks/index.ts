@@ -1,7 +1,6 @@
-import CreateTaskForm from './CreateTaskForm';
-import EditTaskForm from './EditTaskForm';
-import TaskFilter from './TaskFilter';
-import CurrentTask from './CurrentTask';
-import Tasks from './Tasks';
-
-export { TaskFilter, CreateTaskForm, CurrentTask, Tasks, EditTaskForm };
+export { default as Tasks } from './Tasks';
+export { default as TaskFilter } from './TaskFilter';
+export { default as CreateTaskForm } from './CreateTaskForm';
+export { default as CurrentTask } from './CurrentTask';
+export { default as EditTaskForm } from './EditTaskForm';
+export { default as AutomatedTaskForm } from './AutomatedTaskForm';

@@ -10,7 +10,7 @@ import {
     StyleProp,
     ViewStyle,
 } from 'react-native';
-import { Colors, google } from '../constants';
+import { Colors } from '../constants';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -21,9 +21,10 @@ interface IButtonProps {
     icon?: ImageURISource;
     customStyles?: StyleProp<ViewStyle>;
     disabled?: boolean;
+    [key: string]: any;
 }
 
-const Button: FC<IButtonProps> = ({ title, onPress, loading, icon, customStyles, disabled }) => {
+const Button: FC<IButtonProps> = ({ title, onPress, loading, icon, customStyles, disabled, ...other }) => {
     const containerStyle = [
         styles.container,
         icon ? styles.iconContainer : styles.textContainer,
@@ -34,9 +35,15 @@ const Button: FC<IButtonProps> = ({ title, onPress, loading, icon, customStyles,
     const textStyle = icon ? styles.icon : styles.text;
 
     return (
-        <TouchableOpacity disabled={disabled} onPress={onPress} style={containerStyle}>
-            {icon && <Image source={google.link} style={styles.image} />}
-            {loading ? <ActivityIndicator color='#ffffff' /> : <Text style={textStyle}>{title}</Text>}
+        <TouchableOpacity disabled={disabled} onPress={onPress} style={containerStyle} {...other}>
+            {loading ? (
+                <ActivityIndicator color='#ffffff' />
+            ) : (
+                <>
+                    <Text style={textStyle}>{title}</Text>
+                    {icon && <Image source={icon} style={styles.image} />}
+                </>
+            )}
         </TouchableOpacity>
     );
 };
@@ -67,13 +74,13 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     icon: {
-        color: Colors.main_text,
+        color: Colors.button_text,
         fontSize: 16,
     },
     image: {
-        height: 25,
-        width: 25,
-        marginRight: 10,
+        height: 20,
+        width: 20,
+        marginLeft: 10,
     },
     disabled: {
         backgroundColor: Colors.disabled,

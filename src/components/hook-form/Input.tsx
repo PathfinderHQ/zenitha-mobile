@@ -11,10 +11,11 @@ interface Props {
     placeholder: string;
     secureTextEntry?: boolean;
     multiline?: boolean;
-    numberOFLines?: number;
+    numberOfLines?: number;
+    [key: string]: any;
 }
 
-const Input: FC<Props> = ({ placeholder, secureTextEntry, name, multiline, numberOFLines }) => {
+const Input: FC<Props> = ({ placeholder, secureTextEntry, name, multiline, numberOfLines, ...other }) => {
     const { control } = useFormContext();
     const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -31,7 +32,7 @@ const Input: FC<Props> = ({ placeholder, secureTextEntry, name, multiline, numbe
                     <View style={[styles.inputContainer, error ? styles.inputError : {}]}>
                         <TextInput
                             multiline={multiline}
-                            numberOfLines={numberOFLines}
+                            numberOfLines={numberOfLines}
                             onBlur={onBlur}
                             style={styles.input}
                             placeholder={placeholder}
@@ -39,6 +40,16 @@ const Input: FC<Props> = ({ placeholder, secureTextEntry, name, multiline, numbe
                             onChangeText={(text) => onChange(text)}
                             value={value}
                             right={secureTextEntry && <TextInput.Icon onPress={toggleShowPassword} icon={icon} />}
+                            {...other}
+                            selectionColor='#000'
+                            theme={{
+                                colors: {
+                                    primary: 'transparent',
+                                    background: '#003489',
+                                    text: '#000',
+                                },
+                            }}
+                            placeholderTextColor='#000'
                         />
                     </View>
                     {!!error && (

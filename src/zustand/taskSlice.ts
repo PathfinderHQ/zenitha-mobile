@@ -39,6 +39,7 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
         error: null,
         setLoading: (value: boolean) =>
             set((state) => ({ ...state, automated: { ...state.automated, loading: value } })),
+        clearSuccess: () => set((state) => ({ ...state, automated: { ...state.automated, success: false } })),
         clearError: () => set((state) => ({ ...state, automated: { ...state.automated, error: null } })),
     },
     create: {
@@ -121,10 +122,13 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             tasks: [...result.data, ...state.tasks],
             automated: {
                 ...state.automated,
-                loading: false,
                 success: true,
+                loading: false,
             },
         }));
+
+        // sort tasks
+        get().sortTasks();
     },
     updateTask: async (id: string, data: TaskPayload) => {
         get().update.setLoading(true);
@@ -216,21 +220,27 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
 
         set((state) => ({
             ...state,
-            todayTasks: get().tasks.filter((task: Task) => {
-                const { date } = extractDateTime(task.time);
+            todayTasks: get()
+                .tasks.filter((task: Task) => {
+                    const { date } = extractDateTime(task.time);
 
-                return dayjs().isSame(dayjs(date), 'day');
-            }),
-            pastTasks: get().tasks.filter((task: Task) => {
-                const { date } = extractDateTime(task.time);
+                    return dayjs().isSame(dayjs(date), 'day');
+                })
+                .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()),
+            pastTasks: get()
+                .tasks.filter((task: Task) => {
+                    const { date } = extractDateTime(task.time);
 
-                return dayjs().isAfter(dayjs(date), 'day');
-            }),
-            upcomingTasks: get().tasks.filter((task: Task) => {
-                const { date } = extractDateTime(task.time);
+                    return dayjs().isAfter(dayjs(date), 'day');
+                })
+                .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()),
+            upcomingTasks: get()
+                .tasks.filter((task: Task) => {
+                    const { date } = extractDateTime(task.time);
 
-                return dayjs().isBefore(dayjs(date), 'day');
-            }),
+                    return dayjs().isBefore(dayjs(date), 'day');
+                })
+                .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()),
             fetch: {
                 ...state.fetch,
                 loading: false,
