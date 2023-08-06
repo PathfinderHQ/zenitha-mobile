@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     },
     backButton: {
         zIndex: 200,
+        marginLeft: '-4%',
     },
     optionsContainer: {
         top: 323,

@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     },
     backButton: {
         zIndex: 200,
+        marginLeft: '-4%',
     },
     AndroidSafeArea: {
         flex: 1,

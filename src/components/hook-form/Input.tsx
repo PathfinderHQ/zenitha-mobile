@@ -49,7 +49,7 @@ const Input: FC<Props> = ({ placeholder, secureTextEntry, name, multiline, numbe
                                     text: '#000',
                                 },
                             }}
-                            placeholderTextColor='#000'
+                            placeholderTextColor='#ADB5BD'
                         />
                     </View>
                     {!!error && (

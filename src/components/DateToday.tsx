@@ -18,9 +18,11 @@ const DateToday: FC = () => {
 
 const styles = StyleSheet.create({
     date: {
-        marginTop: '10%',
+        marginTop: '5%',
         color: Colors.main_text,
         fontSize: 24,
+        fontWeight: 'bold',
+        marginLeft: '-1%',
     },
 });
 
