@@ -6,7 +6,6 @@ import { alarm, Colors, FontSize } from '../constants';
 import { Task } from '../types';
 import BackButton from './BackButton';
 
-
 const { height, width } = Dimensions.get('screen');
 
 interface TaskDetailCardProps {
@@ -20,7 +19,7 @@ const TaskDetailCard: FC<TaskDetailCardProps> = ({ task, alarmIcon, customStyles
 
     return (
         <TouchableOpacity style={[styles.container, customStyles]}>
-            <BackButton/>
+            <BackButton />
             <View style={styles.headerContainer}>
                 <Text style={styles.titleText}>{title}</Text>
                 <Text style={styles.titleText}>{dayjs(task.time).format('ddd, D MMM, YYYY')}</Text>
