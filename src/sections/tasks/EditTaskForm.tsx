@@ -1,7 +1,7 @@
 // react
 import React, { FC, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ScrollView } from 'react-native';
 
 // form
 import * as Yup from 'yup';
@@ -129,32 +129,34 @@ const EditTaskForm: FC<TaskFormProp> = ({ task }) => {
 
     return (
         <FormProvider methods={methods}>
-            <View style={styles.flex}>
+            <ScrollView style={styles.flex}>
                 <View style={styles.flex}>
-                    <Text>Title</Text>
-                    <Input name='title' placeholder='eat out..' />
+                    <View style={styles.flex}>
+                        <Text>Title</Text>
+                        <Input name='title' placeholder='eat out..' />
+                    </View>
+                    <View style={styles.flex}>
+                        <Text>Date</Text>
+                        <InputDatePicker name='date' />
+                    </View>
+                    <View style={styles.flex}>
+                        <Text>Time</Text>
+                        <TimePicker
+                            text={time || 'Pick Time'}
+                            visible={isTimePickerVisible}
+                            onOpen={onOpen}
+                            onDismiss={onDismiss}
+                            onConfirm={onConfirm}
+                        />
+                    </View>
+                    <View style={[styles.flex, styles.description]}>
+                        <Text>Description</Text>
+                        <Input multiline numberOFLines={4} name='description' placeholder='Add task description here' />
+                    </View>
+                    <Categories selected={selectedCategory} type='select' />
+                    <Button loading={loading} title='Edit Task' onPress={handleSubmit(onSubmit)} />
                 </View>
-                <View style={styles.flex}>
-                    <Text>Date</Text>
-                    <InputDatePicker name='date' />
-                </View>
-                <View style={styles.flex}>
-                    <Text>Time</Text>
-                    <TimePicker
-                        text={time || 'Pick Time'}
-                        visible={isTimePickerVisible}
-                        onOpen={onOpen}
-                        onDismiss={onDismiss}
-                        onConfirm={onConfirm}
-                    />
-                </View>
-                <View style={[styles.flex, styles.description]}>
-                    <Text>Description</Text>
-                    <Input multiline numberOfLines={4} name='description' placeholder='Add task description here' />
-                </View>
-                <Categories selected={selectedCategory} type='select' />
-                <Button loading={loading} title='Edit Task' onPress={handleSubmit(onSubmit)} />
-            </View>
+            </ScrollView>
         </FormProvider>
     );
 };
@@ -164,10 +166,7 @@ export default EditTaskForm;
 const styles = StyleSheet.create({
     flex: {
         flex: 1,
-        marginBottom: 2,
-    },
-    timeContainer: {
-        flexDirection: 'row',
+        marginBottom: 5,
     },
     description: {
         marginBottom: 8,

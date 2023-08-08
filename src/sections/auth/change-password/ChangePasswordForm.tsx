@@ -1,5 +1,4 @@
 import React, { FC, useEffect } from 'react';
-import { StyleSheet, Text } from 'react-native';
 
 // form
 import * as Yup from 'yup';
@@ -66,8 +65,6 @@ const ChangePasswordForm: FC = () => {
 
     return (
         <FormProvider methods={methods}>
-            <Text style={styles.title}>Change Password</Text>
-
             <Input name='password' placeholder='Current Password' secureTextEntry />
             <Input name='new_password' placeholder='New Password' secureTextEntry />
             <Input name='confirm_password' placeholder='Confirm Password' secureTextEntry />
@@ -77,10 +74,3 @@ const ChangePasswordForm: FC = () => {
 };
 
 export default ChangePasswordForm;
-
-const styles = StyleSheet.create({
-    title: {
-        fontSize: 32,
-        marginBottom: 10,
-    },
-});

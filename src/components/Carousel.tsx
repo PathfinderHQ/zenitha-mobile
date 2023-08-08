@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('screen');
 
 interface ICarouselProps {
     children: React.ReactNode | React.ReactElement;
@@ -19,7 +21,7 @@ export default Carousel;
 
 const styles = StyleSheet.create({
     container: {
-        padding: 3,
-        width: 320,
+        padding: 1,
+        width: width / 1.25,
     },
 });

@@ -12,6 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import dayjs from 'dayjs';
 
 // components
+import { ScrollView } from 'react-native-gesture-handler';
 import { Button, FormProvider, Input, InputDatePicker, TimePicker } from '../../components';
 import { Categories } from '../categories';
 
@@ -108,7 +109,7 @@ const CreateTaskForm: FC = () => {
 
     return (
         <FormProvider methods={methods}>
-            <View style={styles.flex}>
+            <ScrollView style={styles.flex}>
                 <View style={styles.flex}>
                     <Text>Title</Text>
                     <Input name='title' placeholder='eat out..' />
@@ -120,7 +121,7 @@ const CreateTaskForm: FC = () => {
                 <View style={styles.flex}>
                     <Text>Time</Text>
                     <TimePicker
-                        text={time || 'Pick Time'}
+                        text={time || '12:00'}
                         visible={isTimePickerVisible}
                         onOpen={onOpen}
                         onDismiss={onDismiss}
@@ -133,7 +134,7 @@ const CreateTaskForm: FC = () => {
                 </View>
                 <Categories type='select' />
                 <Button loading={loading} title='Create Task' onPress={handleSubmit(onSubmit)} />
-            </View>
+            </ScrollView>
         </FormProvider>
     );
 };
@@ -143,10 +144,7 @@ export default CreateTaskForm;
 const styles = StyleSheet.create({
     flex: {
         flex: 1,
-        marginBottom: 2,
-    },
-    timeContainer: {
-        flexDirection: 'row',
+        marginBottom: 5,
     },
     description: {
         marginBottom: 8,

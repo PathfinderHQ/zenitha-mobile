@@ -44,10 +44,11 @@ export default TaskFilter;
 
 const styles = StyleSheet.create({
     date: {
-        flex: 2,
+        flex: 1,
         flexShrink: 1,
         alignSelf: 'flex-start',
-        marginLeft: '3%',
+        marginLeft: '1%',
+        marginRight: '1%',
     },
     calenderIconContainer: {
         flex: 1,
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     },
     searchIconContainer: {
         flex: 1,
-        marginLeft: '7%',
+        marginLeft: '2%',
         marginTop: 4,
     },
     calendarIcon: {

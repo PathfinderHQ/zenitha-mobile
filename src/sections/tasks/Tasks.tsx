@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     searchIconContainer: {
-        // marginBottom: 2,
         position: 'absolute',
         right: 0,
         marginBottom: 5,

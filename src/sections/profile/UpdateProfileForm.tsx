@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 import { useForm, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { StyleSheet, Text } from 'react-native';
 
 // components
 import { Button, FormProvider, Input } from '../../components';
@@ -64,7 +63,6 @@ const UpdateProfileForm: FC = () => {
 
     return (
         <FormProvider methods={methods}>
-            <Text style={styles.title}>Update Profile</Text>
             <Input name='first_name' placeholder='First Name' />
             <Input name='last_name' placeholder='Last Name' />
             <Button loading={loading} title='Save' disabled={disabled} onPress={handleSubmit(onSubmit)} />
@@ -73,10 +71,3 @@ const UpdateProfileForm: FC = () => {
 };
 
 export default UpdateProfileForm;
-
-const styles = StyleSheet.create({
-    title: {
-        fontSize: 32,
-        marginBottom: 10,
-    },
-});

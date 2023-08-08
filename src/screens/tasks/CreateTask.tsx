@@ -1,19 +1,25 @@
 import { FC } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, SafeAreaView, Platform, StatusBar } from 'react-native';
 import { BackButton } from '../../components';
 import { CreateTaskForm } from '../../sections/tasks';
 
 const CreateTaskScreen: FC = () => {
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <BackButton />
-                <Text style={styles.text}>Create Task</Text>
+        <SafeAreaView style={styles.AndroidSafeArea}>
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <View style={styles.backButton}>
+                        <BackButton />
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.text}>Create Task</Text>
+                    </View>
+                </View>
+                <View style={styles.profileContainer}>
+                    <CreateTaskForm />
+                </View>
             </View>
-            <View style={styles.profileContainer}>
-                <CreateTaskForm />
-            </View>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -22,28 +28,36 @@ export default CreateTaskScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
-        padding: 20,
+        paddingHorizontal: '5%',
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         flex: 1,
+        position: 'relative',
     },
     profileContainer: {
-        flex: 5,
+        flex: 7,
     },
     text: {
         fontSize: 22,
         color: '#212529',
         fontFamily: 'Inter',
         fontWeight: '500',
-        paddingLeft: 50,
     },
-    optionsContainer: {
-        top: 323,
-        left: 20,
-        width: 205,
+    textContainer: {
         position: 'absolute',
+        left: 0,
+        right: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    backButton: {
+        zIndex: 200,
+        marginLeft: '-4%',
+    },
+    AndroidSafeArea: {
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
 });
