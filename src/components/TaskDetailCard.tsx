@@ -4,6 +4,7 @@ import { Dimensions, StyleSheet, Text, ImageURISource, Image, StyleProp, ViewSty
 import dayjs from 'dayjs';
 import { alarm, Colors, FontSize } from '../constants';
 import { Task } from '../types';
+import BackButton from './BackButton';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -51,9 +52,9 @@ const styles = StyleSheet.create({
         width,
         height: height / 1.2,
         alignSelf: 'center',
-        padding: 20,
+        padding: 10,
         borderRadius: 8,
-        backgroundColor: '#52b788',
+        backgroundColor: '#252525',
     },
     headerContainer: {
         flex: 1,
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
         flex: 2,
         left: '5%',
         top: '5%',
+        paddingRight: 8,
     },
     catContainer: {
         flex: 1,
@@ -84,6 +86,7 @@ const styles = StyleSheet.create({
         fontSize: FontSize.heading2Size,
         color: Colors.white100,
         marginTop: '5%',
+        fontWeight: 'bold',
     },
     timeText: {
         fontSize: 28,
@@ -107,7 +110,7 @@ const styles = StyleSheet.create({
         marginLeft: '20%',
     },
     greyText: {
-        color: Colors.unselectFieldStroke,
+        color: Colors.placeholder,
         fontSize: 24,
         marginBottom: '3%',
     },
