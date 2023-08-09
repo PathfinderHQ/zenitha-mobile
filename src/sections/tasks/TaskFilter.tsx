@@ -18,12 +18,7 @@ const TaskFilter = () => {
         <>
             <View style={styles.calendarIcon}>
                 <View style={styles.searchIconContainer}>
-                    <Feather
-                        name='search'
-                        size={24}
-                        color='black'
-                        onPress={() => navigation.navigate(Routes.Search)}
-                    />
+                    <Feather name='search' size={24} color='black' onPress={() => navigation.navigate(Routes.Search)} />
                 </View>
                 <View style={styles.calenderIconContainer}>
                     <MaterialCommunityIcons name='calendar-month-outline' size={30} color='black' onPress={toggle} />
