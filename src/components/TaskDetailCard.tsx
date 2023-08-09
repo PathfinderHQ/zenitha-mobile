@@ -19,6 +19,7 @@ const TaskDetailCard: FC<TaskDetailCardProps> = ({ task, alarmIcon, customStyles
 
     return (
         <TouchableOpacity style={[styles.container, customStyles]}>
+            <BackButton />
             <View style={styles.headerContainer}>
                 <Text style={styles.titleText}>{title}</Text>
                 <Text style={styles.titleText}>{dayjs(task.time).format('ddd, D MMM, YYYY')}</Text>
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         padding: 10,
         borderRadius: 8,
-        backgroundColor: '#252525',
+        backgroundColor: '#E9ECEF',
     },
     headerContainer: {
         flex: 1,
@@ -84,21 +85,21 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: FontSize.heading2Size,
-        color: Colors.white100,
+        color: Colors.main_text,
         marginTop: '5%',
         fontWeight: 'bold',
     },
     timeText: {
         fontSize: 28,
-        color: Colors.white100,
+        color: Colors.main_text,
     },
     descriptionText: {
         fontSize: 22,
-        color: Colors.white100,
+        color: Colors.main_text,
     },
     catText: {
         fontSize: 18,
-        color: Colors.white100,
+        color: Colors.main_text,
     },
     icon: {
         color: Colors.main_text,
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
         marginLeft: '20%',
     },
     greyText: {
-        color: Colors.placeholder,
+        color: Colors.unselectFieldStroke,
         fontSize: 24,
         marginBottom: '3%',
     },
