@@ -22,7 +22,7 @@ const TaskFilter = () => {
                         name='search'
                         size={24}
                         color='black'
-                        onPress={() => navigation.navigate(Routes.CompletedTasks)}
+                        onPress={() => navigation.navigate(Routes.Search)}
                     />
                 </View>
                 <View style={styles.calenderIconContainer}>

@@ -8,7 +8,7 @@ import { DrawerActions } from '@react-navigation/native';
 import { IconButton, FloatingButton } from '../components';
 
 // hooks
-import { useAuth } from '../hooks';
+import { useAuth, useExpoPushToken } from '../hooks';
 
 // constants
 import { Routes } from '../constants';
@@ -17,6 +17,9 @@ import { AutomatedTaskForm } from '../sections/tasks';
 import { useTasks } from '../zustand';
 
 const Dashboard: FC = () => {
+    // fetch expo push token
+    useExpoPushToken();
+
     const navigation = useNavigation<Navigation>();
 
     const { fetchTasks } = useTasks();

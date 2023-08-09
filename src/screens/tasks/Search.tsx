@@ -1,41 +1,17 @@
-import React, { FC, useEffect, useState } from 'react';
-import { View, StyleSheet, SafeAreaView, Platform, StatusBar } from 'react-native';
+import React, { FC } from 'react';
+import { Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import { SearchBox } from '../../components';
 import { Tasks } from '../../sections/tasks';
 import { useTasks } from '../../zustand';
 
 const SearchTaskScreen: FC = () => {
-    const [query, setQuery] = useState<string>('');
-
-    const { filtered, clearFilter, filterTasks, tasks, fetchTasks } = useTasks();
-
-    useEffect(() => {
-        if (tasks.length === 0) {
-            fetchTasks();
-        }
-
-        // eslint-disable-next-line
-    }, []);
-
-    useEffect(() => {
-        if (filtered.length === 0) {
-            setQuery('');
-        }
-    }, [filtered]);
-
-    const onSearch = (value: string) => {
-        if (query !== '') {
-            filterTasks(value);
-        } else {
-            clearFilter();
-        }
-    };
+    const { filtered } = useTasks();
 
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>
             <View style={styles.container}>
                 <View style={styles.searchContainer}>
-                    <SearchBox onSearch={onSearch} query={query} />
+                    <SearchBox />
                 </View>
 
                 <Tasks

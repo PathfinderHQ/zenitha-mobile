@@ -1,12 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, Text, SafeAreaView, Platform, StatusBar } from 'react-native';
-import { useAuth } from '../../hooks';
-import { Avatar, BackButton } from '../../components';
+import { Platform, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { BackButton } from '../../components';
 import { ChangePasswordForm } from '../../sections/auth';
 
 const ChangePassword = () => {
-    const { auth } = useAuth();
-
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>
             <View style={styles.container}>
@@ -15,12 +12,10 @@ const ChangePassword = () => {
                         <BackButton />
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.text}>Update Profile</Text>
+                        <Text style={styles.text}>Change Password</Text>
                     </View>
                 </View>
                 <View style={styles.profileContainer}>
-                    <Avatar user={auth.user} size={100} />
-
                     <ChangePasswordForm />
                 </View>
             </View>

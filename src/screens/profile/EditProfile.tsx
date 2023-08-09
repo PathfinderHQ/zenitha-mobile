@@ -1,13 +1,10 @@
 import { FC } from 'react';
-import { View, StyleSheet, Text, SafeAreaView, Platform, StatusBar } from 'react-native';
-import { Avatar, BackButton } from '../../components';
+import { Platform, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { BackButton } from '../../components';
 
 import { UpdateProfileForm } from '../../sections/profile';
-import { useAuth } from '../../hooks';
 
 const EditProfileScreen: FC = () => {
-    const { auth } = useAuth();
-
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>
             <View style={styles.container}>
@@ -20,8 +17,6 @@ const EditProfileScreen: FC = () => {
                     </View>
                 </View>
                 <View style={styles.profileContainer}>
-                    <Avatar user={auth.user} size={100} />
-
                     <UpdateProfileForm />
                 </View>
             </View>
