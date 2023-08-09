@@ -26,10 +26,6 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
 
                 return task.title.match(regex) || task.description?.match(regex);
             }),
-            fetch: {
-                ...state.fetch,
-                loading: false,
-            },
         }));
     },
     clearFilter: () => set((state) => ({ ...state, filtered: [] })),

@@ -1,41 +1,41 @@
 {
     "project_info": {
-        "project_number": "98746928037",
-        "project_id": "zenitha-9ccdc",
-        "storage_bucket": "zenitha-9ccdc.appspot.com"
+        "project_number": "848575255457",
+        "project_id": "zenitha-mobile",
+        "storage_bucket": "zenitha-mobile.appspot.com"
     },
     "client": [
         {
             "client_info": {
-                "mobilesdk_app_id": "1:98746928037:android:b7b61fe46c05f9f378b64c",
+                "mobilesdk_app_id": "1:848575255457:android:4ecd9e4e1047457445b1e0",
                 "android_client_info": {
-                    "package_name": "com.zen.app"
+                    "package_name": "com.zenitha.pathfinder"
                 }
             },
             "oauth_client": [
                 {
-                    "client_id": "98746928037-c7ghlr2jt9q2ir61r09o6lpcs5l3qo4o.apps.googleusercontent.com",
+                    "client_id": "848575255457-on021ermgeq2i2pcc8ftj6kd8f06cqo5.apps.googleusercontent.com",
                     "client_type": 1,
                     "android_info": {
-                        "package_name": "com.zen.app",
-                        "certificate_hash": "44dc4a5e5e2e7b78b299ac8f02ca9992aa2e7f40"
+                        "package_name": "com.zenitha.pathfinder",
+                        "certificate_hash": "208bd724bd5c8f0dbdac928c5b22d6ddbc94237f"
                     }
                 },
                 {
-                    "client_id": "98746928037-v3q4prcgc2csq4vj1tcs0lov15pu4dn5.apps.googleusercontent.com",
+                    "client_id": "848575255457-5qcjr4atg646585eathsd4ivjsfdm27l.apps.googleusercontent.com",
                     "client_type": 3
                 }
             ],
             "api_key": [
                 {
-                    "current_key": "AIzaSyDytfO_RbAHrZJsaNL5l0xnJ7WUgdQl0yo"
+                    "current_key": "AIzaSyC3y2dpARwm-6fEFne8Vz6i4kqGDSrNar0"
                 }
             ],
             "services": {
                 "appinvite_service": {
                     "other_platform_oauth_client": [
                         {
-                            "client_id": "98746928037-pp0rvgpdp8g48tk5027g0vispaml1vb1.apps.googleusercontent.com",
+                            "client_id": "848575255457-5qcjr4atg646585eathsd4ivjsfdm27l.apps.googleusercontent.com",
                             "client_type": 3
                         }
                     ]

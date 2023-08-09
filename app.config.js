@@ -2,9 +2,10 @@ import 'dotenv/config';
 
 export default {
     expo: {
-        name: 'Zenitha',
-        slug: 'zenitha-app',
-        scheme: 'zenitha-app',
+        name: 'zenitha-mobile',
+        owner: 'pathfinder_zenitha',
+        slug: 'zenitha-mobile',
+        scheme: 'zenitha-mobile',
         version: '1.0.0',
         orientation: 'portrait',
         icon: './assets/logo.png',
@@ -23,7 +24,7 @@ export default {
                 foregroundImage: './assets/adaptive-icon.png',
                 backgroundColor: '#ffffff',
             },
-            package: 'com.zen.app',
+            package: 'com.zenitha.pathfinder',
             googleServicesFile: './google-services.json',
         },
         web: {
@@ -41,8 +42,6 @@ export default {
             eas: {
                 projectId: process.env.EAS_PROJECT_ID,
             },
-            androidClientId: process.env.ANDROID_CLIENT_ID,
-            expoClientId: process.env.EXPO_CLIENT_ID,
         },
         plugins: [
             [
