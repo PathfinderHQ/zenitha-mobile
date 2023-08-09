@@ -8,6 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Subscription } from 'expo-modules-core';
 
 // types
+import * as SecureStore from 'expo-secure-store';
 import { RootStackParamList } from '../types';
 
 // context
@@ -22,7 +23,7 @@ import { authScreens } from './AuthStack';
 // components
 import { Snackbar, Spinner } from '../components';
 import DrawerNavigator from './DrawerNavigator';
-import { registerForPushNotificationsAsync } from '../lib/notifications';
+import { registerForPushNotificationsAsync, sendPushNotification } from '../lib/notifications';
 import { getExpoToken, setExpoToken } from '../lib';
 import { useAuthSlice } from '../zustand';
 
@@ -39,6 +40,7 @@ Notifications.setNotificationHandler({
 const Main: FC = () => {
     const { addUserPushToken } = useAuthSlice();
     const notificationListener = useRef<Subscription>({} as Subscription);
+    const responseListener = useRef<Subscription>({} as Subscription);
 
     const [loaded] = useFonts({
         Inter: Fonts.Inter,
@@ -52,9 +54,13 @@ const Main: FC = () => {
         // add notification listener
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         notificationListener.current = Notifications.addNotificationReceivedListener((_notification) => {});
+        responseListener.current = Notifications.addNotificationResponseReceivedListener((response) => {
+            console.log(response);
+        });
 
         return () => {
             Notifications.removeNotificationSubscription(notificationListener.current);
+            Notifications.removeNotificationSubscription(responseListener.current);
         };
     }, []);
 
@@ -62,12 +68,14 @@ const Main: FC = () => {
     useEffect(() => {
         const notificationSetup = async () => {
             // check if push token exists in secure storage
+            await SecureStore.deleteItemAsync('expoToken');
             const pushToken = await getExpoToken();
-
             // only register if no push token in secure storage
             if (!pushToken) {
                 const expoPushToken = await registerForPushNotificationsAsync();
+
                 if (expoPushToken) {
+                    await sendPushNotification(expoPushToken);
                     // store in secure storage
                     setExpoToken(expoPushToken);
 
