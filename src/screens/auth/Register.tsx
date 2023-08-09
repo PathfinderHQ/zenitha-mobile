@@ -21,8 +21,6 @@ const SignUpScreen: FC<RegisterScreenProps> = ({ navigation }) => {
                     <Text style={{ textDecorationLine: 'underline' }}>Login</Text>
                 </TouchableOpacity>
             </View>
-            <HorizontalDivider />
-            <GoogleAuth navigation={navigation} />
         </View>
     );
 };

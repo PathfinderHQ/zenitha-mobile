@@ -25,8 +25,6 @@ const LoginScreen: FC<LoginScreenProps> = ({ navigation }) => {
                     <Text style={styles.link_text}>Register</Text>
                 </TouchableOpacity>
             </View>
-            <HorizontalDivider />
-            <GoogleAuth navigation={navigation} />
         </View>
     );
 };
