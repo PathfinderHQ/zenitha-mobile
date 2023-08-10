@@ -36,3 +36,21 @@ export async function registerForPushNotificationsAsync() {
 
     return token;
 }
+
+interface SchedulePushNotificationData {
+    summary: string;
+    time: string;
+}
+export async function schedulePushNotification({ summary, time }: SchedulePushNotificationData) {
+    const [date, _time] = time.split(' ');
+
+    const trigger = new Date(`${date}T${_time}`);
+
+    await Notifications.scheduleNotificationAsync({
+        content: {
+            title: 'Zenitha 📬',
+            body: summary,
+        },
+        trigger,
+    });
+}
