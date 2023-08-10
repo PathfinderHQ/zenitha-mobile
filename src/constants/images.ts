@@ -9,6 +9,9 @@ export const google: ImageData = {
     link: require('../../assets/google.png'),
 };
 
+export const logo_x4: ImageData = {
+    link: require('../../assets/logo_x4.png'),
+};
 export const logo: ImageData = {
     link: require('../../assets/logo.png'),
 };
