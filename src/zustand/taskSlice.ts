@@ -278,8 +278,6 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             const taskTime = new Date(task.time);
 
             if (taskTime.setHours(0, 0, 0, 0) === today) {
-                todayTasks.push(task);
-
                 // sort the tasks
                 todayTasks.sort(
                     (a: Task, b: Task) =>
@@ -287,8 +285,6 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
                         new Date(a.time).setHours(0, 0, 0, 0).valueOf(),
                 );
             } else if (taskTime > new Date()) {
-                upcomingTasks.push(task);
-
                 // sort the tasks
                 upcomingTasks.sort(
                     (a: Task, b: Task) =>
@@ -296,8 +292,6 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
                         new Date(b.time).setHours(0, 0, 0, 0).valueOf(),
                 );
             } else {
-                pastTasks.push(task);
-
                 // sort the tasks
                 pastTasks.sort(
                     (a: Task, b: Task) =>
