@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform, SafeAreaView, StatusBar } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { HorizontalDivider } from '../../components';
 import { RootStackParamList } from '../../types';
-import { GoogleAuth, RegisterForm } from '../../sections/auth';
+import { RegisterForm } from '../../sections/auth';
 import { AuthRoutes, Colors } from '../../constants';
 
 export type RegisterScreenProps = {
@@ -44,5 +43,9 @@ const styles = StyleSheet.create({
     loginLink: {
         flexDirection: 'row',
         marginVertical: 20,
+    },
+    AndroidSafeArea: {
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
 });

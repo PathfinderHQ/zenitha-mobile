@@ -11,7 +11,7 @@ export default {
         icon: './assets/logo.png',
         userInterfaceStyle: 'light',
         splash: {
-            image: './assets/logo.png',
+            image: './assets/logo_x4.png',
             resizeMode: 'contain',
             backgroundColor: '#ffffff',
         },
@@ -30,6 +30,7 @@ export default {
         web: {
             favicon: './assets/favicon.png',
         },
+
         extra: {
             apiBaseUrl: process.env.API_BASE_URL,
             firebaseApiKey: process.env.FIREBASE_API_KEY,
@@ -49,6 +50,11 @@ export default {
                 {
                     photosPermission: 'The app accesses your photos to let you share them with your friends.',
                 },
+                'expo-notifications',
+                {
+                    icon: './assets/logo_x0.4.png',
+                    color:"#ffffff",
+                }
             ],
         ],
     },
