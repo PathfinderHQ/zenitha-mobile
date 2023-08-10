@@ -23,6 +23,7 @@ export interface Task {
     user: string;
     category: string;
     title: string;
+    summary: string;
     description?: string;
     completed: boolean;
     time: string;

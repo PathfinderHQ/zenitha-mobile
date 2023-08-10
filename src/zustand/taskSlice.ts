@@ -1,8 +1,8 @@
 import { create } from 'zustand';
-import dayjs from 'dayjs';
 import { AutomatedTaskPayload, ITaskSlice, RequestMethod, Task, TaskPayload } from '../types';
-import { makeRequest, extractDateTime } from '../lib';
+import { makeRequest } from '../lib';
 import { useCategories } from './categorySlice';
+import { schedulePushNotification } from '../lib/notifications';
 
 export const useTasks = create<ITaskSlice>((set, get) => ({
     tasks: [],
@@ -86,15 +86,26 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
         // set current task
         get().setCurrent(result.data);
 
+        const task = result.data;
+
         set((state) => ({
             ...state,
-            tasks: [result.data, ...state.tasks],
+            tasks: [task, ...state.tasks],
+        }));
+
+        // sort task
+        get().sortTasks();
+
+        set((state) => ({
+            ...state,
             create: {
                 ...state.create,
                 success: true,
                 loading: false,
             },
         }));
+
+        await schedulePushNotification({ summary: task.summary, time: task.time });
     },
     createAutomatedTask: async (data: AutomatedTaskPayload) => {
         get().automated.setLoading(true);
@@ -113,9 +124,12 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             return;
         }
 
+        set((state) => ({ ...state, tasks: [...result.data, ...state.tasks] }));
+
+        get().sortTasks();
+
         set((state) => ({
             ...state,
-            tasks: [...result.data, ...state.tasks],
             automated: {
                 ...state.automated,
                 success: true,
@@ -123,8 +137,9 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             },
         }));
 
-        // sort tasks
-        get().sortTasks();
+        await Promise.all(
+            result.data.map((task: Task) => schedulePushNotification({ summary: task.summary, time: task.time })),
+        );
     },
     updateTask: async (id: string, data: TaskPayload) => {
         get().update.setLoading(true);
@@ -147,6 +162,7 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
         get().setCurrent(result.data);
 
         set((state) => ({
+            ...state,
             update: {
                 ...state.update,
                 success: true,
@@ -165,10 +181,31 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
 
                 return task;
             }),
-        }));
+            pastTasks: state.pastTasks.map((task) => {
+                // return updated tasks
+                if (task.id === id) {
+                    return result.data;
+                }
 
-        // sort tasks
-        get().sortTasks();
+                return task;
+            }),
+            upcomingTasks: state.upcomingTasks.map((task) => {
+                // return updated tasks
+                if (task.id === id) {
+                    return result.data;
+                }
+
+                return task;
+            }),
+            todayTasks: state.todayTasks.map((task) => {
+                // return updated tasks
+                if (task.id === id) {
+                    return result.data;
+                }
+
+                return task;
+            }),
+        }));
     },
     fetchTasks: async () => {
         get().fetch.setLoading(true);
@@ -187,56 +224,12 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             return;
         }
 
-        set((state) => ({
-            ...state,
-            tasks: result.data,
-            todayTasks: result.data.filter((task: Task) => {
-                const { date } = extractDateTime(task.time);
+        set((state) => ({ ...state, tasks: result.data.tasks }));
 
-                return dayjs().isSame(dayjs(date), 'day');
-            }),
-            pastTasks: result.data.filter((task: Task) => {
-                const { date } = extractDateTime(task.time);
-
-                return dayjs().isAfter(dayjs(date), 'day');
-            }),
-            upcomingTasks: result.data.filter((task: Task) => {
-                const { date } = extractDateTime(task.time);
-
-                return dayjs().isBefore(dayjs(date), 'day');
-            }),
-            fetch: {
-                ...state.fetch,
-                loading: false,
-            },
-        }));
-    },
-    sortTasks: async () => {
-        get().fetch.setLoading(true);
+        get().sortTasks();
 
         set((state) => ({
             ...state,
-            todayTasks: get()
-                .tasks.filter((task: Task) => {
-                    const { date } = extractDateTime(task.time);
-
-                    return dayjs().isSame(dayjs(date), 'day');
-                })
-                .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()),
-            pastTasks: get()
-                .tasks.filter((task: Task) => {
-                    const { date } = extractDateTime(task.time);
-
-                    return dayjs().isAfter(dayjs(date), 'day');
-                })
-                .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()),
-            upcomingTasks: get()
-                .tasks.filter((task: Task) => {
-                    const { date } = extractDateTime(task.time);
-
-                    return dayjs().isBefore(dayjs(date), 'day');
-                })
-                .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()),
             fetch: {
                 ...state.fetch,
                 loading: false,
@@ -249,9 +242,10 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
         set((state) => ({
             ...state,
             tasks: state.tasks.filter((task) => task.id !== id),
+            pastTasks: state.pastTasks.filter((task) => task.id !== id),
+            upcomingTasks: state.upcomingTasks.filter((task) => task.id !== id),
+            todayTasks: state.todayTasks.filter((task) => task.id !== id),
         }));
-
-        get().sortTasks();
 
         const { result, error } = await makeRequest(`tasks/${id}`, RequestMethod.DELETE);
 
@@ -273,6 +267,51 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
                 ...state.remove,
                 loading: false,
             },
+        }));
+    },
+    sortTasks: () => {
+        const today = new Date().setHours(0, 0, 0, 0);
+
+        const { todayTasks, upcomingTasks, pastTasks, tasks } = get();
+
+        tasks.forEach((task: Task) => {
+            const taskTime = new Date(task.time);
+
+            if (taskTime.setHours(0, 0, 0, 0) === today) {
+                todayTasks.push(task);
+
+                // sort the tasks
+                todayTasks.sort(
+                    (a: Task, b: Task) =>
+                        new Date(b.time).setHours(0, 0, 0, 0).valueOf() -
+                        new Date(a.time).setHours(0, 0, 0, 0).valueOf(),
+                );
+            } else if (taskTime > new Date()) {
+                upcomingTasks.push(task);
+
+                // sort the tasks
+                upcomingTasks.sort(
+                    (a: Task, b: Task) =>
+                        new Date(a.time).setHours(0, 0, 0, 0).valueOf() -
+                        new Date(b.time).setHours(0, 0, 0, 0).valueOf(),
+                );
+            } else {
+                pastTasks.push(task);
+
+                // sort the tasks
+                pastTasks.sort(
+                    (a: Task, b: Task) =>
+                        new Date(b.time).setHours(0, 0, 0, 0).valueOf() -
+                        new Date(a.time).setHours(0, 0, 0, 0).valueOf(),
+                );
+            }
+        });
+
+        set((state) => ({
+            ...state,
+            todayTasks,
+            upcomingTasks,
+            pastTasks,
         }));
     },
 }));
