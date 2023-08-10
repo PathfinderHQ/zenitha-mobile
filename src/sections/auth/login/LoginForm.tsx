@@ -54,6 +54,9 @@ const LoginForm: FC<LoginScreenProps> = ({ navigation }) => {
     useEffect(() => {
         if (isAuthenticated) {
             navigation.navigate(Routes.Dashboard);
+
+            // reset form
+            reset();
         }
 
         // eslint-disable-next-line

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Subscription } from 'expo-modules-core';
 import * as Notifications from 'expo-notifications';
+import { registerForPushNotificationsAsync } from '../lib/notifications';
 
 const useExpoPushToken = () => {
     const notificationListener = useRef<Subscription>({} as Subscription);
@@ -14,6 +15,15 @@ const useExpoPushToken = () => {
             Notifications.removeNotificationSubscription(notificationListener.current);
         };
     }, []);
+
+    useEffect(() => {
+        const startNotifications = async () => {
+            await registerForPushNotificationsAsync();
+        };
+
+        startNotifications();
+        // eslint-disable-next-line
+    }, [])
 };
 
 export default useExpoPushToken;
