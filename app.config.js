@@ -11,7 +11,7 @@ export default {
         icon: './assets/logo.png',
         userInterfaceStyle: 'light',
         splash: {
-            image: './assets/logo.png',
+            image: './assets/logo_x4.png',
             resizeMode: 'contain',
             backgroundColor: '#ffffff',
         },
@@ -29,6 +29,10 @@ export default {
         },
         web: {
             favicon: './assets/favicon.png',
+        },
+        notification:{
+            icon: './assets/logo_x0.4.png',
+            color:'#ffffff',
         },
         extra: {
             apiBaseUrl: process.env.API_BASE_URL,

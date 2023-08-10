@@ -39,7 +39,7 @@ const SplashScreen: FC<SplashScreenProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{words[wordIndex].substring(0, letterIndex + 1)}</Text>
-            <Image source={logo_x4.link} style={styles.image} />
+            <Image source={logo.link} style={styles.image} />
         </View>
     );
 };
