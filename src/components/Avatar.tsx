@@ -21,6 +21,8 @@ const Avatar: FC<IAvatarProps> = ({ user, size = 120 }) => {
     useEffect(() => {
         if (user?.first_name || user?.last_name) {
             setName(`${user.first_name || ''} ${user.last_name || ''}`);
+        } else {
+            setName(`${user?.email}`);
         }
     }, [user]);
 

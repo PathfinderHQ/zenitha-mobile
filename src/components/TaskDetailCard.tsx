@@ -4,6 +4,7 @@ import { Dimensions, StyleSheet, Text, ImageURISource, Image, StyleProp, ViewSty
 import dayjs from 'dayjs';
 import { alarm, Colors, FontSize } from '../constants';
 import { Task } from '../types';
+import BackButton from './BackButton';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -18,6 +19,7 @@ const TaskDetailCard: FC<TaskDetailCardProps> = ({ task, alarmIcon, customStyles
 
     return (
         <TouchableOpacity style={[styles.container, customStyles]}>
+            <BackButton />
             <View style={styles.headerContainer}>
                 <Text style={styles.titleText}>{title}</Text>
                 <Text style={styles.titleText}>{dayjs(task.time).format('ddd, D MMM, YYYY')}</Text>
@@ -51,9 +53,9 @@ const styles = StyleSheet.create({
         width,
         height: height / 1.2,
         alignSelf: 'center',
-        padding: 20,
+        padding: 10,
         borderRadius: 8,
-        backgroundColor: '#52b788',
+        backgroundColor: '#E9ECEF',
     },
     headerContainer: {
         flex: 1,
@@ -74,6 +76,7 @@ const styles = StyleSheet.create({
         flex: 2,
         left: '5%',
         top: '5%',
+        paddingRight: 8,
     },
     catContainer: {
         flex: 1,
@@ -82,20 +85,21 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: FontSize.heading2Size,
-        color: Colors.white100,
+        color: Colors.main_text,
         marginTop: '5%',
+        fontWeight: 'bold',
     },
     timeText: {
         fontSize: 28,
-        color: Colors.white100,
+        color: Colors.main_text,
     },
     descriptionText: {
         fontSize: 22,
-        color: Colors.white100,
+        color: Colors.main_text,
     },
     catText: {
         fontSize: 18,
-        color: Colors.white100,
+        color: Colors.main_text,
     },
     icon: {
         color: Colors.main_text,

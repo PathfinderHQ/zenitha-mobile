@@ -360,7 +360,4 @@ export const useAuthSlice = create<IAuthSlice>((set, get) => ({
             },
         }));
     },
-    addUserPushToken: async () => {
-        await makeRequest('user-push-token', RequestMethod.POST);
-    },
 }));

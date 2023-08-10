@@ -45,6 +45,7 @@ const DotMenu: FC<IDotMenuProps> = ({ vertical, dark, task }) => {
         setCurrent(task);
         close();
         navigation.navigate(Routes.EditTask, { task });
+        hideMenu();
     };
 
     return (
@@ -80,6 +81,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backfaceVisibility: 'hidden',
         zIndex: 100,
+        color: 'green',
     },
     menuItem: {
         borderRadius: 8,

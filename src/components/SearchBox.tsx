@@ -1,16 +1,29 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Searchbar } from 'react-native-paper';
 import { View, Dimensions, StyleSheet } from 'react-native';
 import BackButton from './BackButton';
+import { useTasks } from '../zustand';
 
 const { width } = Dimensions.get('screen');
 
-type ISearchBoxProps = {
-    query: string;
-    onSearch: (value: string) => void;
-};
+const SearchBox: FC = () => {
+    const [text, setText] = useState('');
 
-const SearchBox: FC<ISearchBoxProps> = ({ query, onSearch }) => {
+    const onChangeSearch = (value: React.SetStateAction<string>) => setText(value);
+
+    const { clearFilter, filterTasks } = useTasks();
+
+    // filter
+    useEffect(() => {
+        if (text) {
+            filterTasks(text);
+        } else {
+            clearFilter();
+        }
+
+        // eslint-disable-next-line
+    }, [text]);
+
     return (
         <View style={styles.container}>
             <View style={styles.back}>
@@ -19,8 +32,8 @@ const SearchBox: FC<ISearchBoxProps> = ({ query, onSearch }) => {
             <Searchbar
                 style={styles.input}
                 placeholder='Search'
-                onChangeText={onSearch}
-                value={query}
+                onChangeText={onChangeSearch}
+                value={text}
                 mode='bar'
                 clearIcon='close-circle-outline'
             />

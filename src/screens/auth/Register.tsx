@@ -12,17 +12,15 @@ export type RegisterScreenProps = {
 
 const SignUpScreen: FC<RegisterScreenProps> = ({ navigation }) => {
     return (
-        <SafeAreaView style={styles.AndroidSafeArea}>
-            <View style={styles.container}>
-                <Text style={styles.title}>Register</Text>
-                <RegisterForm navigation={navigation} />
-                <View style={styles.loginLink}>
-                    <TouchableOpacity onPress={() => navigation.navigate(AuthRoutes.Login)}>
-                        <Text style={{ textDecorationLine: 'underline' }}>Login</Text>
-                    </TouchableOpacity>
-                </View>
+        <View style={styles.container}>
+            <Text style={styles.title}>Register</Text>
+            <RegisterForm navigation={navigation} />
+            <View style={styles.loginLink}>
+                <TouchableOpacity onPress={() => navigation.navigate(AuthRoutes.Login)}>
+                    <Text style={{ textDecorationLine: 'underline' }}>Login</Text>
+                </TouchableOpacity>
             </View>
-        </SafeAreaView>
+        </View>
     );
 };
 
