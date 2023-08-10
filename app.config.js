@@ -46,10 +46,6 @@ export default {
         },
         plugins: [
             [
-                'expo-image-picker',
-                {
-                    photosPermission: 'The app accesses your photos to let you share them with your friends.',
-                },
                 'expo-notifications',
                 {
                     icon: './assets/logo_x0.4.png',
