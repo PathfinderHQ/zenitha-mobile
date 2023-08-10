@@ -17,8 +17,6 @@ const TodayTasksScreen: FC = () => {
         // eslint-disable-next-line
     }, []);
 
-    console.log('TODAY', todayTasks);
-
     return (
         <SafeAreaView style={styles.AndroidSafeArea}>
             <View style={styles.container}>
