@@ -30,10 +30,7 @@ export default {
         web: {
             favicon: './assets/favicon.png',
         },
-        notification:{
-            icon: './assets/logo_x0.4.png',
-            color:'#ffffff',
-        },
+
         extra: {
             apiBaseUrl: process.env.API_BASE_URL,
             firebaseApiKey: process.env.FIREBASE_API_KEY,
@@ -53,6 +50,11 @@ export default {
                 {
                     photosPermission: 'The app accesses your photos to let you share them with your friends.',
                 },
+                'expo-notifications',
+                {
+                    icon: './assets/logo_x0.4.png',
+                    color:"#ffffff",
+                }
             ],
         ],
     },
