@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Dimensions, Platform, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LoginForm } from '../../sections/auth';
@@ -36,11 +36,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    linkContainer: {
+    link: {
         flexDirection: 'row',
         marginVertical: 20,
-        height: 40,
-        alignContent: 'space-between',
     },
     separator: {
         fontSize: 14,
@@ -50,14 +48,6 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         color: Colors.main_text,
         fontSize: 14,
-        alignSelf: 'center',
-    },
-    link: {
-        flex: 1,
-        width: width / 2.2,
-    },
-    AndroidSafeArea: {
-        flex: 1,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        marginHorizontal: width / 10,
     },
 });
