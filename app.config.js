@@ -53,8 +53,8 @@ export default {
                 'expo-notifications',
                 {
                     icon: './assets/logo_x0.4.png',
-                    color:"#ffffff",
-                }
+                    color: '#ffffff',
+                },
             ],
         ],
     },
