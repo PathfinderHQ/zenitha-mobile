@@ -63,6 +63,9 @@ const RegisterForm: FC<SignUpFormProps> = ({ navigation }) => {
     useEffect(() => {
         if (isAuthenticated) {
             navigation.navigate(AuthRoutes.Verify);
+
+            // reset form
+            reset();
         }
 
         // eslint-disable-next-line

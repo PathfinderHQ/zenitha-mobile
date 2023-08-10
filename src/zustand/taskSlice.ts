@@ -224,6 +224,8 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             return;
         }
 
+        // console.log('RES', result.data);
+
         set((state) => ({ ...state, tasks: result.data.tasks }));
 
         get().sortTasks();
@@ -272,12 +274,17 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
     sortTasks: () => {
         const today = new Date().setHours(0, 0, 0, 0);
 
-        const { todayTasks, upcomingTasks, pastTasks, tasks } = get();
+        const todayTasks: Task[] = [];
+        const upcomingTasks: Task[] = [];
+        const pastTasks: Task[] = [];
+
+        const { tasks } = get();
 
         tasks.forEach((task: Task) => {
             const taskTime = new Date(task.time);
 
             if (taskTime.setHours(0, 0, 0, 0) === today) {
+                todayTasks.push(task);
                 // sort the tasks
                 todayTasks.sort(
                     (a: Task, b: Task) =>
@@ -285,6 +292,8 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
                         new Date(a.time).setHours(0, 0, 0, 0).valueOf(),
                 );
             } else if (taskTime > new Date()) {
+                upcomingTasks.push(task);
+
                 // sort the tasks
                 upcomingTasks.sort(
                     (a: Task, b: Task) =>
@@ -292,6 +301,8 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
                         new Date(b.time).setHours(0, 0, 0, 0).valueOf(),
                 );
             } else {
+                pastTasks.push(task);
+
                 // sort the tasks
                 pastTasks.sort(
                     (a: Task, b: Task) =>

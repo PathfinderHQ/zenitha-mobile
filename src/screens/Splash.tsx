@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import { AuthRoutes, logo, Routes } from '../constants';
+import { AuthRoutes, logo, logo_x4, Routes } from '../constants';
 import useAuth from '../hooks/useAuth';
 
 type SplashScreenProps = {

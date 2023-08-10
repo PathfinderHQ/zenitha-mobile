@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 export default {
     expo: {
-        name: 'zenitha-mobile',
+        name: 'Zenitha',
         owner: 'pathfinder_zenitha',
         slug: 'zenitha-mobile',
         scheme: 'zenitha-mobile',
@@ -10,8 +10,12 @@ export default {
         orientation: 'portrait',
         icon: './assets/logo.png',
         userInterfaceStyle: 'light',
+        notification: {
+            icon: './assets/logo_x0.4.png',
+            color: '#ffffff',
+        },
         splash: {
-            image: './assets/logo.png',
+            image: './assets/logo_x4.png',
             resizeMode: 'contain',
             backgroundColor: '#ffffff',
         },
@@ -30,6 +34,7 @@ export default {
         web: {
             favicon: './assets/favicon.png',
         },
+
         extra: {
             apiBaseUrl: process.env.API_BASE_URL,
             firebaseApiKey: process.env.FIREBASE_API_KEY,
@@ -43,13 +48,5 @@ export default {
                 projectId: process.env.EAS_PROJECT_ID,
             },
         },
-        plugins: [
-            [
-                'expo-image-picker',
-                {
-                    photosPermission: 'The app accesses your photos to let you share them with your friends.',
-                },
-            ],
-        ],
     },
 };

@@ -23,7 +23,7 @@ const useExpoPushToken = () => {
 
         startNotifications();
         // eslint-disable-next-line
-    }, [])
+    }, []);
 };
 
 export default useExpoPushToken;
