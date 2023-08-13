@@ -11,6 +11,8 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
     upcomingTasks: [],
     filtered: [],
     task: null,
+    search: null,
+    setSearch: (value) => set((state) => ({ ...state, search: value })),
     setCurrent: (task: Task) => {
         const category = useCategories.getState().categories.find((data) => data.id === task.category);
         set((state) => ({
@@ -24,7 +26,7 @@ export const useTasks = create<ITaskSlice>((set, get) => ({
             filtered: get().tasks.filter((task) => {
                 const regex = new RegExp(`${value}`, 'gi');
 
-                return task.title.match(regex) || task.description?.match(regex);
+                return task.title.match(regex);
             }),
         }));
     },

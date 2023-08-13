@@ -39,6 +39,8 @@ export interface ITaskSlice {
     upcomingTasks: Task[];
     tasks: Task[];
     task: Task | null;
+    search: string | null;
+    setSearch: (value: string) => void;
     setCurrent: (value: Task) => void;
     filterTasks: (value: string) => void;
     clearFilter: () => void;

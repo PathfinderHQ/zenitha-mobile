@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 import { SearchBox } from '../../components';
 import { Tasks } from '../../sections/tasks';
@@ -14,11 +14,7 @@ const SearchTaskScreen: FC = () => {
                     <SearchBox />
                 </View>
 
-                <Tasks
-                    text='Result'
-                    tasks={filtered}
-                    placeholder='Enter something in the input box to start searching'
-                />
+                <Tasks text='Result' tasks={filtered} />
             </View>
         </SafeAreaView>
     );

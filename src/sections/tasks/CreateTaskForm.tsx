@@ -132,7 +132,10 @@ const CreateTaskForm: FC = () => {
                     <Text>Description</Text>
                     <Input multiline numberOfLines={4} name='description' placeholder='Add task description here' />
                 </View>
-                <Categories type='select' />
+                <View>
+                    <Text>Category </Text>
+                    <Categories type='select' />
+                </View>
                 <Button loading={loading} title='Create Task' onPress={handleSubmit(onSubmit)} />
             </ScrollView>
         </FormProvider>

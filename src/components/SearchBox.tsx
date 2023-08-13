@@ -9,9 +9,11 @@ const { width } = Dimensions.get('screen');
 const SearchBox: FC = () => {
     const [text, setText] = useState('');
 
-    const onChangeSearch = (value: React.SetStateAction<string>) => setText(value);
-
-    const { clearFilter, filterTasks } = useTasks();
+    const { clearFilter, filterTasks, setSearch } = useTasks();
+    const onChangeSearch = (value: string) => {
+        setSearch(value);
+        setText(value);
+    };
 
     // filter
     useEffect(() => {
@@ -31,11 +33,12 @@ const SearchBox: FC = () => {
             </View>
             <Searchbar
                 style={styles.input}
-                placeholder='Search'
+                placeholder='Enter text to filter your tasks'
                 onChangeText={onChangeSearch}
                 value={text}
                 mode='bar'
                 clearIcon='close-circle-outline'
+                placeholderTextColor='#ccc'
             />
         </View>
     );
